@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CandidateApplication {
+  id               String   @id @default(cuid())
+  fullName         String
+  mobile           String
+  email            String
+  location         String
+  passportStatus   String
+  preferredCountry String
+  jobCategory      String
+  experience       String
+  message          String?
+  uploads          Json
+  whatsappConsent  Boolean
+  privacyAgreement Boolean
+  sourcePage       String
+  consentTimestamp DateTime
+  ipAddress        String
+  userAgent        String
+  crmStatus        String   @default("queued")
+  createdAt        DateTime @default(now())
+}
+
+model EmployerRequirement {
+  id                String   @id @default(cuid())
+  companyName       String
+  contactPerson     String
+  designation       String
+  email             String
+  phone             String
+  country           String
+  projectLocation   String
+  categories        String
+  workers           String
+  salaryRange       String
+  facilities        String
+  contractDuration  String
+  visaDetails       String
+  mobilizationTime  String
+  message           String?
+  uploads           Json
+  whatsappConsent   Boolean
+  termsAgreement    Boolean
+  sourcePage        String
+  consentTimestamp  DateTime
+  ipAddress         String
+  userAgent         String
+  crmStatus         String   @default("queued")
+  createdAt         DateTime @default(now())
+}
+
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}

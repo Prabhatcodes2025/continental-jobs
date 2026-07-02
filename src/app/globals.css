@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --navy: #07111f;
+  --ink: #0b1526;
+  --gold: #d9a441;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #102033;
+}
+
+::selection {
+  background: rgba(217, 164, 65, 0.35);
+}
+
+.premium-band {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(217, 164, 65, 0.16), transparent 34%),
+    linear-gradient(135deg, #07111f 0%, #0b1d34 48%, #05080f 100%);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #f7d985, #d9a441 48%, #9f6d1b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.field {
+  @apply w-full rounded-md border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-gold focus:ring-4 focus:ring-gold/15;
+}
+
+.label {
+  @apply text-sm font-semibold text-slate-700;
+}
+
+.button-primary {
+  @apply inline-flex items-center justify-center rounded-md bg-gold px-5 py-3 text-sm font-bold text-navy transition hover:bg-[#e7b95b] focus:outline-none focus:ring-4 focus:ring-gold/30;
+}
+
+.button-secondary {
+  @apply inline-flex items-center justify-center rounded-md border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20;
+}
