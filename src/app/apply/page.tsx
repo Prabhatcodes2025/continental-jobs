@@ -1,4 +1,5 @@
 import { ConsentText } from "@/components/ConsentText";
+import { FormSubmitButton } from "@/components/FormSubmitButton";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata = {
@@ -43,7 +44,7 @@ export default function ApplyPage({ searchParams }: { searchParams: { submitted?
           <ConsentText type="candidate" />
           <Check name="whatsappConsent" label="I consent to receive recruitment updates and responses through WhatsApp." />
           <Check name="privacyAgreement" label="I agree to the Privacy Policy and allow my submitted information to be processed for recruitment services." />
-          <button className="button-primary w-fit" type="submit">Submit Application</button>
+          <FormSubmitButton>Submit Application</FormSubmitButton>
         </form>
       </section>
     </>
@@ -63,7 +64,7 @@ function FileField({ name, label }: { name: string; label: string }) {
   return (
     <label className="grid gap-2">
       <span className="label">{label}</span>
-      <input className="field" name={name} type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+      <input className="field file:mr-4 file:rounded-md file:border-0 file:bg-navy file:px-4 file:py-2 file:text-sm file:font-bold file:text-white" name={name} type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
     </label>
   );
 }

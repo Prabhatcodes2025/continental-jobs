@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Globe2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Globe2, Sparkles } from "lucide-react";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { ApplyTrigger } from "@/components/ApplyTrigger";
+import { GalleryLightbox } from "@/components/GalleryLightbox";
+import { HeroGlobe } from "@/components/HeroGlobe";
 import { MotionReveal } from "@/components/MotionReveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   company,
-  galleryItems,
   globalRegions,
   industries,
   indianOffices,
@@ -35,9 +38,7 @@ export default function HomePage() {
                 Europe, Asia, Africa and beyond through compliant recruitment, documentation and mobilization.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/apply" className="button-primary">
-                  Apply for Job <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <ApplyTrigger>Apply for Job</ApplyTrigger>
                 <Link href="/manpower-requirement" className="button-secondary">
                   Submit Manpower Requirement
                 </Link>
@@ -49,23 +50,18 @@ export default function HomePage() {
           </MotionReveal>
           <MotionReveal delay={0.15}>
             <div className="rounded-lg border border-white/12 bg-white/10 p-5 shadow-glow backdrop-blur">
-              <Image
-                src="/brand/continental-logo.png"
-                alt="Continental logo"
-                width={220}
-                height={220}
-                className="mx-auto h-40 w-40 rounded-full object-cover ring-2 ring-gold/60"
-                priority
-              />
+              <HeroGlobe />
               <div className="mt-6 grid grid-cols-2 gap-3">
                 {[
-                  ["43+", "Years"],
-                  ["25+", "Countries"],
-                  ["ISO", "Quality Mindset"],
-                  ["24/7", "Recruitment Support"]
-                ].map(([value, label]) => (
+                  [43, "+", "Years"],
+                  [25, "+", "Countries"],
+                  [9001, "", "ISO 9001"],
+                  [24, "/7", "Recruitment Support"]
+                ].map(([value, suffix, label]) => (
                   <div key={label} className="rounded-md border border-white/10 bg-white/10 p-4 text-center">
-                    <p className="text-3xl font-black text-gold">{value}</p>
+                    <p className="text-3xl font-black text-gold">
+                      <AnimatedCounter value={Number(value)} suffix={String(suffix)} />
+                    </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wide text-white/70">{label}</p>
                   </div>
                 ))}
@@ -87,7 +83,7 @@ export default function HomePage() {
               const Icon = service.icon;
               return (
                 <MotionReveal key={service.title} delay={index * 0.03}>
-                  <article className="h-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                  <article className="premium-card h-full p-6" data-magnetic>
                     <Icon className="h-8 w-8 text-gold" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{service.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
@@ -107,7 +103,7 @@ export default function HomePage() {
           <SectionHeader eyebrow="Featured Industries" title="Trusted across high-demand manpower categories." align="center" />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {industries.map(([name, Icon]) => (
-              <div key={name} className="rounded-md border border-slate-200 bg-white p-5">
+              <div key={name} className="premium-card p-5" data-magnetic>
                 <Icon className="h-6 w-6 text-gold" />
                 <p className="mt-3 text-sm font-black text-slate-900">{name}</p>
               </div>
@@ -124,7 +120,7 @@ export default function HomePage() {
               title="A national recruitment footprint with Kochi at the center."
               text={`${indianOffices.join(", ")} and allied sourcing corridors support candidate access across India.`}
             />
-            <Image src="/brand/indian-operations-map.png" alt="Indian operations map" width={900} height={900} className="mt-8 rounded-lg border border-slate-200" />
+            <Image src="/brand/indian-operations-map.png" alt="Indian operations map" width={900} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="mt-8 rounded-lg border border-slate-200 shadow-xl" loading="lazy" />
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <SectionHeader
@@ -134,7 +130,7 @@ export default function HomePage() {
             />
             <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {globalRegions.map((region) => (
-                <div key={region} className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800">
+                <div key={region} className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-gold/40 hover:bg-white hover:text-navy">
                   {region}
                 </div>
               ))}
@@ -146,7 +142,7 @@ export default function HomePage() {
       <section className="premium-band py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <MotionReveal>
-            <Image src="/brand/chairman-sajeevan.png" alt="Founder and Chairman Sajeevan T S" width={900} height={650} className="rounded-lg object-cover shadow-glow" />
+            <Image src="/brand/chairman-sajeevan.png" alt="Founder and Chairman Sajeevan T S" width={900} height={650} sizes="(min-width: 1024px) 42vw, 100vw" className="rounded-lg object-cover shadow-glow" loading="lazy" />
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <p className="text-sm font-black uppercase tracking-[0.3em] text-gold">Chairman&apos;s Message</p>
@@ -166,7 +162,7 @@ export default function HomePage() {
           <SectionHeader eyebrow="Recruitment Process" title="A transparent process from demand letter to deployment." align="center" />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {recruitmentSteps.map((step, index) => (
-              <div key={step} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <div key={step} className="premium-card p-6" data-magnetic>
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy text-sm font-black text-gold">
                   {index + 1}
                 </span>
@@ -180,17 +176,7 @@ export default function HomePage() {
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Brand references, office presence and active recruitment campaigns." />
-          <div className="mt-10 grid gap-5 md:grid-cols-4">
-            {galleryItems.map((item) => (
-              <article key={item.src} className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-                <Image src={item.src} alt={item.title} width={600} height={700} className="h-56 w-full object-cover" />
-                <div className="p-4">
-                  <h3 className="font-black">{item.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{item.caption}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <GalleryLightbox compact />
         </div>
       </section>
 
@@ -201,7 +187,7 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl font-black">Candidates and employers can start here.</h2>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/apply" className="button-primary"><CheckCircle2 className="mr-2 h-4 w-4" /> Apply for Job</Link>
+            <ApplyTrigger showArrow={false}><CheckCircle2 className="mr-2 h-4 w-4" /> Apply for Job</ApplyTrigger>
             <Link href="/manpower-requirement" className="button-secondary"><Globe2 className="mr-2 h-4 w-4" /> Employer Form</Link>
             <Link href="/contact" className="button-secondary"><Sparkles className="mr-2 h-4 w-4" /> Contact Us</Link>
           </div>

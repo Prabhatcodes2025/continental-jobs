@@ -1,11 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, PhoneCall } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, PhoneCall, X } from "lucide-react";
+import { useState } from "react";
+import { ApplyTrigger } from "@/components/ApplyTrigger";
 import { company, navItems } from "@/lib/site-data";
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-navy/95 text-white shadow-xl shadow-black/10 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-navy/88 text-white shadow-xl shadow-black/10 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex min-w-0 items-center gap-3">
           <Image
@@ -26,9 +34,16 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 text-sm font-semibold text-white/80 lg:flex">
+        <nav className="hidden items-center gap-1 text-sm font-semibold text-white/80 lg:flex">
           {navItems.map(([label, href]) => (
-            <Link key={href} href={href} className="transition hover:text-gold">
+            <Link
+              key={href}
+              href={href}
+              className={`rounded-full px-3 py-2 transition hover:bg-white/10 hover:text-gold ${
+                pathname === href ? "bg-gold/15 text-gold" : ""
+              }`}
+              data-magnetic
+            >
               {label}
             </Link>
           ))}
@@ -39,23 +54,31 @@ export function SiteHeader() {
             <PhoneCall className="mr-2 h-4 w-4" />
             Call Kochi
           </a>
-          <Link href="/apply" className="button-primary py-2">
-            Apply Now
-          </Link>
+          <ApplyTrigger className="button-primary py-2" showArrow={false}>Apply Now</ApplyTrigger>
         </div>
 
-        <details className="relative lg:hidden">
-          <summary className="list-none rounded-md p-2 text-white">
-            <Menu className="h-6 w-6" />
-          </summary>
-          <nav className="absolute right-0 mt-3 grid w-64 gap-1 rounded-md border border-white/10 bg-navy p-3 shadow-2xl">
+        <div className="relative lg:hidden">
+          <button type="button" onClick={() => setMobileOpen((value) => !value)} className="rounded-md p-2 text-white" aria-label="Toggle navigation menu">
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+          {mobileOpen ? (
+          <nav className="absolute right-0 mt-3 grid w-72 gap-1 rounded-lg border border-white/10 bg-navy/98 p-3 shadow-2xl backdrop-blur">
             {navItems.map(([label, href]) => (
-              <Link key={href} href={href} className="rounded px-3 py-2 text-sm font-semibold hover:bg-white/10">
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className={`rounded px-3 py-2 text-sm font-semibold hover:bg-white/10 ${
+                  pathname === href ? "bg-gold/15 text-gold" : ""
+                }`}
+              >
                 {label}
               </Link>
             ))}
+            <ApplyTrigger className="button-primary mt-2 py-2" showArrow={false}>Apply Now</ApplyTrigger>
           </nav>
-        </details>
+          ) : null}
+        </div>
       </div>
     </header>
   );

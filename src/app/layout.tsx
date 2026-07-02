@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ExperienceLayer } from "@/components/ExperienceLayer";
 import { WhatsAppFloating } from "@/components/WhatsAppFloating";
 import { company, seoKeywords } from "@/lib/site-data";
 
@@ -46,10 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-        <WhatsAppFloating />
+        <ExperienceLayer>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+          <WhatsAppFloating />
+        </ExperienceLayer>
       </body>
     </html>
   );

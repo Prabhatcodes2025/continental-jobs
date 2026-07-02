@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { company, globalRegions, indianOffices } from "@/lib/site-data";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#05080f] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 lg:px-8">
+    <footer className="premium-band text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.group}</p>
           <h2 className="mt-3 text-3xl font-black">{company.shortName}</h2>
@@ -12,6 +13,20 @@ export function SiteFooter() {
             A premium international manpower, staffing, work abroad, study abroad and HR solutions
             organization headquartered in Kochi with regional Indian operations and global recruitment reach.
           </p>
+          <div className="mt-6 grid gap-3 text-sm text-white/75 sm:grid-cols-2">
+            <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="footer-pill">
+              <Phone className="h-4 w-4" /> {company.phones.kochi[0]}
+            </a>
+            <a href={`mailto:${company.emails.work}`} className="footer-pill">
+              <Mail className="h-4 w-4" /> {company.emails.work}
+            </a>
+            <a href={company.socialChat} className="footer-pill">
+              <MessageCircle className="h-4 w-4" /> WhatsApp
+            </a>
+            <span className="footer-pill">
+              <MapPin className="h-4 w-4" /> Kochi HQ
+            </span>
+          </div>
         </div>
         <div>
           <h3 className="font-bold text-gold">Indian Offices</h3>
