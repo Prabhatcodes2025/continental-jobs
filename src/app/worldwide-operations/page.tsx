@@ -16,9 +16,9 @@ export default function WorldwideOperationsPage() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader
-            eyebrow="Global Presence"
+            eyebrow="Worldwide Infrastructure"
             title="Recruitment reach across major destination markets."
-            text="Our global desk is CRM and webhook-ready for employer tracking, candidate coordination and WhatsApp API integration."
+            text="Brochure references include India, Australia, UK, Europe, Canada, Saudi, Kuwait, Bahrain, Dubai, Nepal and allied sourcing networks across the Middle East, Asia, Far East, Africa and Europe."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {globalRegions.map((region) => (

@@ -13,7 +13,10 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-navy/88 text-white shadow-xl shadow-black/10 backdrop-blur-xl">
+    <header
+      className="site-header sticky top-0 z-[75] border-b border-gold/15 text-white shadow-xl shadow-black/20 backdrop-blur-xl"
+      style={{ backgroundColor: "rgba(7, 17, 31, 0.98)" }}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex min-w-0 items-center gap-3">
           <Image
@@ -62,7 +65,10 @@ export function SiteHeader() {
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
           {mobileOpen ? (
-          <nav className="absolute right-0 mt-3 grid w-72 gap-1 rounded-lg border border-white/10 bg-navy/98 p-3 shadow-2xl backdrop-blur">
+          <nav
+            className="site-mobile-menu absolute right-0 z-[80] mt-3 grid w-72 gap-1 rounded-lg border border-gold/20 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl"
+            style={{ backgroundColor: "rgba(7, 17, 31, 0.99)" }}
+          >
             {navItems.map(([label, href]) => (
               <Link
                 key={href}

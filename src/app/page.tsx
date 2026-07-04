@@ -21,7 +21,7 @@ export default function HomePage() {
     <>
       <section className="premium-band relative overflow-hidden text-white">
         <div className="absolute inset-0 opacity-28">
-          <Image src="/brand/corporate-office-kochi.png" alt="" fill className="object-cover" priority />
+          <Image src="/brand/corporate-office-kochi.png" alt="" fill sizes="100vw" className="object-cover" priority />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/92 to-navy/55" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-28">

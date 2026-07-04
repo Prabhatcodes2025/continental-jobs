@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/PageHero";
-import { recruitmentSteps } from "@/lib/site-data";
+import { employerStartInfo, recruitmentSteps } from "@/lib/site-data";
 
 export const metadata = {
   title: "Recruitment Process"
@@ -26,6 +26,25 @@ export default function RecruitmentProcessPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Before Interviews</p>
+              <h2 className="mt-3 text-3xl font-black text-slate-950 md:text-5xl">Employer information required to begin.</h2>
+              <p className="mt-5 leading-8 text-slate-600">
+                Complete inputs help Continental finalize recruitment procedures, source sufficient CVs,
+                prepare interviews and mobilize selected workers without avoidable delays.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {employerStartInfo.map((item) => (
+                <div key={item} className="premium-card p-4 text-sm font-bold leading-6 text-slate-700">{item}</div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

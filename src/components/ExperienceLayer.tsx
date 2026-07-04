@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BriefcaseBusiness, MessageCircle, Phone, Send, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FormEvent, createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
-import type { ReactNode } from "react";
+import { FormEvent, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { company } from "@/lib/site-data";
 
 type ApplyContextValue = {
@@ -14,6 +14,26 @@ type ApplyContextValue = {
 };
 
 const ApplyContext = createContext<ApplyContextValue | null>(null);
+
+const loadingMessage = "Preparing Your Global Journey...";
+const preloaderDots = [
+  { x: "13%", y: "22%", s: "3px", d: "0s" },
+  { x: "82%", y: "18%", s: "2px", d: "0.35s" },
+  { x: "72%", y: "74%", s: "4px", d: "0.7s" },
+  { x: "21%", y: "78%", s: "2px", d: "1.1s" },
+  { x: "38%", y: "13%", s: "3px", d: "1.45s" },
+  { x: "88%", y: "52%", s: "2px", d: "1.8s" },
+  { x: "9%", y: "58%", s: "2px", d: "2.15s" },
+  { x: "56%", y: "86%", s: "3px", d: "2.5s" }
+];
+
+const orbitSparkles = [
+  { size: "5px", orbit: "preloader-spark-orbit-a", delay: "0s" },
+  { size: "3px", orbit: "preloader-spark-orbit-b", delay: "-0.55s" },
+  { size: "4px", orbit: "preloader-spark-orbit-c", delay: "-1.1s" },
+  { size: "2px", orbit: "preloader-spark-orbit-d", delay: "-1.65s" },
+  { size: "3px", orbit: "preloader-spark-orbit-e", delay: "-2.2s" }
+];
 
 export function useApplyModal() {
   const context = useContext(ApplyContext);
@@ -44,7 +64,7 @@ function Preloader() {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setVisible(false), reduceMotion ? 250 : 900);
+    const timeout = window.setTimeout(() => setVisible(false), reduceMotion ? 360 : 1650);
     return () => window.clearTimeout(timeout);
   }, [reduceMotion]);
 
@@ -52,26 +72,91 @@ function Preloader() {
     <AnimatePresence>
       {visible ? (
         <motion.div
-          className="fixed inset-0 z-[100] grid place-items-center bg-navy text-white"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
+          className="preloader-shell fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#050b14] px-5 text-white"
+          exit={{ opacity: 0, filter: "blur(12px)" }}
+          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
           aria-label="Loading Continental Mercantile Corporation"
+          aria-live="polite"
         >
-          <div className="relative grid place-items-center">
-            <motion.span
-              className="absolute h-40 w-40 rounded-full border border-gold/30"
-              animate={reduceMotion ? undefined : { scale: [0.86, 1.08, 0.86], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-gold/70 bg-white shadow-glow"
-              animate={reduceMotion ? undefined : { rotate: [0, 2, -2, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+          <div className="preloader-aurora" />
+          <div className="preloader-noise" />
+          <div className="preloader-flash" />
+          <div className="preloader-depth" aria-hidden="true">
+            {preloaderDots.map((dot) => (
+              <span
+                key={`${dot.x}-${dot.y}`}
+                className="preloader-depth-dot"
+                style={
+                  {
+                    "--dot-x": dot.x,
+                    "--dot-y": dot.y,
+                    "--dot-size": dot.s,
+                    "--dot-delay": dot.d
+                  } as CSSProperties
+                }
+              />
+            ))}
+          </div>
+          <div className="preloader-stage relative grid w-full place-items-center text-center">
+            <div className="preloader-orbit" aria-hidden="true">
+              <span className="preloader-ring preloader-ring-outer" />
+              <span className="preloader-ring preloader-ring-middle" />
+              <span className="preloader-ring preloader-ring-inner" />
+              <span className="preloader-ring preloader-ring-core" />
+              {orbitSparkles.map((sparkle) => (
+                <span
+                  key={sparkle.orbit}
+                  className={`preloader-spark-orbit ${sparkle.orbit}`}
+                  style={{ "--spark-delay": sparkle.delay } as CSSProperties}
+                >
+                  <span className="preloader-spark" style={{ "--spark-size": sparkle.size } as CSSProperties} />
+                </span>
+              ))}
+              <span className="preloader-lens" />
+              <motion.div
+                className="preloader-logo-shell"
+                initial={{ opacity: 0, x: "-50%", y: "-50%", scale: 0.8, filter: "blur(8px)" }}
+                animate={{ opacity: 1, x: "-50%", y: "-50%", scale: reduceMotion ? 1 : [0.8, 1, 1.018], filter: "blur(0px)" }}
+                exit={{ opacity: 0, x: "-50%", y: "-50%", scale: 1.12, filter: "blur(4px)" }}
+                transition={{ duration: reduceMotion ? 0.18 : 0.72, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src="/brand/continental-logo.png"
+                  alt="Continental Mercantile Corporation logo"
+                  fill
+                  sizes="(max-width: 640px) 96px, (max-width: 1024px) 118px, 136px"
+                  className="object-contain"
+                  priority
+                  quality={100}
+                />
+              </motion.div>
+            </div>
+            <motion.p
+              className="preloader-brand"
+              initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.52, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Image src="/brand/continental-logo.png" alt="" fill className="object-cover" priority />
-            </motion.div>
-            <p className="mt-6 text-center text-xs font-black uppercase tracking-[0.32em] text-gold">
-              Continental Global Recruitment
+              Continental Mercantile Corporation
+            </motion.p>
+            <p className="preloader-loading" aria-label={loadingMessage}>
+              <span className="sr-only">{loadingMessage}</span>
+              {loadingMessage.split("").map((letter, index) => (
+                <motion.span
+                  aria-hidden="true"
+                  key={`${letter}-${index}`}
+                  initial={{ opacity: 0, y: 8, filter: "blur(5px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ duration: 0.26, delay: reduceMotion ? 0 : 0.28 + index * 0.022, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+              ))}
+              <span className="preloader-loading-dots" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </p>
           </div>
         </motion.div>
@@ -172,10 +257,15 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const dialogRef = useRef<HTMLDivElement>(null);
 
+  const closeModal = useCallback(() => {
+    document.body.style.overflow = "";
+    onClose();
+  }, [onClose]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") closeModal();
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
@@ -183,7 +273,7 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [open, onClose]);
+  }, [closeModal, open]);
 
   useEffect(() => {
     if (open) {
@@ -228,7 +318,7 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) onClose();
+            if (event.target === event.currentTarget) closeModal();
           }}
         >
           <motion.div
@@ -253,7 +343,7 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               </div>
               <button
                 type="button"
-                onClick={onClose}
+                onClick={closeModal}
                 className="rounded-full border border-white/20 p-2 text-white transition hover:bg-white/10"
                 aria-label="Close apply popup"
               >
@@ -324,7 +414,11 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
-                <Link href="/apply" className="text-sm font-bold text-royal underline underline-offset-4">
+                <Link
+                  href="/apply"
+                  onClick={closeModal}
+                  className="text-sm font-bold text-royal underline underline-offset-4"
+                >
                   Open full application page
                 </Link>
                 <div className="flex gap-3">

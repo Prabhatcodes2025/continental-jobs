@@ -1,6 +1,8 @@
 import { ConsentText } from "@/components/ConsentText";
 import { FormSubmitButton } from "@/components/FormSubmitButton";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeader } from "@/components/SectionHeader";
+import { employerStartInfo } from "@/lib/site-data";
 
 export const metadata = {
   title: "Manpower Requirement"
@@ -10,6 +12,22 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
   return (
     <>
       <PageHero title="Employer / Client Manpower Requirement" text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline." />
+      <section className="bg-slate-50 py-14">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <SectionHeader
+            eyebrow="Employer Information Required"
+            title="What we need to start the recruitment process."
+            text="The brochure asks employers to share project, category, salary, facility, visa and labour-law details before mobilization begins."
+          />
+          <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
+            {employerStartInfo.map((item) => (
+              <div key={item} className="premium-card p-4 text-sm font-bold leading-6 text-slate-700">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="bg-white py-16">
         <form action="/api/requirements" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl gap-6 px-4 lg:px-8">
           {searchParams.submitted ? (

@@ -22,9 +22,17 @@ export default function IndianOperationsPage() {
               The Indian operations network supports candidate sourcing, interviews, documentation, medical
               coordination and mobilization for overseas employer requirements.
             </p>
+            <div className="mt-6 rounded-lg border border-gold/25 bg-gold/10 p-5">
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-gold">Indian Infrastructure</p>
+              <p className="mt-3 leading-7 text-slate-700">
+                The brochure highlights regional infrastructure across Kerala, Maharashtra, Gujarat,
+                West Bengal, Tamil Nadu, Andhra Pradesh and North India, supporting interviews,
+                sourcing and worker mobilization from multiple manpower corridors.
+              </p>
+            </div>
             <div className="mt-8 grid grid-cols-2 gap-3">
               {indianOffices.map((office) => (
-                <div key={office} className="rounded-md border border-slate-200 bg-slate-50 p-4 font-bold">{office}</div>
+                <div key={office} className="premium-card p-4 font-bold">{office}</div>
               ))}
             </div>
           </div>
