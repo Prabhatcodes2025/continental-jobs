@@ -1,17 +1,21 @@
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
-import { indianOffices } from "@/lib/site-data";
+import { readSiteContent } from "@/lib/storage";
 
 export const metadata = {
   title: "Indian Operations"
 };
 
-export default function IndianOperationsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function IndianOperationsPage() {
+  const content = await readSiteContent();
+
   return (
     <>
       <PageHero
         title="Indian Operations"
-        text="Kochi headquarters with regional offices and sourcing corridors across Delhi, Mumbai, Kolkata, Chennai, Surat, Trichy, Kushinagar, Vizag and Cochin."
+        text="Cochin headquarters with regional offices and sourcing corridors across Madurai, Bombay, Gujarat, Jaipur, Delhi, Kolkata, Siliguri, Vizag and allied manpower hubs."
       />
       <section className="bg-white py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:px-8">
@@ -31,7 +35,7 @@ export default function IndianOperationsPage() {
               </p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              {indianOffices.map((office) => (
+              {content.indianOperations.map((office) => (
                 <div key={office} className="premium-card p-4 font-bold">{office}</div>
               ))}
             </div>

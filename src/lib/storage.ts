@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { defaultSiteContent, type SiteContent } from "@/lib/content";
 import { optionalEnv } from "@/lib/env";
 
 type SubmissionRecord<T> = T & {
@@ -14,6 +15,7 @@ type SubmissionRecord<T> = T & {
 
 const dataDir = path.join(process.cwd(), "storage", "data");
 const uploadsDir = path.join(process.cwd(), "storage", "uploads");
+const publicGalleryDir = path.join(process.cwd(), "public", "uploads", "gallery");
 const allowedTypes = new Set([
   "application/pdf",
   "image/jpeg",
@@ -21,10 +23,12 @@ const allowedTypes = new Set([
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 ]);
+const allowedImageTypes = new Set(["image/jpeg", "image/png", "image/webp"]);
 
 async function ensureStorage() {
   await mkdir(dataDir, { recursive: true });
   await mkdir(uploadsDir, { recursive: true });
+  await mkdir(publicGalleryDir, { recursive: true });
 }
 
 export async function appendRecord<T>(
@@ -70,6 +74,29 @@ export async function readRecords(bucket: "applications" | "requirements") {
   }
 }
 
+export async function readSiteContent() {
+  await ensureStorage();
+  const file = path.join(dataDir, "site-content.json");
+
+  try {
+    const saved = JSON.parse(await readFile(file, "utf8")) as Partial<SiteContent>;
+    return {
+      offices: saved.offices?.length ? saved.offices : defaultSiteContent.offices,
+      indianOperations: saved.indianOperations?.length ? saved.indianOperations : defaultSiteContent.indianOperations,
+      worldwideOperations: saved.worldwideOperations?.length ? saved.worldwideOperations : defaultSiteContent.worldwideOperations,
+      gallery: saved.gallery?.length ? saved.gallery : defaultSiteContent.gallery
+    } satisfies SiteContent;
+  } catch {
+    return defaultSiteContent;
+  }
+}
+
+export async function writeSiteContent(content: SiteContent) {
+  await ensureStorage();
+  const file = path.join(dataDir, "site-content.json");
+  await writeFile(file, JSON.stringify(content, null, 2));
+}
+
 export async function saveUploads(formData: FormData, fieldNames: string[]) {
   await ensureStorage();
   const saved: string[] = [];
@@ -93,6 +120,34 @@ export async function saveUploads(formData: FormData, fieldNames: string[]) {
     const destination = path.join(uploadsDir, storedName);
     await writeFile(destination, Buffer.from(await file.arrayBuffer()));
     saved.push(storedName);
+  }
+
+  return saved;
+}
+
+export async function saveGalleryImages(formData: FormData, fieldNames: string[]) {
+  await ensureStorage();
+  const saved: Record<string, string> = {};
+
+  for (const name of fieldNames) {
+    const file = formData.get(name);
+    if (!(file instanceof File) || file.size === 0) {
+      continue;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      throw new Error(`${name} exceeds the 5MB upload limit.`);
+    }
+
+    if (!allowedImageTypes.has(file.type)) {
+      throw new Error(`${name} must be JPG, PNG or WEBP.`);
+    }
+
+    const extension = file.name.split(".").pop()?.replace(/[^a-zA-Z0-9]/g, "").toLowerCase() || "jpg";
+    const safeName = `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+    const destination = path.join(publicGalleryDir, safeName);
+    await writeFile(destination, Buffer.from(await file.arrayBuffer()));
+    saved[name] = `/uploads/gallery/${safeName}`;
   }
 
   return saved;

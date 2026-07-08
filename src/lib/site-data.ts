@@ -24,17 +24,17 @@ export const company = {
   office: "Continental Towers, Near Ernakulam South, Kochi, Kerala",
   emails: {
     chairman: "chairman@continentalmanpower.com",
-    work: "workabroad@continentalmanpower.com",
-    jobs: "jobsabroad@continentalmanpower.com"
+    work: "recruitments@continentalmanpower.com",
+    jobs: "gulfrecruitments@continentalmanpower.com"
   },
   phones: {
-    kochi: ["8907 090 050", "8907 090 060"],
-    mumbai: ["9833 110 500", "9833 110 600"],
-    whatsapp: "8907090010",
+    kochi: ["0091 89070 90050", "0091 89070 90060"],
+    mumbai: ["0091 89070 90010", "0091 89070 90020"],
+    whatsapp: "890709001",
     main: "00 91-484-4144444"
   },
   socialChat:
-    "https://wa.me/918907090010?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
+    "https://wa.me/91890709001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
 };
 
 export const navItems = [
@@ -197,38 +197,35 @@ export const academies = [
 ];
 
 export const indianOffices = [
-  "Kochi HQ",
+  "Cochin",
+  "Madurai",
+  "Bombay",
+  "Gujarat",
+  "Jaipur",
   "Delhi",
-  "Mumbai",
   "Kolkata",
-  "Chennai",
-  "Surat",
-  "Trichy",
-  "Kushinagar",
+  "Siliguri",
   "Vizag"
 ];
 
 export const globalRegions = [
+  "India",
+  "Singapore",
+  "Philippines",
+  "Malaysia",
   "Dubai",
-  "Saudi Arabia",
   "Kuwait",
   "Bahrain",
   "Oman",
+  "Saudi",
   "Qatar",
-  "Singapore",
-  "Canada",
-  "Australia",
-  "UK",
-  "Ireland",
-  "Poland",
+  "London",
   "Malta",
+  "Spain",
   "Nepal",
   "Bangladesh",
   "Sri Lanka",
-  "Philippines",
-  "Kenya",
-  "Ghana",
-  "Uganda"
+  "Africa"
 ];
 
 export const recruitmentSteps = [

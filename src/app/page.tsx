@@ -9,14 +9,17 @@ import { MotionReveal } from "@/components/MotionReveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   company,
-  globalRegions,
   industries,
-  indianOffices,
   recruitmentSteps,
   services
 } from "@/lib/site-data";
+import { readSiteContent } from "@/lib/storage";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const content = await readSiteContent();
+
   return (
     <>
       <section className="premium-band relative overflow-hidden text-white">
@@ -117,8 +120,8 @@ export default function HomePage() {
           <MotionReveal>
             <SectionHeader
               eyebrow="Indian Operations"
-              title="A national recruitment footprint with Kochi at the center."
-              text={`${indianOffices.join(", ")} and allied sourcing corridors support candidate access across India.`}
+              title="A national recruitment footprint with Cochin at the center."
+              text={`${content.indianOperations.join(", ")} and allied sourcing corridors support candidate access across India.`}
             />
             <Image src="/brand/indian-operations-map.png" alt="Indian operations map" width={900} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="mt-8 rounded-lg border border-slate-200 shadow-xl" loading="lazy" />
           </MotionReveal>
@@ -129,7 +132,7 @@ export default function HomePage() {
               text="Built for employers that need compliant, documented, mobilization-ready talent."
             />
             <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {globalRegions.map((region) => (
+              {content.worldwideOperations.map((region) => (
                 <div key={region} className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-gold/40 hover:bg-white hover:text-navy">
                   {region}
                 </div>
@@ -176,7 +179,7 @@ export default function HomePage() {
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader eyebrow="Gallery" title="Brand references, office presence and active recruitment campaigns." />
-          <GalleryLightbox compact />
+          <GalleryLightbox compact items={content.gallery} />
         </div>
       </section>
 

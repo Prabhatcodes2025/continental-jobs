@@ -4,17 +4,17 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { galleryItems } from "@/lib/site-data";
+import { defaultSiteContent, type GalleryEntry } from "@/lib/content";
 
-export function GalleryLightbox({ compact = false }: { compact?: boolean }) {
-  const [active, setActive] = useState<(typeof galleryItems)[number] | null>(null);
+export function GalleryLightbox({ compact = false, items = defaultSiteContent.gallery }: { compact?: boolean; items?: GalleryEntry[] }) {
+  const [active, setActive] = useState<GalleryEntry | null>(null);
 
   return (
     <>
       <div className={compact ? "mt-10 grid gap-5 md:grid-cols-4" : "mx-auto grid max-w-7xl gap-6 px-4 md:grid-cols-2 lg:px-8"}>
-        {galleryItems.map((item) => (
+        {items.map((item) => (
           <button
-            key={item.src}
+            key={`${item.activity}-${item.title}-${item.src}`}
             type="button"
             onClick={() => setActive(item)}
             className="group overflow-hidden rounded-lg border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
@@ -32,6 +32,7 @@ export function GalleryLightbox({ compact = false }: { compact?: boolean }) {
               />
             </div>
             <div className={compact ? "p-4" : "p-6"}>
+              <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-gold">{item.activity}</p>
               <h3 className={compact ? "font-black" : "text-xl font-black"}>{item.title}</h3>
               <p className="mt-2 text-sm text-slate-600">{item.caption}</p>
             </div>
@@ -76,4 +77,3 @@ export function GalleryLightbox({ compact = false }: { compact?: boolean }) {
     </>
   );
 }
-

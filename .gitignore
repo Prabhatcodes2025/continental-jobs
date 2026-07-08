@@ -6,4 +6,5 @@ node_modules
 .env.development
 storage/uploads/*
 storage/data/*.json
+public/uploads/*
 !.gitkeep

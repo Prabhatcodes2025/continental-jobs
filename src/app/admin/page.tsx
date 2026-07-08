@@ -1,7 +1,10 @@
 import { redirect } from "next/navigation";
-import { LockKeyhole, Settings, UsersRound } from "lucide-react";
+import { revalidatePath } from "next/cache";
+import { ImagePlus, LockKeyhole, MapPinned, Settings, UsersRound } from "lucide-react";
+import type { ReactNode } from "react";
 import { isAdminAuthenticated } from "@/lib/auth";
-import { readRecords } from "@/lib/storage";
+import { activityCategories, contentFromFormData, defaultSiteContent, type OfficeContact, type SiteContent } from "@/lib/content";
+import { readRecords, readSiteContent, saveGalleryImages, writeSiteContent } from "@/lib/storage";
 import { company } from "@/lib/site-data";
 
 export const metadata = {
@@ -10,10 +13,31 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
+async function updateSiteContent(formData: FormData) {
+  "use server";
+
+  if (!isAdminAuthenticated()) {
+    redirect("/admin?error=1");
+  }
+
+  const imageFields = defaultSiteContent.gallery.map((_, index) => `gallery-${index}-image`);
+  const uploaded = await saveGalleryImages(formData, imageFields);
+  const imagePaths = imageFields.map((field) => uploaded[field] || "");
+  const content = contentFromFormData(formData, imagePaths);
+
+  await writeSiteContent(content);
+  revalidatePath("/contact");
+  revalidatePath("/gallery");
+  revalidatePath("/indian-operations");
+  revalidatePath("/worldwide-operations");
+  revalidatePath("/");
+  redirect("/admin?updated=1");
+}
+
 export default async function AdminPage({
   searchParams
 }: {
-  searchParams: { error?: string };
+  searchParams: { error?: string; updated?: string };
 }) {
   const authenticated = isAdminAuthenticated();
 
@@ -37,9 +61,10 @@ export default async function AdminPage({
     );
   }
 
-  const [applications, requirements] = await Promise.all([
+  const [applications, requirements, siteContent] = await Promise.all([
     readRecords("applications"),
-    readRecords("requirements")
+    readRecords("requirements"),
+    readSiteContent()
   ]);
 
   return (
@@ -65,8 +90,15 @@ export default async function AdminPage({
           <Metric icon={<Settings className="h-7 w-7" />} label="Configurable WhatsApp" value={company.phones.whatsapp} />
         </div>
 
+        {searchParams.updated ? (
+          <div className="mt-8 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
+            Contact, locations and gallery content updated successfully.
+          </div>
+        ) : null}
+
         <DashboardTable title="Candidate Applications" records={applications} />
         <DashboardTable title="Employer Requirements" records={requirements} />
+        <ContentEditor content={siteContent} />
 
         <div className="mt-10 rounded-lg border border-slate-200 bg-white p-6">
           <h2 className="text-xl font-black text-slate-950">Configuration Notes</h2>
@@ -81,12 +113,123 @@ export default async function AdminPage({
   );
 }
 
-function Metric({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number }) {
+function Metric({ icon, label, value }: { icon: ReactNode; label: string; value: string | number }) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
       <div className="text-gold">{icon}</div>
       <p className="mt-4 text-3xl font-black text-slate-950">{value}</p>
       <p className="mt-1 text-sm font-bold text-slate-600">{label}</p>
+    </div>
+  );
+}
+
+function ContentEditor({ content }: { content: SiteContent }) {
+  const offices = content.offices.length ? content.offices : defaultSiteContent.offices;
+  const gallery = content.gallery.length ? content.gallery : defaultSiteContent.gallery;
+
+  return (
+    <form action={updateSiteContent} className="mt-10 overflow-hidden rounded-lg border border-slate-200 bg-white">
+      <div className="border-b border-slate-200 bg-navy p-6 text-white">
+        <p className="text-sm font-black uppercase tracking-[0.26em] text-gold">Editable Website Content</p>
+        <h2 className="mt-3 text-2xl font-black">Contact Information, Locations and Gallery</h2>
+        <p className="mt-2 text-sm leading-6 text-white/70">
+          Update client-facing contact details, Indian/worldwide operation lists and brochure-style activity images from here.
+        </p>
+      </div>
+
+      <div className="grid gap-6 p-6 lg:grid-cols-2">
+        {offices.map((office, index) => (
+          <AdminOfficeFields key={office.title} office={office} index={index} />
+        ))}
+      </div>
+
+      <div className="grid gap-6 border-t border-slate-200 p-6 lg:grid-cols-2">
+        <label className="grid gap-2">
+          <span className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-gold">
+            <MapPinned className="h-4 w-4" /> Indian Operations
+          </span>
+          <textarea
+            name="indianOperations"
+            rows={7}
+            className="field min-h-40"
+            defaultValue={content.indianOperations.join("\n")}
+          />
+          <span className="text-xs font-semibold text-slate-500">Use one location per line.</span>
+        </label>
+        <label className="grid gap-2">
+          <span className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-gold">
+            <MapPinned className="h-4 w-4" /> Worldwide Operations
+          </span>
+          <textarea
+            name="worldwideOperations"
+            rows={7}
+            className="field min-h-40"
+            defaultValue={content.worldwideOperations.join("\n")}
+          />
+          <span className="text-xs font-semibold text-slate-500">Use one country/region per line.</span>
+        </label>
+      </div>
+
+      <div className="border-t border-slate-200 p-6">
+        <div className="flex items-start gap-3">
+          <ImagePlus className="mt-1 h-6 w-6 text-gold" />
+          <div>
+            <h3 className="text-xl font-black text-slate-950">Gallery and Activity Images</h3>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+              Manage images for Oil & Gas Recruitment, Healthcare, Hospitality, Security, Retail, Construction, MEP and Ship Building.
+              Paste an existing image path or upload a new JPG/PNG/WEBP file for any row.
+            </p>
+          </div>
+        </div>
+        <div className="mt-6 grid gap-5">
+          {gallery.map((item, index) => (
+            <div key={`${item.title}-${index}`} className="grid gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4 lg:grid-cols-[1fr_1fr]">
+              <div className="grid gap-3">
+                <input name={`gallery-${index}-title`} className="field" defaultValue={item.title} aria-label={`Gallery ${index + 1} title`} />
+                <textarea name={`gallery-${index}-caption`} className="field min-h-24" defaultValue={item.caption} aria-label={`Gallery ${index + 1} caption`} />
+                <select name={`gallery-${index}-activity`} className="field" defaultValue={item.activity} aria-label={`Gallery ${index + 1} activity`}>
+                  {[item.activity, ...activityCategories].filter((value, itemIndex, values) => value && values.indexOf(value) === itemIndex).map((activity) => (
+                    <option key={activity} value={activity}>{activity}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid gap-3">
+                <input name={`gallery-${index}-src`} className="field" defaultValue={item.src} aria-label={`Gallery ${index + 1} image path`} />
+                <input
+                  name={`gallery-${index}-image`}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  className="field file:mr-4 file:rounded-md file:border-0 file:bg-navy file:px-4 file:py-2 file:text-sm file:font-bold file:text-white"
+                  aria-label={`Upload gallery ${index + 1} image`}
+                />
+                <p className="rounded-md bg-white p-3 text-xs font-semibold text-slate-500">Current: {item.src}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 flex justify-end border-t border-slate-200 bg-white/95 p-5 backdrop-blur">
+        <button type="submit" className="button-primary">Save Contact, Locations and Gallery</button>
+      </div>
+    </form>
+  );
+}
+
+function AdminOfficeFields({ office, index }: { office: OfficeContact; index: number }) {
+  return (
+    <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+      <h3 className="text-lg font-black text-slate-950">{office.title}</h3>
+      <div className="mt-4 grid gap-3">
+        <input name={`office-${index}-title`} className="field" defaultValue={office.title} aria-label={`${office.title} title`} />
+        <input name={`office-${index}-subtitle`} className="field" defaultValue={office.subtitle} aria-label={`${office.title} subtitle`} />
+        <textarea name={`office-${index}-address`} className="field min-h-24" defaultValue={office.address} aria-label={`${office.title} address`} />
+        <textarea name={`office-${index}-phones`} className="field min-h-24" defaultValue={office.phones.join("\n")} aria-label={`${office.title} phones`} />
+        <input name={`office-${index}-whatsapp`} className="field" defaultValue={office.whatsapp || ""} placeholder="WhatsApp number" aria-label={`${office.title} WhatsApp`} />
+        <textarea name={`office-${index}-emails`} className="field min-h-24" defaultValue={office.emails.join("\n")} aria-label={`${office.title} emails`} />
+        <input name={`office-${index}-website`} className="field" defaultValue={office.website || ""} placeholder="Website" aria-label={`${office.title} website`} />
+        <textarea name={`office-${index}-managerPhones`} className="field min-h-20" defaultValue={(office.managerPhones || []).join("\n")} placeholder="PRO / Manager numbers" aria-label={`${office.title} manager phones`} />
+      </div>
     </div>
   );
 }
