@@ -21,23 +21,29 @@ async function updateSiteContent(formData: FormData) {
   }
 
   const imageFields = defaultSiteContent.gallery.map((_, index) => `gallery-${index}-image`);
-  const uploaded = await saveGalleryImages(formData, imageFields);
-  const imagePaths = imageFields.map((field) => uploaded[field] || "");
-  const content = contentFromFormData(formData, imagePaths);
+  try {
+    const uploaded = await saveGalleryImages(formData, imageFields);
+    const imagePaths = imageFields.map((field) => uploaded[field] || "");
+    const content = contentFromFormData(formData, imagePaths);
 
-  await writeSiteContent(content);
-  revalidatePath("/contact");
-  revalidatePath("/gallery");
-  revalidatePath("/indian-operations");
-  revalidatePath("/worldwide-operations");
-  revalidatePath("/");
+    await writeSiteContent(content);
+    revalidatePath("/contact");
+    revalidatePath("/gallery");
+    revalidatePath("/indian-operations");
+    revalidatePath("/worldwide-operations");
+    revalidatePath("/");
+  } catch (error) {
+    console.error("Unable to save editable website content.", error);
+    redirect("/admin?contentError=1");
+  }
+
   redirect("/admin?updated=1");
 }
 
 export default async function AdminPage({
   searchParams
 }: {
-  searchParams: { error?: string; updated?: string };
+  searchParams: { contentError?: string; error?: string; updated?: string };
 }) {
   const authenticated = isAdminAuthenticated();
 
@@ -93,6 +99,11 @@ export default async function AdminPage({
         {searchParams.updated ? (
           <div className="mt-8 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
             Contact, locations and gallery content updated successfully.
+          </div>
+        ) : null}
+        {searchParams.contentError ? (
+          <div className="mt-8 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm font-bold text-amber-900">
+            Website content could not be saved in this environment. Public pages are still using fallback static data.
           </div>
         ) : null}
 

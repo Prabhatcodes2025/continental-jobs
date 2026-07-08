@@ -140,9 +140,9 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
     title: String(formData.get(`office-${index}-title`) || office.title).trim(),
     subtitle: String(formData.get(`office-${index}-subtitle`) || office.subtitle).trim(),
     address: String(formData.get(`office-${index}-address`) || office.address).trim(),
-    phones: linesToList(formData.get(`office-${index}-phones`)),
+    phones: linesToList(formData.get(`office-${index}-phones`)).length ? linesToList(formData.get(`office-${index}-phones`)) : office.phones,
     whatsapp: String(formData.get(`office-${index}-whatsapp`) || "").trim() || undefined,
-    emails: linesToList(formData.get(`office-${index}-emails`)),
+    emails: linesToList(formData.get(`office-${index}-emails`)).length ? linesToList(formData.get(`office-${index}-emails`)) : office.emails,
     website: String(formData.get(`office-${index}-website`) || "").trim() || undefined,
     managerPhones: linesToList(formData.get(`office-${index}-managerPhones`))
   }));
@@ -156,8 +156,8 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
 
   return {
     offices,
-    indianOperations: linesToList(formData.get("indianOperations")),
-    worldwideOperations: linesToList(formData.get("worldwideOperations")),
+    indianOperations: linesToList(formData.get("indianOperations")).length ? linesToList(formData.get("indianOperations")) : defaultSiteContent.indianOperations,
+    worldwideOperations: linesToList(formData.get("worldwideOperations")).length ? linesToList(formData.get("worldwideOperations")) : defaultSiteContent.worldwideOperations,
     gallery
   };
 }

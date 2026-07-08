@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
-import { defaultSiteContent, type SiteContent } from "@/lib/content";
+import { defaultSiteContent, type GalleryEntry, type OfficeContact, type SiteContent } from "@/lib/content";
 import { optionalEnv } from "@/lib/env";
 
 type SubmissionRecord<T> = T & {
@@ -31,20 +31,69 @@ async function ensureStorage() {
   await mkdir(publicGalleryDir, { recursive: true });
 }
 
+async function tryEnsureStorage() {
+  try {
+    await ensureStorage();
+    return true;
+  } catch (error) {
+    console.error("Storage initialization failed. Falling back to static data.", error);
+    return false;
+  }
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === "string" && item.trim().length > 0);
+}
+
+function normalizeOffice(value: unknown, fallback: OfficeContact): OfficeContact {
+  if (!value || typeof value !== "object") return fallback;
+  const office = value as Partial<OfficeContact>;
+
+  return {
+    title: typeof office.title === "string" && office.title.trim() ? office.title : fallback.title,
+    subtitle: typeof office.subtitle === "string" && office.subtitle.trim() ? office.subtitle : fallback.subtitle,
+    address: typeof office.address === "string" && office.address.trim() ? office.address : fallback.address,
+    phones: isStringArray(office.phones) ? office.phones : fallback.phones,
+    whatsapp: typeof office.whatsapp === "string" && office.whatsapp.trim() ? office.whatsapp : fallback.whatsapp,
+    emails: isStringArray(office.emails) ? office.emails : fallback.emails,
+    website: typeof office.website === "string" && office.website.trim() ? office.website : fallback.website,
+    managerPhones: isStringArray(office.managerPhones) ? office.managerPhones : fallback.managerPhones
+  };
+}
+
+function normalizeGalleryEntry(value: unknown, fallback: GalleryEntry): GalleryEntry {
+  if (!value || typeof value !== "object") return fallback;
+  const item = value as Partial<GalleryEntry>;
+
+  return {
+    title: typeof item.title === "string" && item.title.trim() ? item.title : fallback.title,
+    caption: typeof item.caption === "string" && item.caption.trim() ? item.caption : fallback.caption,
+    src: typeof item.src === "string" && item.src.trim() ? item.src : fallback.src,
+    activity: typeof item.activity === "string" && item.activity.trim() ? item.activity : fallback.activity
+  };
+}
+
+function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
+  const offices = defaultSiteContent.offices.map((fallback, index) => normalizeOffice(saved.offices?.[index], fallback));
+  const savedGallery = Array.isArray(saved.gallery) ? saved.gallery : [];
+  const gallery = defaultSiteContent.gallery.map((fallback, index) => normalizeGalleryEntry(savedGallery[index], fallback));
+
+  return {
+    offices,
+    indianOperations: isStringArray(saved.indianOperations) ? saved.indianOperations : defaultSiteContent.indianOperations,
+    worldwideOperations: isStringArray(saved.worldwideOperations) ? saved.worldwideOperations : defaultSiteContent.worldwideOperations,
+    gallery
+  };
+}
+
 export async function appendRecord<T>(
   bucket: "applications" | "requirements",
   data: T,
   meta: { ipAddress: string; userAgent: string; uploads: string[] }
 ) {
-  await ensureStorage();
+  const storageReady = await tryEnsureStorage();
   const file = path.join(dataDir, `${bucket}.json`);
   let existing: Array<SubmissionRecord<T>> = [];
-
-  try {
-    existing = JSON.parse(await readFile(file, "utf8"));
-  } catch {
-    existing = [];
-  }
 
   const now = new Date().toISOString();
   const record: SubmissionRecord<T> = {
@@ -58,35 +107,49 @@ export async function appendRecord<T>(
     crmStatus: optionalEnv("CRM_WEBHOOK_URL") ? "queued" : "disabled"
   };
 
-  existing.unshift(record);
-  await writeFile(file, JSON.stringify(existing, null, 2));
+  if (!storageReady) {
+    return record;
+  }
+
+  try {
+    existing = JSON.parse(await readFile(file, "utf8"));
+  } catch {
+    existing = [];
+  }
+
+  try {
+    existing.unshift(record);
+    await writeFile(file, JSON.stringify(existing, null, 2));
+  } catch (error) {
+    console.error(`Unable to persist ${bucket} record. Continuing without local storage.`, error);
+  }
+
   return record;
 }
 
 export async function readRecords(bucket: "applications" | "requirements") {
-  await ensureStorage();
   const file = path.join(dataDir, `${bucket}.json`);
 
   try {
     return JSON.parse(await readFile(file, "utf8")) as unknown[];
-  } catch {
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+      console.error(`Unable to read ${bucket} records. Returning an empty list.`, error);
+    }
     return [];
   }
 }
 
 export async function readSiteContent() {
-  await ensureStorage();
   const file = path.join(dataDir, "site-content.json");
 
   try {
     const saved = JSON.parse(await readFile(file, "utf8")) as Partial<SiteContent>;
-    return {
-      offices: saved.offices?.length ? saved.offices : defaultSiteContent.offices,
-      indianOperations: saved.indianOperations?.length ? saved.indianOperations : defaultSiteContent.indianOperations,
-      worldwideOperations: saved.worldwideOperations?.length ? saved.worldwideOperations : defaultSiteContent.worldwideOperations,
-      gallery: saved.gallery?.length ? saved.gallery : defaultSiteContent.gallery
-    } satisfies SiteContent;
-  } catch {
+    return normalizeSiteContent(saved);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+      console.error("Unable to read editable site content. Falling back to static defaults.", error);
+    }
     return defaultSiteContent;
   }
 }
@@ -98,7 +161,9 @@ export async function writeSiteContent(content: SiteContent) {
 }
 
 export async function saveUploads(formData: FormData, fieldNames: string[]) {
-  await ensureStorage();
+  if (!(await tryEnsureStorage())) {
+    return [];
+  }
   const saved: string[] = [];
 
   for (const name of fieldNames) {
@@ -126,7 +191,9 @@ export async function saveUploads(formData: FormData, fieldNames: string[]) {
 }
 
 export async function saveGalleryImages(formData: FormData, fieldNames: string[]) {
-  await ensureStorage();
+  if (!(await tryEnsureStorage())) {
+    return {};
+  }
   const saved: Record<string, string> = {};
 
   for (const name of fieldNames) {
