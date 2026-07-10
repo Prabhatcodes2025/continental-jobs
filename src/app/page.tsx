@@ -6,6 +6,7 @@ import { ApplyTrigger } from "@/components/ApplyTrigger";
 import { GalleryLightbox } from "@/components/GalleryLightbox";
 import { HeroGlobe } from "@/components/HeroGlobe";
 import { MotionReveal } from "@/components/MotionReveal";
+import { IndiaOperationsMap, WorldwideOperationsMap } from "@/components/OperationsMaps";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   company,
@@ -34,7 +35,7 @@ export default async function HomePage() {
                 43+ years of global recruitment
               </p>
               <h1 className="mt-6 text-4xl font-black tracking-tight md:text-6xl">
-                Ethical international manpower, staffing and work abroad solutions.
+                Ethical international recruitment and work abroad solutions.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
                 {company.shortName} connects skilled talent with trusted employers across the Gulf,
@@ -43,7 +44,7 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <ApplyTrigger>Apply for Job</ApplyTrigger>
                 <Link href="/manpower-requirement" className="button-secondary">
-                  Submit Manpower Requirement
+                  Submit Requirement
                 </Link>
                 <Link href="/chairman-message" className="button-secondary">
                   Contact Chairman Office
@@ -103,7 +104,7 @@ export default async function HomePage() {
 
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader eyebrow="Featured Industries" title="Trusted across high-demand manpower categories." align="center" />
+          <SectionHeader eyebrow="Featured Industries" title="Trusted across high-demand recruitment categories." align="center" />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {industries.map(([name, Icon]) => (
               <div key={name} className="premium-card p-5" data-magnetic>
@@ -120,18 +121,25 @@ export default async function HomePage() {
           <MotionReveal>
             <SectionHeader
               eyebrow="Indian Operations"
-              title="A national recruitment footprint with Cochin at the center."
+              title="INDIAN OPERATIONS"
               text={`${content.indianOperations.join(", ")} and allied sourcing corridors support candidate access across India.`}
+              official
             />
-            <Image src="/brand/indian-operations-map.png" alt="Indian operations map" width={900} height={900} sizes="(min-width: 1024px) 50vw, 100vw" className="mt-8 rounded-lg border border-slate-200 shadow-xl" loading="lazy" />
+            <div className="mt-8">
+              <IndiaOperationsMap locations={content.indianOperations} />
+            </div>
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <SectionHeader
               eyebrow="Worldwide Operations"
-              title="Manpower pathways across the Gulf, Europe, Asia, Africa and beyond."
+              title="WORLDWIDE OPERATIONS"
               text="Built for employers that need compliant, documented, mobilization-ready talent."
+              official
             />
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="mt-8">
+              <WorldwideOperationsMap regions={content.worldwideOperations} />
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {content.worldwideOperations.map((region) => (
                 <div key={region} className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-gold/40 hover:bg-white hover:text-navy">
                   {region}
@@ -145,7 +153,7 @@ export default async function HomePage() {
       <section className="premium-band py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <MotionReveal>
-            <Image src="/brand/chairman-sajeevan.png" alt="Founder and Chairman Sajeevan T S" width={900} height={650} sizes="(min-width: 1024px) 42vw, 100vw" className="rounded-lg object-cover shadow-glow" loading="lazy" />
+            <Image src="/brand/chairman-sajeevan.png" alt="Chairman and Managing Director Sajeevan Thumpayil" width={900} height={650} sizes="(min-width: 1024px) 42vw, 100vw" className="rounded-lg object-cover shadow-glow" loading="lazy" />
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <p className="text-sm font-black uppercase tracking-[0.3em] text-gold">Chairman&apos;s Message</p>
@@ -162,7 +170,7 @@ export default async function HomePage() {
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader eyebrow="Recruitment Process" title="A transparent process from demand letter to deployment." align="center" />
+          <SectionHeader eyebrow="Recruitment Process" title="RECRUITMENT PROCESS" align="center" official />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {recruitmentSteps.map((step, index) => (
               <div key={step} className="premium-card p-6" data-magnetic>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Building2, Globe2, Mail, MapPin, MessageCircle, Phone, Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 import { MotionReveal } from "@/components/MotionReveal";
+import { IndiaOperationsMap } from "@/components/OperationsMaps";
 import { PageHero } from "@/components/PageHero";
 import { mailHref, phoneHref, whatsappHref, type OfficeContact } from "@/lib/content";
 import { readSiteContent } from "@/lib/storage";
@@ -20,7 +21,7 @@ export default async function ContactPage() {
     <>
       <PageHero
         title="Contact Us"
-        text="Connect with Continental Mercantile Corporation through our Cochin corporate office, Bombay operations office and worldwide recruitment network."
+        text="Connect with Continental Mercantile Corporation through the Corporate Office, Operations Office, Regional Offices and worldwide recruitment network."
       />
 
       <section className="premium-band py-16 text-white">
@@ -49,8 +50,8 @@ export default async function ContactPage() {
           <MotionReveal>
             <OperationsPanel
               icon={<MapPin className="h-6 w-6" />}
-              eyebrow="Indian Operations"
-              title="Recruitment access across India."
+              eyebrow="Regional Offices"
+              title="Approved Indian operations."
               text="Regional sourcing, interview coordination, documentation and mobilization support across the latest client-approved Indian operations list."
               items={content.indianOperations}
             />
@@ -60,7 +61,7 @@ export default async function ContactPage() {
               icon={<Globe2 className="h-6 w-6" />}
               eyebrow="Worldwide Operations"
               title="Global employer and candidate network."
-              text="A premium international footprint for manpower staffing, work abroad, migration and employer requirement coordination."
+              text="A premium international footprint for global recruitment, work abroad, migration and employer requirement coordination."
               items={content.worldwideOperations}
             />
           </MotionReveal>
@@ -71,14 +72,7 @@ export default async function ContactPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <MotionReveal>
             <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
-              <Image
-                src="/brand/indian-operations-map.png"
-                alt="Continental Indian operations map"
-                width={900}
-                height={900}
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                className="h-full w-full object-cover"
-              />
+              <IndiaOperationsMap locations={content.indianOperations} />
             </div>
           </MotionReveal>
           <MotionReveal delay={0.1}>
@@ -86,7 +80,7 @@ export default async function ContactPage() {
               <Sparkles className="h-9 w-9 text-gold" />
               <h2 className="mt-5 text-3xl font-black md:text-5xl">Ready to start a recruitment conversation?</h2>
               <p className="mt-5 leading-8 text-white/72">
-                Candidates can apply for overseas opportunities, and employers can submit manpower requirements with job categories,
+                Candidates can apply for overseas opportunities, and employers can submit requirements with job categories,
                 project location, salary, accommodation, visa details and deployment timelines.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

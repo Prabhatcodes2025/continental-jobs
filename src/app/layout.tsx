@@ -13,15 +13,15 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.continentalmanpower.com"),
   title: {
-    default: "Continental Mercantile Corporation | Overseas Manpower Consultancy Kochi",
+    default: "Continental Mercantile Corporation | International Recruitment India",
     template: "%s | Continental Mercantile Corporation"
   },
   description:
-    "43+ year international manpower consultancy from Kochi for work abroad, Gulf jobs, Europe work permits, global recruitment, staffing, study abroad and HR solutions.",
+    "43+ year international recruitment company from India for work abroad, Gulf jobs, Europe work permits, global recruitment, staffing, study abroad and Human Resource Solutions.",
   keywords: seoKeywords,
   openGraph: {
     title: "Continental Mercantile Corporation",
-    description: "International recruitment, overseas manpower supply and work abroad consultancy.",
+    description: "International recruitment, overseas recruitment and work abroad consultancy.",
     images: ["/brand/corporate-office-kochi.png"],
     type: "website"
   }
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     address: company.office,
     email: company.emails.work,
     telephone: company.phones.main,
-    areaServed: ["India", "Middle East", "Europe", "Africa", "Asia", "United Kingdom", "Australia", "Canada"]
+    areaServed: ["India", "Australia", "Singapore", "Europe", "Saudi", "Dubai", "Philippines", "Nepal"]
   };
 
   return (

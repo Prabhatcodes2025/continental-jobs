@@ -12,7 +12,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         title="Our Business / Services"
-        text="Work abroad, study abroad, migration, skill development, worldwide staffing, global recruitment, overseas education and HR solutions."
+        text="Work abroad, study abroad, migration, skill development, worldwide staffing, global recruitment, overseas education and Human Resource Solutions."
       />
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -48,7 +48,7 @@ export default function ServicesPage() {
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Why Continental</p>
-              <h2 className="mt-3 text-3xl font-black md:text-5xl">Built for urgent, compliant and high-quality manpower mobilization.</h2>
+              <h2 className="corporate-title mt-3 text-3xl font-black md:text-5xl">Built for urgent, compliant and high-quality recruitment mobilization.</h2>
               <p className="mt-5 leading-8 text-white/70">
                 The brochure emphasizes worldwide offices, experienced recruitment managers, a large CV database,
                 fast mobilization, worker welfare checks and trusted project execution for world-class companies.
@@ -69,7 +69,7 @@ export default function ServicesPage() {
           <SectionHeader
             eyebrow="Specialised Recruitment Fields"
             title="Deep sector coverage for global projects."
-            text="From healthcare to refinery shutdowns, retail chains, MEP projects, ship repair and hospitality, Continental positions itself as a specialist manpower partner."
+            text="From healthcare to refinery shutdowns, retail chains, MEP projects, ship repair and hospitality, Continental positions itself as a specialist recruitment partner."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {specializedRecruitment.map((field) => (

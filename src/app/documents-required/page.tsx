@@ -9,8 +9,9 @@ export default function DocumentsRequiredPage() {
   return (
     <>
       <PageHero
-        title="Documents Required"
+        title="DOCUMENTS REQUIRED"
         text="Prepare candidate and employer documents before submission for faster screening, visa and mobilization coordination."
+        official
       />
       <section className="bg-white py-16">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">

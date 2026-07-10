@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
           <h2>Use of Information</h2>
           <p>Information is used for candidate screening, employer coordination, documentation, interview scheduling, CRM updates, WhatsApp communication and legally required recruitment records.</p>
           <h2>WhatsApp Consent</h2>
-          <p>When you opt in, we may contact you through WhatsApp about your enquiry, application, recruitment status or manpower requirement. You may request to stop receiving WhatsApp messages at any time.</p>
+          <p>When you opt in, we may contact you through WhatsApp about your enquiry, application, recruitment status or employer requirement. You may request to stop receiving WhatsApp messages at any time.</p>
           <h2>Contact</h2>
           <p>For privacy requests, contact {company.emails.work} or {company.emails.chairman}.</p>
         </article>

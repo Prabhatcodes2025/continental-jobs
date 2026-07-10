@@ -1,4 +1,5 @@
 import { PageHero } from "@/components/PageHero";
+import { WorldwideOperationsMap } from "@/components/OperationsMaps";
 import { SectionHeader } from "@/components/SectionHeader";
 import { readSiteContent } from "@/lib/storage";
 
@@ -14,20 +15,25 @@ export default async function WorldwideOperationsPage() {
   return (
     <>
       <PageHero
-        title="Worldwide Operations"
-        text="Manpower pathways serving employers and candidates across India, Singapore, Philippines, Malaysia, the Gulf, London, Malta, Spain, South Asia and Africa."
+        title="WORLDWIDE OPERATIONS"
+        text="Approved international recruitment presence across India, Australia, Singapore, Europe, Saudi, Dubai, Philippines and Nepal."
+        official
       />
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader
             eyebrow="Worldwide Infrastructure"
-            title="Recruitment reach across major destination markets."
-            text="Client-approved operations include India, Singapore, Philippines, Malaysia, Dubai, Kuwait, Bahrain, Oman, Saudi, Qatar, London, Malta, Spain, Nepal, Bangladesh, Sri Lanka and Africa."
+            title="WORLDWIDE OPERATIONS"
+            text="Client-approved operations include India, Australia, Singapore, Europe, Saudi, Dubai, Philippines and Nepal."
+            official
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {content.worldwideOperations.map((region) => (
-              <div key={region} className="rounded-md border border-slate-200 bg-slate-50 p-5 font-black text-slate-900">{region}</div>
-            ))}
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <WorldwideOperationsMap regions={content.worldwideOperations} />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {content.worldwideOperations.map((region) => (
+                <div key={region} className="rounded-md border border-slate-200 bg-slate-50 p-5 font-black uppercase tracking-wide text-slate-900">{region}</div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

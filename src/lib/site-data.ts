@@ -15,11 +15,11 @@ import type { LucideIcon } from "lucide-react";
 
 export const company = {
   name: "Continental Mercantile Corporation Pvt Ltd",
-  group: "The Continental Group",
+  descriptor: "Human Resource Solutions",
   shortName: "Continental Mercantile Corporation",
   website: "www.continentalmanpower.com",
   years: "43+",
-  chairman: "Sajeevan T S",
+  chairman: "Sajeevan Thumpayil",
   chairmanFull: "Sajeevan Thumpayil",
   office: "Continental Towers, Near Ernakulam South, Kochi, Kerala",
   emails: {
@@ -56,8 +56,8 @@ export const services = [
     icon: BriefcaseBusiness
   },
   {
-    title: "Manpower Staffing Solution Worldwide",
-    text: "End-to-end global staffing support for large and small workforce demands across multiple destination markets.",
+    title: "Human Resource Solutions Worldwide",
+    text: "End-to-end global recruitment support for large and small workforce demands across multiple destination markets.",
     icon: UsersRound
   },
   {
@@ -77,7 +77,7 @@ export const services = [
   },
   {
     title: "Worldwide Staffing Solutions",
-    text: "End-to-end manpower sourcing for employers across the Gulf, Europe, Asia and Africa.",
+    text: "End-to-end human resources sourcing for employers across approved international destination markets.",
     icon: UsersRound
   },
   {
@@ -210,26 +210,17 @@ export const indianOffices = [
 
 export const globalRegions = [
   "India",
+  "Australia",
   "Singapore",
-  "Philippines",
-  "Malaysia",
-  "Dubai",
-  "Kuwait",
-  "Bahrain",
-  "Oman",
+  "Europe",
   "Saudi",
-  "Qatar",
-  "London",
-  "Malta",
-  "Spain",
-  "Nepal",
-  "Bangladesh",
-  "Sri Lanka",
-  "Africa"
+  "Dubai",
+  "Philippines",
+  "Nepal"
 ];
 
 export const recruitmentSteps = [
-  "Employer manpower requirement and compliance review",
+  "Employer requirement and compliance review",
   "Job description, qualification and salary confirmation",
   "Candidate sourcing, screening and trade validation",
   "Interview coordination and final selection",
@@ -250,11 +241,11 @@ export const requiredDocuments = [
 export const galleryItems = [
   {
     src: "/brand/corporate-office-kochi.png",
-    title: "Corporate Office, Kochi",
+    title: "Corporate Office, India",
     caption: "Continental Towers near Ernakulam South."
   },
   {
-    src: "/brand/indian-operations-map.png",
+    src: "/brand/indian-operations-map-corrected.svg",
     title: "Indian Operations",
     caption: "Regional presence across major recruitment corridors."
   },
@@ -271,16 +262,16 @@ export const galleryItems = [
 ];
 
 export const seoKeywords = [
-  "Overseas manpower consultancy",
+  "Overseas recruitment consultancy",
   "Work abroad consultancy",
   "International recruitment agency",
-  "Gulf jobs manpower agency",
+  "Gulf jobs recruitment agency",
   "Europe work permit jobs",
   "Dubai jobs recruitment",
-  "Saudi manpower recruitment",
-  "Oil and gas manpower recruitment",
+  "Saudi recruitment",
+  "Oil and gas recruitment",
   "Healthcare recruitment agency",
-  "Hospitality manpower supply",
-  "Kerala overseas recruitment agency",
-  "Kochi manpower consultancy"
+  "Hospitality recruitment",
+  "India overseas recruitment agency",
+  "India human resource solutions"
 ];

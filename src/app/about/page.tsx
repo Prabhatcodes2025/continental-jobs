@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        title="A 43+ year international manpower and HR solutions group."
+        title="A 43+ year International Recruitment and Human Resource Solutions company."
         text="Continental Mercantile Corporation Pvt Ltd supports global employers and candidates with ethical overseas recruitment, staffing, study abroad, migration and skill development services."
       />
       <section className="bg-white py-16">
@@ -19,8 +19,8 @@ export default function AboutPage() {
           <div>
             <SectionHeader
               eyebrow="About Continental"
-              title="Built in Kochi, connected to the world."
-              text={`${company.group} operates from ${company.office}, with regional offices and sourcing networks across India. The company focuses on compliant international recruitment, talent acquisition and documentation-led deployment.`}
+              title="Built in India, connected to the world."
+              text={`${company.shortName} operates from ${company.office}, with regional offices and sourcing networks across India. The company focuses on compliant international recruitment, talent acquisition and documentation-led deployment.`}
             />
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {["Ethical Process", "Global Reach", "Employer Trust"].map((item) => (

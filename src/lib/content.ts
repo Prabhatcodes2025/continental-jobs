@@ -39,16 +39,16 @@ export const activityCategories = [
 export const defaultSiteContent: SiteContent = {
   offices: [
     {
-      title: "Corporate Office - Cochin",
+      title: "Corporate Office",
       subtitle: "Head office for candidates, employers and global coordination.",
-      address: company.office,
-      phones: ["0091 89070 90050", "0091 89070 90060"],
+      address: "Continental Towers, Near Ernakulam South, Kochi, Kerala - 11",
+      phones: ["+91 484 414 44 44"],
       whatsapp: "89070 9001",
-      emails: ["recruitments@continentalmanpower.com"],
+      emails: ["secretary@continentalgroup.net", "recruitments@continentalmanpower.com"],
       website: "continentalmanpower.com"
     },
     {
-      title: "Operations Office - Bombay",
+      title: "Operations Office",
       subtitle: "Operational support for recruitment processing and employer coordination.",
       address: "\"Devdutt\", Near Taj Hotel, Bandra(W), Mumbai-50",
       phones: ["0091 89070 90010", "0091 89070 90020"],
@@ -68,7 +68,7 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       title: "Healthcare Recruitment",
-      caption: "Doctors, nurses and paramedical sourcing for international hospitals and healthcare groups.",
+      caption: "Doctors, nurses and paramedical sourcing for international hospitals and healthcare organizations.",
       src: "/brand/corporate-office-kochi.png",
       activity: "Healthcare"
     },
@@ -81,7 +81,7 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "Security Professionals",
       caption: "Security guard and facility workforce recruitment with documentation and mobilization support.",
-      src: "/brand/indian-operations-map.png",
+      src: "/brand/indian-operations-map-corrected.svg",
       activity: "Security"
     },
     {
@@ -93,7 +93,7 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "Construction and Infrastructure",
       caption: "Skilled workforce for roads, ports, cities, large infrastructure and industrial construction projects.",
-      src: "/brand/indian-operations-map.png",
+      src: "/brand/indian-operations-map-corrected.svg",
       activity: "Construction"
     },
     {
@@ -104,7 +104,7 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       title: "Ship Building and Ship Repair",
-      caption: "Technical manpower for ship manufacture, repair and maintenance projects.",
+      caption: "Technical human resources for ship manufacture, repair and maintenance projects.",
       src: "/gallery/spain-work-permit.png",
       activity: "Ship Building"
     }

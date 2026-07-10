@@ -28,8 +28,8 @@ export function SiteHeader() {
             priority
           />
           <span className="min-w-0">
-            <span className="block truncate text-sm font-black uppercase tracking-wide text-white">
-              Continental
+            <span className="brand-word block truncate text-sm">
+              CONTINENTAL
             </span>
             <span className="block truncate text-xs font-semibold text-gold">
               Mercantile Corporation
@@ -55,7 +55,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="button-secondary py-2">
             <PhoneCall className="mr-2 h-4 w-4" />
-            Call Kochi
+            Call Office
           </a>
           <ApplyTrigger className="button-primary py-2" showArrow={false}>Apply Now</ApplyTrigger>
         </div>

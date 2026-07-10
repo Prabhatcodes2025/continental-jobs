@@ -7,11 +7,12 @@ export function SiteFooter() {
     <footer className="premium-band text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
-          <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.group}</p>
-          <h2 className="mt-3 text-3xl font-black">{company.shortName}</h2>
+          <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
+          <h2 className="brand-word mt-3 text-3xl">CONTINENTAL</h2>
+          <p className="mt-1 text-sm font-semibold text-white/82">Mercantile Corporation</p>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
-            A premium international manpower, staffing, work abroad, study abroad and HR solutions
-            organization headquartered in Kochi with regional Indian operations and global recruitment reach.
+            A premium international recruitment, work abroad, study abroad and Human Resource Solutions
+            organization with regional Indian operations and global recruitment reach.
           </p>
           <div className="mt-6 grid gap-3 text-sm text-white/75 sm:grid-cols-2">
             <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="footer-pill">
@@ -24,7 +25,7 @@ export function SiteFooter() {
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
             <span className="footer-pill">
-              <MapPin className="h-4 w-4" /> Kochi HQ
+              <MapPin className="h-4 w-4" /> Corporate Office
             </span>
           </div>
         </div>

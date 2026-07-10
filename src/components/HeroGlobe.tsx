@@ -3,12 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 const points = [
-  ["Kochi", "18%", "58%"],
+  ["India", "18%", "58%"],
   ["Dubai", "52%", "44%"],
-  ["London", "42%", "27%"],
+  ["Europe", "42%", "27%"],
   ["Singapore", "69%", "63%"],
-  ["Canada", "20%", "24%"],
-  ["Africa", "49%", "66%"]
+  ["Australia", "79%", "72%"],
+  ["Nepal", "66%", "49%"]
 ];
 
 export function HeroGlobe() {
@@ -45,9 +45,8 @@ export function HeroGlobe() {
         </motion.div>
       ))}
       <div className="absolute bottom-8 left-1/2 w-max -translate-x-1/2 rounded-full border border-gold/30 bg-navy/80 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-gold backdrop-blur">
-        Worldwide Staffing Network
+        Worldwide Recruitment Network
       </div>
     </div>
   );
 }
-

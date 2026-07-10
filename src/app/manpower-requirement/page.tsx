@@ -5,13 +5,13 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { employerStartInfo } from "@/lib/site-data";
 
 export const metadata = {
-  title: "Manpower Requirement"
+  title: "Employer Requirement"
 };
 
 export default function ManpowerRequirementPage({ searchParams }: { searchParams: { submitted?: string; error?: string } }) {
   return (
     <>
-      <PageHero title="Employer / Client Manpower Requirement" text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline." />
+      <PageHero title="Employer / Client Requirement" text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline." />
       <section className="bg-slate-50 py-14">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader
@@ -32,7 +32,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
         <form action="/api/requirements" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl gap-6 px-4 lg:px-8">
           {searchParams.submitted ? (
             <div className="rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
-              Thank you. Your manpower requirement has been received and is ready for employer coordination.
+              Thank you. Your requirement has been received and is ready for employer coordination.
             </div>
           ) : null}
           {searchParams.error ? (
@@ -65,7 +65,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
           </label>
           <ConsentText type="employer" />
           <Check name="whatsappConsent" label="I consent to receive requirement coordination messages through WhatsApp." />
-          <Check name="termsAgreement" label="I agree to the Terms of Use and confirm the submitted manpower requirement is lawful and accurate." />
+          <Check name="termsAgreement" label="I agree to the Terms of Use and confirm the submitted requirement is lawful and accurate." />
           <FormSubmitButton>Submit Requirement</FormSubmitButton>
         </form>
       </section>

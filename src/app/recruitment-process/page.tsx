@@ -9,8 +9,9 @@ export default function RecruitmentProcessPage() {
   return (
     <>
       <PageHero
-        title="Recruitment Process"
-        text="A structured employer and candidate workflow from manpower requirement to deployment support."
+        title="RECRUITMENT PROCESS"
+        text="A structured employer and candidate workflow from requirement to deployment support."
+        official
       />
       <section className="bg-white py-16">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
