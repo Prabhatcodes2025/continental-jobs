@@ -55,9 +55,9 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="button-secondary py-2">
             <PhoneCall className="mr-2 h-4 w-4" />
-            Call Office
+            CALL HEADQUARTERS
           </a>
-          <ApplyTrigger className="button-primary py-2" showArrow={false}>Apply Now</ApplyTrigger>
+          <ApplyTrigger className="button-primary py-2" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
         </div>
 
         <div className="relative lg:hidden">
@@ -81,7 +81,7 @@ export function SiteHeader() {
                 {label}
               </Link>
             ))}
-            <ApplyTrigger className="button-primary mt-2 py-2" showArrow={false}>Apply Now</ApplyTrigger>
+            <ApplyTrigger className="button-primary mt-2 py-2" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
           </nav>
           ) : null}
         </div>

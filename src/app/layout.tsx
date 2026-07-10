@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     address: company.office,
     email: company.emails.work,
     telephone: company.phones.main,
-    areaServed: ["India", "Australia", "Singapore", "Europe", "Saudi", "Dubai", "Philippines", "Nepal"]
+    areaServed: ["India", "Australia", "Singapore", "Europe", "Saudi", "Dubai", "Spain", "Nepal", "Sri Lanka", "Philippines", "Africa"]
   };
 
   return (

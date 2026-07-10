@@ -3,13 +3,13 @@ import { FormSubmitButton } from "@/components/FormSubmitButton";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata = {
-  title: "Apply for Job"
+  title: "Apply for a Job"
 };
 
 export default function ApplyPage({ searchParams }: { searchParams: { submitted?: string; error?: string } }) {
   return (
     <>
-      <PageHero title="Apply for Job" text="Submit your candidate profile for overseas job opportunities, work abroad support and recruitment screening." />
+      <PageHero title="APPLY FOR A JOB" text="Submit your candidate profile for overseas job opportunities, work abroad support and recruitment screening." official />
       <section className="bg-white py-16">
         <form action="/api/applications" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl gap-6 px-4 lg:px-8">
           {searchParams.submitted ? (

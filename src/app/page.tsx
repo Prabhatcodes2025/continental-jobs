@@ -25,7 +25,7 @@ export default async function HomePage() {
     <>
       <section className="premium-band relative overflow-hidden text-white">
         <div className="absolute inset-0 opacity-28">
-          <Image src="/brand/corporate-office-kochi.png" alt="" fill sizes="100vw" className="object-cover" priority />
+          <Image src="/brand/corporate-office-kochi.png" alt="" fill sizes="100vw" className="object-contain" priority />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/92 to-navy/55" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-28">
@@ -39,10 +39,10 @@ export default async function HomePage() {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
                 {company.shortName} connects skilled talent with trusted employers across the Gulf,
-                Europe, Asia, Africa and beyond through compliant recruitment, documentation and mobilization.
+                Europe, Asia, Africa and approved destination markets through compliant recruitment, documentation and mobilization.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <ApplyTrigger>Apply for Job</ApplyTrigger>
+                <ApplyTrigger>APPLY FOR A JOB</ApplyTrigger>
                 <Link href="/manpower-requirement" className="button-secondary">
                   Submit Requirement
                 </Link>
@@ -198,7 +198,7 @@ export default async function HomePage() {
             <h2 className="mt-3 text-3xl font-black">Candidates and employers can start here.</h2>
           </div>
           <div className="flex flex-wrap gap-3">
-            <ApplyTrigger showArrow={false}><CheckCircle2 className="mr-2 h-4 w-4" /> Apply for Job</ApplyTrigger>
+            <ApplyTrigger showArrow={false}><CheckCircle2 className="mr-2 h-4 w-4" /> APPLY FOR A JOB</ApplyTrigger>
             <Link href="/manpower-requirement" className="button-secondary"><Globe2 className="mr-2 h-4 w-4" /> Employer Form</Link>
             <Link href="/contact" className="button-secondary"><Sparkles className="mr-2 h-4 w-4" /> Contact Us</Link>
           </div>

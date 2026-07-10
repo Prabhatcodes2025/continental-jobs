@@ -28,7 +28,7 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-          <Image src="/brand/corporate-office-kochi.png" alt="Continental corporate office Kochi" width={900} height={700} className="rounded-lg object-cover shadow-xl" />
+          <Image src="/brand/corporate-office-kochi.png" alt="Continental corporate office in India" width={900} height={700} className="rounded-lg bg-white object-contain shadow-xl" />
         </div>
       </section>
       <section className="bg-slate-50 py-16">

@@ -30,12 +30,12 @@ export function SiteFooter() {
           </div>
         </div>
         <div>
-          <h3 className="font-bold text-gold">Indian Offices</h3>
+          <h3 className="font-bold uppercase tracking-[0.12em] text-gold">INDIAN OPERATIONS</h3>
           <p className="mt-4 text-sm leading-7 text-white/70">{indianOffices.join(" / ")}</p>
         </div>
         <div>
-          <h3 className="font-bold text-gold">Global Reach</h3>
-          <p className="mt-4 text-sm leading-7 text-white/70">{globalRegions.slice(0, 12).join(" / ")}</p>
+          <h3 className="font-bold uppercase tracking-[0.12em] text-gold">GLOBAL REACH</h3>
+          <p className="mt-4 text-sm leading-7 text-white/70">{globalRegions.join(" / ")}</p>
         </div>
       </div>
       <div className="border-t border-white/10">

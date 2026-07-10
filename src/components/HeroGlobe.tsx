@@ -4,11 +4,16 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const points = [
   ["India", "18%", "58%"],
+  ["Saudi", "47%", "50%"],
   ["Dubai", "52%", "44%"],
   ["Europe", "42%", "27%"],
+  ["Spain", "35%", "35%"],
   ["Singapore", "69%", "63%"],
+  ["Sri Lanka", "58%", "67%"],
+  ["Philippines", "78%", "55%"],
   ["Australia", "79%", "72%"],
-  ["Nepal", "66%", "49%"]
+  ["Nepal", "66%", "49%"],
+  ["Africa", "46%", "66%"]
 ];
 
 export function HeroGlobe() {

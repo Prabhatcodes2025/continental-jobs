@@ -20,14 +20,14 @@ export function GalleryLightbox({ compact = false, items = defaultSiteContent.ga
             className="group overflow-hidden rounded-lg border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
             data-magnetic
           >
-            <div className="overflow-hidden">
+            <div className="overflow-hidden bg-white">
               <Image
                 src={item.src}
                 alt={item.title}
                 width={compact ? 600 : 900}
                 height={compact ? 700 : 900}
                 sizes={compact ? "(min-width: 768px) 25vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                className={compact ? "h-56 w-full object-cover transition duration-500 group-hover:scale-105" : "h-[420px] w-full object-cover transition duration-500 group-hover:scale-105"}
+                className={compact ? "h-56 w-full object-contain bg-white transition duration-500 group-hover:scale-[1.02]" : "h-[420px] w-full object-contain bg-white transition duration-500 group-hover:scale-[1.02]"}
                 loading="lazy"
               />
             </div>

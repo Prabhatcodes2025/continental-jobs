@@ -1,14 +1,4 @@
-const indiaMarkerPositions: Record<string, [string, string]> = {
-  Cochin: ["34%", "78%"],
-  Madurai: ["43%", "78%"],
-  Bombay: ["28%", "57%"],
-  Gujarat: ["21%", "45%"],
-  Jaipur: ["36%", "34%"],
-  Delhi: ["43%", "26%"],
-  Kolkata: ["69%", "46%"],
-  Siliguri: ["65%", "34%"],
-  Vizag: ["62%", "62%"]
-};
+import Image from "next/image";
 
 const worldwideMarkerPositions: Record<string, [string, string]> = {
   India: ["65%", "55%"],
@@ -17,22 +7,25 @@ const worldwideMarkerPositions: Record<string, [string, string]> = {
   Europe: ["48%", "30%"],
   Saudi: ["55%", "48%"],
   Dubai: ["59%", "47%"],
+  Spain: ["43%", "36%"],
+  Nepal: ["66%", "49%"],
+  "Sri Lanka": ["67%", "61%"],
   Philippines: ["79%", "55%"],
-  Nepal: ["66%", "49%"]
+  Africa: ["48%", "63%"]
 };
 
 export function IndiaOperationsMap({ locations }: { locations: string[] }) {
   return (
-    <div className="operations-map india-operations-map" aria-label="Approved Indian operations map">
-      <div className="operations-map-grid" />
-      <div className="india-map-shape">
-        <span className="india-map-label">INDIA</span>
-      </div>
-      {locations.map((location) => {
-        const [left, top] = indiaMarkerPositions[location] || ["50%", "50%"];
-        return <MapMarker key={location} label={location} left={left} top={top} />;
-      })}
-      <div className="operations-map-title">INDIAN OPERATIONS</div>
+    <div className="operations-image-frame" aria-label="Approved Indian operations map">
+      <Image
+        src="/brand/indian-operations-map.png"
+        alt={`Indian operations map: ${locations.join(", ")}`}
+        width={900}
+        height={900}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className="h-full w-full object-contain"
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -41,6 +34,7 @@ export function WorldwideOperationsMap({ regions }: { regions: string[] }) {
   return (
     <div className="operations-map worldwide-operations-map" aria-label="Approved worldwide operations map">
       <div className="operations-map-grid" />
+      <div className="world-map-watermark">GLOBAL REACH</div>
       <div className="world-map-line world-map-line-one" />
       <div className="world-map-line world-map-line-two" />
       <div className="world-map-line world-map-line-three" />

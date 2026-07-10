@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { useApplyModal } from "@/components/ExperienceLayer";
 
 export function ApplyTrigger({
-  children = "Apply for Job",
+  children = "APPLY FOR A JOB",
   className = "button-primary",
   showArrow = true
 }: {

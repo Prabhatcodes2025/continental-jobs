@@ -10,7 +10,7 @@ export function PageHero({ title, text, official = false }: { title: string; tex
         </h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-white/75">{text}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/apply" className="button-primary">Apply for Job</Link>
+          <Link href="/apply" className="button-primary">APPLY FOR A JOB</Link>
           <Link href="/manpower-requirement" className="button-secondary">Submit Requirement</Link>
         </div>
       </div>

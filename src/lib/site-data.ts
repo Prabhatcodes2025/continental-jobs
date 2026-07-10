@@ -215,8 +215,11 @@ export const globalRegions = [
   "Europe",
   "Saudi",
   "Dubai",
+  "Spain",
+  "Nepal",
+  "Sri Lanka",
   "Philippines",
-  "Nepal"
+  "Africa"
 ];
 
 export const recruitmentSteps = [
@@ -242,10 +245,10 @@ export const galleryItems = [
   {
     src: "/brand/corporate-office-kochi.png",
     title: "Corporate Office, India",
-    caption: "Continental Towers near Ernakulam South."
+    caption: "Continental Towers, India."
   },
   {
-    src: "/brand/indian-operations-map-corrected.svg",
+    src: "/brand/indian-operations-map.png",
     title: "Indian Operations",
     caption: "Regional presence across major recruitment corridors."
   },

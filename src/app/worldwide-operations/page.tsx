@@ -16,7 +16,7 @@ export default async function WorldwideOperationsPage() {
     <>
       <PageHero
         title="WORLDWIDE OPERATIONS"
-        text="Approved international recruitment presence across India, Australia, Singapore, Europe, Saudi, Dubai, Philippines and Nepal."
+        text="Approved international recruitment presence across India, Australia, Singapore, Europe, Saudi, Dubai, Spain, Nepal, Sri Lanka, Philippines and Africa."
         official
       />
       <section className="bg-white py-16">
@@ -24,7 +24,7 @@ export default async function WorldwideOperationsPage() {
           <SectionHeader
             eyebrow="Worldwide Infrastructure"
             title="WORLDWIDE OPERATIONS"
-            text="Client-approved operations include India, Australia, Singapore, Europe, Saudi, Dubai, Philippines and Nepal."
+            text="Client-approved operations include India, Australia, Singapore, Europe, Saudi, Dubai, Spain, Nepal, Sri Lanka, Philippines and Africa."
             official
           />
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
