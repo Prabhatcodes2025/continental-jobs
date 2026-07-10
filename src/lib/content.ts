@@ -81,7 +81,7 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "Security Professionals",
       caption: "Security guard and facility workforce recruitment with documentation and mobilization support.",
-      src: "/brand/indian-operations-map.png",
+      src: "/brand/indian-operations-map-corrected.svg",
       activity: "Security"
     },
     {
@@ -93,7 +93,7 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "Construction and Infrastructure",
       caption: "Skilled workforce for roads, ports, cities, large infrastructure and industrial construction projects.",
-      src: "/brand/indian-operations-map.png",
+      src: "/brand/indian-operations-map-corrected.svg",
       activity: "Construction"
     },
     {

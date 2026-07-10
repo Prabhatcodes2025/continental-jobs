@@ -4,15 +4,17 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const points = [
   ["India", "18%", "58%"],
-  ["Saudi", "47%", "50%"],
-  ["Dubai", "52%", "44%"],
-  ["Europe", "42%", "27%"],
+  ["Saudi Arabia", "47%", "50%"],
+  ["Dubai / UAE", "52%", "44%"],
+  ["London / UK", "42%", "27%"],
   ["Spain", "35%", "35%"],
+  ["Malta", "45%", "39%"],
   ["Singapore", "69%", "63%"],
+  ["Malaysia", "65%", "61%"],
   ["Sri Lanka", "58%", "67%"],
   ["Philippines", "78%", "55%"],
-  ["Australia", "79%", "72%"],
   ["Nepal", "66%", "49%"],
+  ["Bangladesh", "68%", "53%"],
   ["Africa", "46%", "66%"]
 ];
 

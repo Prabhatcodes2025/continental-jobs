@@ -37,7 +37,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     address: company.office,
     email: company.emails.work,
     telephone: company.phones.main,
-    areaServed: ["India", "Australia", "Singapore", "Europe", "Saudi", "Dubai", "Spain", "Nepal", "Sri Lanka", "Philippines", "Africa"]
+    areaServed: [
+      "India",
+      "Singapore",
+      "Philippines",
+      "Malaysia",
+      "United Arab Emirates",
+      "Kuwait",
+      "Bahrain",
+      "Oman",
+      "Saudi Arabia",
+      "Qatar",
+      "United Kingdom",
+      "Malta",
+      "Spain",
+      "Nepal",
+      "Bangladesh",
+      "Sri Lanka",
+      "Africa"
+    ]
   };
 
   return (

@@ -37,7 +37,7 @@ export default async function IndianOperationsPage() {
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3">
               {content.indianOperations.map((office) => (
-                <div key={office} className="premium-card p-4 font-bold">{office}</div>
+                <div key={office} className="premium-card p-4 font-bold">{office === "Bombay" ? "OPERATIONS OFFICE - BOMBAY" : office}</div>
               ))}
             </div>
           </div>

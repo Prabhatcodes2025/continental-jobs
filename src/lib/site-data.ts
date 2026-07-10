@@ -210,15 +210,21 @@ export const indianOffices = [
 
 export const globalRegions = [
   "India",
-  "Australia",
   "Singapore",
-  "Europe",
-  "Saudi",
-  "Dubai",
+  "Philippines",
+  "Malaysia",
+  "Dubai / UAE",
+  "Kuwait",
+  "Bahrain",
+  "Oman",
+  "Saudi Arabia",
+  "Qatar",
+  "London / UK",
+  "Malta",
   "Spain",
   "Nepal",
+  "Bangladesh",
   "Sri Lanka",
-  "Philippines",
   "Africa"
 ];
 
@@ -248,7 +254,7 @@ export const galleryItems = [
     caption: "Continental Towers, India."
   },
   {
-    src: "/brand/indian-operations-map.png",
+    src: "/brand/indian-operations-map-corrected.svg",
     title: "Indian Operations",
     caption: "Regional presence across major recruitment corridors."
   },
