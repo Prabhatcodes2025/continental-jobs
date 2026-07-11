@@ -34,8 +34,8 @@ export default async function HomePage() {
               <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-gold">
                 43+ years of global recruitment
               </p>
-              <h1 className="mt-6 text-4xl font-black tracking-tight md:text-6xl">
-                Ethical international recruitment and work abroad solutions.
+              <h1 className="corporate-title-caps mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+                PATHWAY TO GLOBAL CAREERS
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
                 {company.shortName} connects skilled talent with trusted employers across the Gulf,
@@ -44,10 +44,10 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <ApplyTrigger>APPLY FOR A JOB</ApplyTrigger>
                 <Link href="/manpower-requirement" className="button-secondary">
-                  Submit Requirement
+                  SUBMIT REQUIREMENT
                 </Link>
                 <Link href="/chairman-message" className="button-secondary">
-                  Contact Chairman Office
+                  CONTACT CHAIRMAN OFFICE
                 </Link>
               </div>
             </div>

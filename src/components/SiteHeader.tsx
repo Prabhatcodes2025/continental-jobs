@@ -37,7 +37,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 text-sm font-semibold text-white/80 lg:flex">
+        <nav className="hidden items-center gap-1 text-sm font-semibold text-white/80 xl:flex">
           {navItems.map(([label, href]) => (
             <Link
               key={href}
@@ -52,7 +52,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="button-secondary py-2">
             <PhoneCall className="mr-2 h-4 w-4" />
             CALL HEADQUARTERS
@@ -60,7 +60,7 @@ export function SiteHeader() {
           <ApplyTrigger className="button-primary py-2" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
         </div>
 
-        <div className="relative lg:hidden">
+        <div className="relative xl:hidden">
           <button type="button" onClick={() => setMobileOpen((value) => !value)} className="rounded-md p-2 text-white" aria-label="Toggle navigation menu">
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

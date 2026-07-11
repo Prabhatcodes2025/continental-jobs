@@ -2,16 +2,75 @@ import { ConsentText } from "@/components/ConsentText";
 import { FormSubmitButton } from "@/components/FormSubmitButton";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
-import { employerStartInfo } from "@/lib/site-data";
+import { BriefcaseBusiness, CalendarClock, ClipboardList, FileText, Globe2, GraduationCap, ListChecks, MapPinned, Scale, WalletCards } from "lucide-react";
 
 export const metadata = {
   title: "Employer Requirement"
 };
 
+const employerInfoCards = [
+  {
+    title: "Project Details",
+    text: "Project details and project location.",
+    icon: MapPinned
+  },
+  {
+    title: "Job Categories",
+    text: "Required job categories and number of workers.",
+    icon: BriefcaseBusiness
+  },
+  {
+    title: "Worker Source",
+    text: "Countries from where workers are required.",
+    icon: Globe2
+  },
+  {
+    title: "Job Description",
+    text: "Detailed job description for each category.",
+    icon: FileText
+  },
+  {
+    title: "Qualification",
+    text: "Minimum qualification and experience.",
+    icon: GraduationCap
+  },
+  {
+    title: "Salary & Benefits",
+    text: "Salary, benefits, food, accommodation and facilities.",
+    icon: WalletCards
+  },
+  {
+    title: "Contract & Visa",
+    text: "Contract duration and visa or entry permit processing time.",
+    icon: CalendarClock
+  },
+  {
+    title: "Mobilization",
+    text: "Expected mobilization timeline.",
+    icon: ClipboardList
+  },
+  {
+    title: "Labour Compliance",
+    text: "Labour law compliance in the country of employment.",
+    icon: Scale
+  },
+  {
+    title: "Other Terms",
+    text: "Other specifications or terms offered to workers.",
+    icon: ListChecks
+  }
+];
+
 export default function ManpowerRequirementPage({ searchParams }: { searchParams: { submitted?: string; error?: string } }) {
   return (
     <>
-      <PageHero title="Employer / Client Requirement" text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline." />
+      <PageHero
+        title="EMPLOYER / CLIENT REQUIREMENT"
+        text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline."
+        official
+        eyebrow={null}
+        size="compact"
+      />
       <section className="bg-slate-50 py-14">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader
@@ -19,12 +78,19 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
             title="What we need to start the recruitment process."
             text="The brochure asks employers to share project, category, salary, facility, visa and labour-law details before mobilization begins."
           />
-          <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-            {employerStartInfo.map((item) => (
-              <div key={item} className="premium-card p-4 text-sm font-bold leading-6 text-slate-700">
-                {item}
-              </div>
-            ))}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+            {employerInfoCards.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article key={item.title} className="premium-card h-full p-5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md border border-gold/25 bg-gold/10 text-gold">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-4 text-base font-black text-slate-950">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
