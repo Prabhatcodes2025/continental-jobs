@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 export function MotionReveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
     <motion.div
+      className="min-w-0"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

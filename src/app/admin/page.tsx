@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { isAdminAuthenticated } from "@/lib/auth";
 import { activityCategories, contentFromFormData, defaultSiteContent, type OfficeContact, type SiteContent } from "@/lib/content";
 import { readRecords, readSiteContent, saveGalleryImages, writeSiteContent } from "@/lib/storage";
-import { company } from "@/lib/site-data";
 
 export const metadata = {
   title: "Admin Dashboard"
@@ -93,7 +92,7 @@ export default async function AdminPage({
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           <Metric icon={<UsersRound className="h-7 w-7" />} label="Candidate Applications" value={applications.length} />
           <Metric icon={<UsersRound className="h-7 w-7" />} label="Employer Requirements" value={requirements.length} />
-          <Metric icon={<Settings className="h-7 w-7" />} label="Configurable WhatsApp" value={company.phones.whatsapp} />
+          <Metric icon={<Settings className="h-7 w-7" />} label="Recruitment Email" value={siteContent.recruitmentEmail} />
         </div>
 
         {searchParams.updated ? (
@@ -114,7 +113,7 @@ export default async function AdminPage({
         <div className="mt-10 rounded-lg border border-slate-200 bg-white p-6">
           <h2 className="text-xl font-black text-slate-950">Configuration Notes</h2>
           <p className="mt-3 leading-7 text-slate-600">
-            Phone numbers, WhatsApp number, emails, addresses, gallery, jobs, services, countries, privacy
+            Approved phone numbers, recruitment email, addresses, gallery, jobs, services, countries, privacy
             policy and terms are structured for admin/CRM control. For production, persist settings in the
             Prisma <code>SiteSetting</code> table and connect <code>CRM_WEBHOOK_URL</code> / <code>WHATSAPP_API_WEBHOOK_URL</code>.
           </p>
@@ -146,6 +145,13 @@ function ContentEditor({ content }: { content: SiteContent }) {
         <p className="mt-2 text-sm leading-6 text-white/70">
           Update client-facing contact details, Indian/worldwide operation lists and brochure-style activity images from here.
         </p>
+      </div>
+
+      <div className="border-b border-slate-200 p-6">
+        <label className="grid gap-2">
+          <span className="text-sm font-black uppercase tracking-[0.18em] text-gold">Recruitment Email</span>
+          <input name="recruitmentEmail" type="email" className="field" defaultValue={content.recruitmentEmail} />
+        </label>
       </div>
 
       <div className="grid gap-6 p-6 lg:grid-cols-2">
@@ -236,10 +242,6 @@ function AdminOfficeFields({ office, index }: { office: OfficeContact; index: nu
         <input name={`office-${index}-subtitle`} className="field" defaultValue={office.subtitle} aria-label={`${office.title} subtitle`} />
         <textarea name={`office-${index}-address`} className="field min-h-24" defaultValue={office.address} aria-label={`${office.title} address`} />
         <textarea name={`office-${index}-phones`} className="field min-h-24" defaultValue={office.phones.join("\n")} aria-label={`${office.title} phones`} />
-        <input name={`office-${index}-whatsapp`} className="field" defaultValue={office.whatsapp || ""} placeholder="WhatsApp number" aria-label={`${office.title} WhatsApp`} />
-        <textarea name={`office-${index}-emails`} className="field min-h-24" defaultValue={office.emails.join("\n")} aria-label={`${office.title} emails`} />
-        <input name={`office-${index}-website`} className="field" defaultValue={office.website || ""} placeholder="Website" aria-label={`${office.title} website`} />
-        <textarea name={`office-${index}-managerPhones`} className="field min-h-20" defaultValue={(office.managerPhones || []).join("\n")} placeholder="PRO / Manager numbers" aria-label={`${office.title} manager phones`} />
       </div>
     </div>
   );

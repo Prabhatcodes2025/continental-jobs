@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, PhoneCall, X } from "lucide-react";
 import { useState } from "react";
 import { ApplyTrigger } from "@/components/ApplyTrigger";
-import { company, navItems } from "@/lib/site-data";
+import { contactDetails, navItems } from "@/lib/site-data";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -53,7 +53,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex">
-          <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="button-secondary py-2">
+          <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="button-secondary py-2">
             <PhoneCall className="mr-2 h-4 w-4" />
             CALL HEADQUARTERS
           </a>

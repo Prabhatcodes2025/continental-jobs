@@ -13,6 +13,28 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+export const contactDetails = {
+  email: "recruitments@continentalmanpower.com",
+  corporateOffice: {
+    label: "CORPORATE OFFICE - KOCHI",
+    address: "Continental Towers, Near Ernakulam South, Kochi, Kerala - 11, India",
+    phones: [
+      { display: "890 70 900 50", raw: "8907090050", tel: "+918907090050" },
+      { display: "890 70 900 60", raw: "8907090060", tel: "+918907090060" }
+    ]
+  },
+  operationsOffice: {
+    label: "OPERATIONS OFFICE - BOMBAY",
+    address: "\"Devdutt\", Near Taj Hotel, Bandra(W), Mumbai-50",
+    phones: [
+      { display: "890 70 900 10", raw: "8907090010", tel: "+918907090010" },
+      { display: "890 70 900 20", raw: "8907090020", tel: "+918907090020" }
+    ]
+  },
+  whatsappUrl:
+    "https://wa.me/918907090050?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
+};
+
 export const company = {
   name: "Continental Mercantile Corporation Pvt Ltd",
   descriptor: "Human Resource Solutions",
@@ -21,20 +43,17 @@ export const company = {
   years: "43+",
   chairman: "Sajeevan Thumpayil",
   chairmanFull: "Sajeevan Thumpayil",
-  office: "Continental Towers, Near Ernakulam South, Kochi, Kerala",
+  office: contactDetails.corporateOffice.address,
   emails: {
-    chairman: "chairman@continentalmanpower.com",
-    work: "recruitments@continentalmanpower.com",
-    jobs: "gulfrecruitments@continentalmanpower.com"
+    work: contactDetails.email
   },
   phones: {
-    kochi: ["0091 89070 90050", "0091 89070 90060"],
-    mumbai: ["0091 89070 90010", "0091 89070 90020"],
-    whatsapp: "890709001",
-    main: "00 91-484-4144444"
+    kochi: contactDetails.corporateOffice.phones.map((phone) => phone.display),
+    mumbai: contactDetails.operationsOffice.phones.map((phone) => phone.display),
+    whatsapp: contactDetails.corporateOffice.phones[0].display,
+    main: contactDetails.corporateOffice.phones[0].display
   },
-  socialChat:
-    "https://wa.me/91890709001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
+  socialChat: contactDetails.whatsappUrl
 };
 
 export const navItems = [

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { company, globalRegions, indianOffices } from "@/lib/site-data";
+import { company, contactDetails, globalRegions, indianOffices } from "@/lib/site-data";
 
 export function SiteFooter() {
   return (
@@ -15,13 +15,13 @@ export function SiteFooter() {
             organization with regional Indian operations and global recruitment reach.
           </p>
           <div className="mt-6 grid gap-3 text-sm text-white/75 sm:grid-cols-2">
-            <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="footer-pill">
-              <Phone className="h-4 w-4" /> {company.phones.kochi[0]}
+            <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="footer-pill">
+              <Phone className="h-4 w-4" /> {contactDetails.corporateOffice.phones[0].display}
             </a>
-            <a href={`mailto:${company.emails.work}`} className="footer-pill">
-              <Mail className="h-4 w-4" /> {company.emails.work}
+            <a href={`mailto:${contactDetails.email}`} className="footer-pill">
+              <Mail className="h-4 w-4" /> {contactDetails.email}
             </a>
-            <a href={company.socialChat} className="footer-pill">
+            <a href={contactDetails.whatsappUrl} className="footer-pill">
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
             <span className="footer-pill">

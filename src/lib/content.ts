@@ -1,4 +1,4 @@
-import { company, galleryItems, globalRegions, indianOffices } from "@/lib/site-data";
+import { contactDetails, galleryItems, globalRegions, indianOffices } from "@/lib/site-data";
 
 export type OfficeContact = {
   title: string;
@@ -19,6 +19,7 @@ export type GalleryEntry = {
 };
 
 export type SiteContent = {
+  recruitmentEmail: string;
   offices: OfficeContact[];
   indianOperations: string[];
   worldwideOperations: string[];
@@ -37,23 +38,21 @@ export const activityCategories = [
 ];
 
 export const defaultSiteContent: SiteContent = {
+  recruitmentEmail: contactDetails.email,
   offices: [
     {
-      title: "Corporate Office",
+      title: contactDetails.corporateOffice.label,
       subtitle: "Head office for candidates, employers and global coordination.",
-      address: "Continental Towers, Near Ernakulam South, Kochi, Kerala - 11",
-      phones: ["+91 484 414 44 44"],
-      whatsapp: "89070 9001",
-      emails: ["secretary@continentalgroup.net", "recruitments@continentalmanpower.com"],
-      website: "continentalmanpower.com"
+      address: contactDetails.corporateOffice.address,
+      phones: contactDetails.corporateOffice.phones.map((phone) => phone.display),
+      emails: [contactDetails.email]
     },
     {
-      title: "Operations Office",
+      title: contactDetails.operationsOffice.label,
       subtitle: "Operational support for recruitment processing and employer coordination.",
-      address: "\"Devdutt\", Near Taj Hotel, Bandra(W), Mumbai-50",
-      phones: ["0091 89070 90010", "0091 89070 90020"],
-      emails: ["gulfrecruitments@continentalmanpower.com"],
-      managerPhones: ["0091 98950 5050", "0091 89070 90002"]
+      address: contactDetails.operationsOffice.address,
+      phones: contactDetails.operationsOffice.phones.map((phone) => phone.display),
+      emails: [contactDetails.email]
     }
   ],
   indianOperations: indianOffices,
@@ -120,8 +119,9 @@ export function linesToList(value: FormDataEntryValue | null) {
 }
 
 export function phoneHref(phone: string) {
-  const cleaned = phone.replace(/[^\d+]/g, "");
-  return `tel:${cleaned.startsWith("+") ? cleaned : `+${cleaned}`}`;
+  const digits = phone.replace(/\D/g, "");
+  const withCountry = digits.startsWith("91") ? digits : `91${digits}`;
+  return `tel:+${withCountry}`;
 }
 
 export function mailHref(email: string) {
@@ -136,15 +136,13 @@ export function whatsappHref(phone: string) {
 
 export function contentFromFormData(formData: FormData, imagePaths: string[] = []): SiteContent {
   const defaultOffices = defaultSiteContent.offices;
+  const recruitmentEmail = String(formData.get("recruitmentEmail") || defaultSiteContent.recruitmentEmail).trim();
   const offices = defaultOffices.map((office, index) => ({
     title: String(formData.get(`office-${index}-title`) || office.title).trim(),
     subtitle: String(formData.get(`office-${index}-subtitle`) || office.subtitle).trim(),
     address: String(formData.get(`office-${index}-address`) || office.address).trim(),
     phones: linesToList(formData.get(`office-${index}-phones`)).length ? linesToList(formData.get(`office-${index}-phones`)) : office.phones,
-    whatsapp: String(formData.get(`office-${index}-whatsapp`) || "").trim() || undefined,
-    emails: linesToList(formData.get(`office-${index}-emails`)).length ? linesToList(formData.get(`office-${index}-emails`)) : office.emails,
-    website: String(formData.get(`office-${index}-website`) || "").trim() || undefined,
-    managerPhones: linesToList(formData.get(`office-${index}-managerPhones`))
+    emails: [recruitmentEmail || defaultSiteContent.recruitmentEmail]
   }));
 
   const gallery = defaultSiteContent.gallery.map((item, index) => ({
@@ -155,6 +153,7 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
   }));
 
   return {
+    recruitmentEmail,
     offices,
     indianOperations: linesToList(formData.get("indianOperations")).length ? linesToList(formData.get("indianOperations")) : defaultSiteContent.indianOperations,
     worldwideOperations: linesToList(formData.get("worldwideOperations")).length ? linesToList(formData.get("worldwideOperations")) : defaultSiteContent.worldwideOperations,

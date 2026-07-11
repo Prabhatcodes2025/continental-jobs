@@ -7,7 +7,7 @@ import { BriefcaseBusiness, MessageCircle, Phone, Send, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormEvent, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
-import { company } from "@/lib/site-data";
+import { contactDetails } from "@/lib/site-data";
 
 type ApplyContextValue = {
   openApply: () => void;
@@ -239,11 +239,11 @@ function QuickActions() {
         <Send className="h-4 w-4" />
         Requirement
       </Link>
-      <a href={`tel:${company.phones.kochi[0].replaceAll(" ", "")}`} className="quick-action" data-magnetic>
+      <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="quick-action" data-magnetic>
         <Phone className="h-4 w-4" />
         Call
       </a>
-      <a href={company.socialChat} className="quick-action" data-magnetic>
+      <a href={contactDetails.whatsappUrl} className="quick-action" data-magnetic>
         <MessageCircle className="h-4 w-4" />
         WhatsApp
       </a>

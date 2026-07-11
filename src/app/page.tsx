@@ -10,6 +10,7 @@ import { IndiaOperationsMap, WorldwideOperationsMap } from "@/components/Operati
 import { SectionHeader } from "@/components/SectionHeader";
 import {
   company,
+  contactDetails,
   industries,
   recruitmentSteps,
   services
@@ -91,7 +92,7 @@ export default async function HomePage() {
                     <Icon className="h-8 w-8 text-gold" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{service.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                    <a href={company.socialChat} className="mt-5 inline-flex text-sm font-bold text-royal">
+                    <a href={contactDetails.whatsappUrl} className="mt-5 inline-flex text-sm font-bold text-royal">
                       Chat on WhatsApp <ArrowRight className="ml-1 h-4 w-4" />
                     </a>
                   </article>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
-import { academies, company, industries, services, specializedRecruitment, whyContinental } from "@/lib/site-data";
+import { academies, contactDetails, industries, services, specializedRecruitment, whyContinental } from "@/lib/site-data";
 
 export const metadata = {
   title: "Our Business and Services"
@@ -25,7 +25,7 @@ export default function ServicesPage() {
                   <Icon className="h-8 w-8 text-gold" />
                   <h2 className="mt-4 text-xl font-black text-slate-950">{service.title}</h2>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <a href={company.socialChat} className="mt-5 inline-flex font-bold text-royal">Click to chat</a>
+                  <a href={contactDetails.whatsappUrl} className="mt-5 inline-flex font-bold text-royal">Click to chat</a>
                 </article>
               );
             })}

@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/PageHero";
-import { company } from "@/lib/site-data";
+import { contactDetails } from "@/lib/site-data";
 
 export const metadata = {
   title: "Privacy Policy"
@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
           <h2>WhatsApp Consent</h2>
           <p>When you opt in, we may contact you through WhatsApp about your enquiry, application, recruitment status or employer requirement. You may request to stop receiving WhatsApp messages at any time.</p>
           <h2>Contact</h2>
-          <p>For privacy requests, contact {company.emails.work} or {company.emails.chairman}.</p>
+          <p>For privacy requests, contact {contactDetails.email}.</p>
         </article>
       </section>
     </>

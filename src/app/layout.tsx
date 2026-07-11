@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ExperienceLayer } from "@/components/ExperienceLayer";
 import { WhatsAppFloating } from "@/components/WhatsAppFloating";
-import { company, seoKeywords } from "@/lib/site-data";
+import { company, contactDetails, seoKeywords } from "@/lib/site-data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -35,8 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: `https://${company.website}`,
     founder: company.chairmanFull,
     address: company.office,
-    email: company.emails.work,
-    telephone: company.phones.main,
+    email: contactDetails.email,
+    telephone: contactDetails.corporateOffice.phones[0].tel,
     areaServed: [
       "India",
       "Singapore",

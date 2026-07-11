@@ -54,10 +54,10 @@ function normalizeOffice(value: unknown, fallback: OfficeContact): OfficeContact
     subtitle: typeof office.subtitle === "string" && office.subtitle.trim() ? office.subtitle : fallback.subtitle,
     address: typeof office.address === "string" && office.address.trim() ? office.address : fallback.address,
     phones: isStringArray(office.phones) ? office.phones : fallback.phones,
-    whatsapp: typeof office.whatsapp === "string" && office.whatsapp.trim() ? office.whatsapp : fallback.whatsapp,
     emails: isStringArray(office.emails) ? office.emails : fallback.emails,
-    website: typeof office.website === "string" && office.website.trim() ? office.website : fallback.website,
-    managerPhones: isStringArray(office.managerPhones) ? office.managerPhones : fallback.managerPhones
+    whatsapp: undefined,
+    website: undefined,
+    managerPhones: undefined
   };
 }
 
@@ -74,11 +74,16 @@ function normalizeGalleryEntry(value: unknown, fallback: GalleryEntry): GalleryE
 }
 
 function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
-  const offices = defaultSiteContent.offices.map((fallback, index) => normalizeOffice(saved.offices?.[index], fallback));
+  const recruitmentEmail = typeof saved.recruitmentEmail === "string" && saved.recruitmentEmail.trim() ? saved.recruitmentEmail : defaultSiteContent.recruitmentEmail;
+  const offices = defaultSiteContent.offices.map((fallback, index) => ({
+    ...normalizeOffice(saved.offices?.[index], fallback),
+    emails: [recruitmentEmail]
+  }));
   const savedGallery = Array.isArray(saved.gallery) ? saved.gallery : [];
   const gallery = defaultSiteContent.gallery.map((fallback, index) => normalizeGalleryEntry(savedGallery[index], fallback));
 
   return {
+    recruitmentEmail,
     offices,
     indianOperations: isStringArray(saved.indianOperations) ? saved.indianOperations : defaultSiteContent.indianOperations,
     worldwideOperations: isStringArray(saved.worldwideOperations) ? saved.worldwideOperations : defaultSiteContent.worldwideOperations,
