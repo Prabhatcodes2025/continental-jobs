@@ -12,7 +12,7 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        title="Our BUSINESS / SERVICES"
+        title="OUR BUSINESS / SERVICES"
         text="Work abroad, study abroad, migration, skill development, worldwide staffing, global recruitment, overseas education and Human Resource Solutions."
       />
       <section className="bg-white py-16">
