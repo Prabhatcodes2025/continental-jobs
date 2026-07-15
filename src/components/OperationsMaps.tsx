@@ -128,7 +128,7 @@ export function IndiaOperationsMap({ locations }: { locations: string[] }) {
   );
 }
 
-export function WorldwideOperationsMap({ regions }: { regions: string[] }) {
+export function WorldwideOperationsMap({ regions, showCountryGrid = true }: { regions: string[]; showCountryGrid?: boolean }) {
   const approved = worldwideLocations.filter((location) => regions.includes(location.name));
 
   return (
@@ -160,7 +160,7 @@ export function WorldwideOperationsMap({ regions }: { regions: string[] }) {
           ))}
         </svg>
       </div>
-      <CountryFlagGrid />
+      {showCountryGrid ? <CountryFlagGrid /> : null}
     </div>
   );
 }

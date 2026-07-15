@@ -106,6 +106,15 @@ export default async function ContactPage() {
 }
 
 function OfficeCard({ office }: { office: OfficeContact }) {
+  const isOperationsOffice = office.title.toLowerCase().includes("operations");
+  const phones = isOperationsOffice ? office.phones.slice(0, 1) : office.phones;
+  const whatsapp = office.whatsapp || (isOperationsOffice ? office.phones[1] : undefined);
+  const whatsappUrl = whatsapp
+    ? isOperationsOffice
+      ? `https://wa.me/${normalizedWhatsappNumber(whatsapp)}`
+      : whatsappHref(whatsapp)
+    : "";
+
   return (
     <div className="group relative h-full overflow-hidden rounded-lg border border-white/12 bg-white/[0.07] p-6 shadow-glow backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/45">
       <div className="absolute right-5 top-5 h-14 w-14 opacity-25 transition group-hover:opacity-45">
@@ -122,17 +131,17 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       </p>
 
       <ContactGroup icon={<Phone className="h-4 w-4" />} label="PHONE">
-        {office.phones.map((phone) => (
+        {phones.map((phone) => (
           <a key={phone} href={phoneHref(phone)} className="block font-bold text-white transition hover:text-gold">
-            {phone}
+            {isOperationsOffice ? formatOperationsNumber(phone) : phone}
           </a>
         ))}
       </ContactGroup>
 
-      {office.whatsapp ? (
+      {whatsapp ? (
         <ContactGroup icon={<MessageCircle className="h-4 w-4" />} label="WHATSAPP">
-          <a href={whatsappHref(office.whatsapp)} className="inline-flex rounded-full bg-gold px-4 py-2 text-sm font-black text-navy shadow-[0_0_28px_rgba(217,164,65,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f1c66e]">
-            {office.whatsapp}
+          <a href={whatsappUrl} className="inline-flex rounded-full bg-gold px-4 py-2 text-sm font-black text-navy shadow-[0_0_28px_rgba(217,164,65,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f1c66e]">
+            {isOperationsOffice ? formatOperationsNumber(whatsapp) : whatsapp}
           </a>
         </ContactGroup>
       ) : null}
@@ -164,6 +173,16 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       ) : null}
     </div>
   );
+}
+
+function normalizedWhatsappNumber(phone: string) {
+  const digits = phone.replace(/\D/g, "").replace(/^00/, "");
+  return digits.startsWith("91") ? digits : `91${digits}`;
+}
+
+function formatOperationsNumber(phone: string) {
+  const digits = normalizedWhatsappNumber(phone).replace(/^91/, "");
+  return `+91 ${digits.slice(0, 5)} ${digits.slice(5)}`;
 }
 
 function ContactGroup({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {

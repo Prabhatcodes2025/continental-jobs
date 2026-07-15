@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        title={"43 YEARS IN\nGLOBAL RECRUITMENTS\nAND SKILL DEVELOPMENT"}
+        title={"43 YEARS OF\nGLOBAL RECRUITMENTS"}
         text="Continental Mercantile Corporation Pvt Ltd supports global employers and candidates with ethical overseas recruitment, staffing, study abroad, migration and skill development services."
         official
       />
