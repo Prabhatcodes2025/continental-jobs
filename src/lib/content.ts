@@ -42,7 +42,7 @@ export const defaultSiteContent: SiteContent = {
   offices: [
     {
       title: contactDetails.corporateOffice.label,
-      subtitle: "Head office for candidates, employers and global coordination.",
+      subtitle: "Corporate office for international client dealings and control of Indian operations.",
       address: contactDetails.corporateOffice.address,
       phones: contactDetails.corporateOffice.phones.map((phone) => phone.display),
       whatsapp: contactDetails.corporateOffice.whatsapp.display,
@@ -51,7 +51,7 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       title: contactDetails.operationsOffice.label,
-      subtitle: "Operational support for recruitment processing and employer coordination.",
+      subtitle: "Operational support for client handling and all visa-processing activities.",
       address: contactDetails.operationsOffice.address,
       phones: contactDetails.operationsOffice.phones.map((phone) => phone.display),
       emails: [contactDetails.operationsOffice.email],

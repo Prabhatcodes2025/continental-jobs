@@ -23,7 +23,7 @@ export const contactDetails = {
       { display: "0091 890 70 900 50", raw: "8907090050", tel: "+918907090050" },
       { display: "0091 890 70 900 60", raw: "8907090060", tel: "+918907090060" }
     ],
-    whatsapp: { display: "890 70 9001", raw: "890709001", tel: "+91890709001" },
+    whatsapp: { display: "8907090001", raw: "8907090001", tel: "+918907090001" },
     email: "recruitments@continentalmanpower.com",
     website: "continentalmanpower.com"
   },
@@ -42,7 +42,7 @@ export const contactDetails = {
     ]
   },
   whatsappUrl:
-    "https://wa.me/91890709001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
+    "https://wa.me/918907090001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
 };
 
 export const company = {

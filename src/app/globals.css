@@ -117,12 +117,12 @@ body {
 .operations-svg {
   display: block;
   width: 100%;
-  min-width: 720px;
+  min-width: 0;
   height: auto;
 }
 
 .world-svg {
-  min-width: 900px;
+  min-width: 0;
 }
 
 .map-grid-line {

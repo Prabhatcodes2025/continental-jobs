@@ -17,8 +17,8 @@ export function SiteHeader() {
       className="site-header sticky top-0 z-[75] border-b border-gold/15 text-white shadow-xl shadow-black/20 backdrop-blur-xl"
       style={{ backgroundColor: "rgba(7, 17, 31, 0.98)" }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
+        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3">
           <Image
             src="/brand/continental-logo.png"
             alt="Continental logo"
@@ -27,22 +27,22 @@ export function SiteHeader() {
             className="h-12 w-12 rounded-full object-cover ring-1 ring-gold/50"
             priority
           />
-          <span className="min-w-0">
-            <span className="brand-word block truncate text-sm">
+          <span className="min-w-0 whitespace-nowrap">
+            <span className="brand-word block text-sm leading-tight">
               CONTINENTAL
             </span>
-            <span className="block truncate text-xs font-semibold text-gold">
-              Mercantile Corporation
+            <span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">
+              Mercantile
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 text-sm font-semibold text-white/80 xl:flex">
+        <nav className="hidden min-w-0 items-center gap-0.5 text-[13px] font-semibold text-white/80 xl:flex">
           {navItems.map(([label, href]) => (
             <Link
               key={href}
               href={href}
-              className={`rounded-full px-3 py-2 transition hover:bg-white/10 hover:text-gold ${
+              className={`rounded-full px-2.5 py-2 transition hover:bg-white/10 hover:text-gold ${
                 pathname === href ? "bg-gold/15 text-gold" : ""
               }`}
               data-magnetic
@@ -52,12 +52,12 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
-          <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="button-secondary py-2">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
+          <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="button-secondary px-3 py-2 text-xs">
             <PhoneCall className="mr-2 h-4 w-4" />
-            CALL HEADQUARTERS
+            CALL INDIAN HEADQUARTERS
           </a>
-          <ApplyTrigger className="button-primary py-2" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
+          <ApplyTrigger className="button-primary px-3 py-2 text-xs" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
         </div>
 
         <div className="relative xl:hidden">
@@ -82,6 +82,13 @@ export function SiteHeader() {
               </Link>
             ))}
             <ApplyTrigger className="button-primary mt-2 py-2" showArrow={false}>APPLY FOR A JOB</ApplyTrigger>
+            <a
+              href={contactDetails.whatsappUrl}
+              className="button-secondary py-2 text-center text-sm"
+              onClick={() => setMobileOpen(false)}
+            >
+              WHATSAPP
+            </a>
           </nav>
           ) : null}
         </div>

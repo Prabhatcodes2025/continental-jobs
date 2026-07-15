@@ -15,7 +15,7 @@ type CountryGroup = {
 const eagleMarker = "/brand/continental-eagle-marker.png";
 
 const indianLocations: MapLocation[] = [
-  { name: "Cochin", x: 330, y: 604, labelX: -86, labelY: 2 },
+  { name: "Cochin", officeLabel: "COCHIN - CORPORATE OFFICE", x: 330, y: 604, labelX: -150, labelY: 2 },
   { name: "Madurai", x: 390, y: 588, labelX: 18, labelY: 2 },
   { name: "Bombay", officeLabel: "OPERATIONS OFFICE - BOMBAY", x: 258, y: 418, labelX: -164, labelY: 2 },
   { name: "Gujarat", x: 216, y: 344, labelX: -86, labelY: -20 },

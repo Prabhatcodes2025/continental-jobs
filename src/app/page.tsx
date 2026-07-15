@@ -36,7 +36,7 @@ export default async function HomePage() {
                 43+ years of global recruitment
               </p>
               <h1 className="corporate-title-caps mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-                GLOBAL RECRUITMENT & STAFFING SOLUTIONS WORLDWIDE
+                PATHWAY TO GLOBAL CAREERS
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
                 {company.shortName} connects skilled talent with trusted employers across the Gulf,
@@ -123,7 +123,7 @@ export default async function HomePage() {
             <SectionHeader
               eyebrow="Indian Operations"
               title="INDIAN OPERATIONS"
-              text={`${content.indianOperations.join(", ")} and allied sourcing corridors support candidate access across India.`}
+              text={`COCHIN - CORPORATE OFFICE. ${content.indianOperations.join(", ")} and allied sourcing corridors support candidate access across India.`}
               official
             />
             <div className="mt-8">
@@ -158,7 +158,7 @@ export default async function HomePage() {
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <p className="text-sm font-black uppercase tracking-[0.3em] text-gold">Chairman&apos;s Message</p>
-            <h2 className="mt-4 text-3xl font-black md:text-5xl">Human resources, handled with trust and responsibility.</h2>
+            <h2 className="mt-4 text-3xl font-black md:text-5xl">HUMAN RESOURCES, HANDLED WITH TRUST AND RESPONSIBILITY.</h2>
             <p className="mt-5 text-lg leading-8 text-white/75">
               Our mission is to connect ambition with opportunity through ethical recruitment, skill readiness,
               talent acquisition and international HR solutions for sectors including oil and gas, hospitality,
@@ -196,7 +196,7 @@ export default async function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between lg:px-8">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.25em] text-gold">Ready to move forward?</p>
-            <h2 className="mt-3 text-3xl font-black">Candidates and employers can start here.</h2>
+            <h2 className="mt-3 text-3xl font-black">CANDIDATES AND EMPLOYERS CAN START HERE.</h2>
           </div>
           <div className="flex flex-wrap gap-3">
             <ApplyTrigger showArrow={false}><CheckCircle2 className="mr-2 h-4 w-4" /> APPLY FOR A JOB</ApplyTrigger>

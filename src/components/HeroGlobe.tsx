@@ -52,7 +52,7 @@ export function HeroGlobe() {
         </motion.div>
       ))}
       <div className="absolute bottom-8 left-1/2 w-max -translate-x-1/2 rounded-full border border-gold/30 bg-navy/80 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-gold backdrop-blur">
-        Worldwide Recruitment Network
+        WORLDWIDE NETWORK
       </div>
     </div>
   );

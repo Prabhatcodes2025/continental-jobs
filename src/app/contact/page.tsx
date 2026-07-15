@@ -21,7 +21,8 @@ export default async function ContactPage() {
     <>
       <PageHero
         title="CONTACT US"
-        text="Connect with Continental Mercantile Corporation through the Corporate Office, Operations Office, Regional Offices and worldwide recruitment network."
+        text="Connect with Continental Mercantile Corporation through approved corporate, operations and international recruitment contact channels."
+        secondaryLabel="SUBMIT MANPOWER ORDER"
       />
 
       <section className="premium-band py-16 text-white">
@@ -29,7 +30,7 @@ export default async function ContactPage() {
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Official Contact Information</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-white md:text-5xl">
-              Corporate support for candidates, employers and global partners.
+              CORPORATE SUPPORT FOR CANDIDATES, EMPLOYERS AND GLOBAL PARTNERS.
             </h2>
             <p className="mt-4 text-base leading-8 text-white/72">
               Every contact point below is clickable for fast calling, email and WhatsApp communication.
@@ -50,18 +51,14 @@ export default async function ContactPage() {
           <MotionReveal>
             <OperationsPanel
               icon={<MapPin className="h-6 w-6" />}
-              eyebrow="Regional Offices"
-              title="Approved Indian operations."
-              text="Regional sourcing, interview coordination, documentation and mobilization support across the latest client-approved Indian operations list."
+              title="REGIONAL OPERATIONS"
               items={content.indianOperations}
             />
           </MotionReveal>
           <MotionReveal delay={0.1}>
             <OperationsPanel
               icon={<Globe2 className="h-6 w-6" />}
-              eyebrow="Worldwide Operations"
-              title="Global employer and candidate network."
-              text="A premium international footprint for global recruitment, work abroad, migration and employer requirement coordination."
+              title="WORLDWIDE PRESENCE"
               items={content.worldwideOperations}
             />
           </MotionReveal>
@@ -83,12 +80,22 @@ export default async function ContactPage() {
                 Candidates can apply for overseas opportunities, and employers can submit requirements with job categories,
                 project location, salary, accommodation, visa details and deployment timelines.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/apply" className="button-primary">Candidate Application</Link>
-                <Link href="/manpower-requirement" className="button-secondary">Employer Requirement</Link>
-                <a href={whatsappHref(content.offices[0]?.whatsapp || content.offices[0]?.phones[0] || "")} className="button-primary">
-                  WhatsApp your CV
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                <a
+                  href="https://wa.me/918907090001?text=Hello%2C%20I%20would%20like%20to%20submit%20my%20CV%20for%20an%20overseas%20opportunity."
+                  className="button-primary px-4 py-3 text-center text-xs sm:text-sm"
+                >
+                  WHATSAPP YOUR CV
                 </a>
+                <a
+                  href="mailto:recruitments@continentalmanpower.com?subject=CV%20Submission%20-%20Candidate%20Application"
+                  className="button-secondary px-4 py-3 text-center text-xs sm:text-sm"
+                >
+                  EMAIL YOUR CV
+                </a>
+                <Link href="/manpower-requirement" className="button-secondary px-4 py-3 text-center text-xs sm:text-sm">
+                  EMPLOYER MANPOWER ORDER
+                </Link>
               </div>
             </div>
           </MotionReveal>
@@ -173,23 +180,17 @@ function ContactGroup({ icon, label, children }: { icon: ReactNode; label: strin
 
 function OperationsPanel({
   icon,
-  eyebrow,
   title,
-  text,
   items
 }: {
   icon: ReactNode;
-  eyebrow: string;
   title: string;
-  text: string;
   items: string[];
 }) {
   return (
     <div className="h-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy text-gold">{icon}</div>
-      <p className="mt-5 text-sm font-black uppercase tracking-[0.26em] text-gold">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-black text-slate-950">{title}</h2>
-      <p className="mt-4 leading-8 text-slate-600">{text}</p>
+      <h2 className="mt-5 corporate-title-caps text-3xl font-black text-slate-950">{title}</h2>
       <div className="mt-7 flex flex-wrap gap-2">
         {items.map((item) => (
           <span key={item} className="rounded-full border border-gold/25 bg-gold/10 px-4 py-2 text-sm font-black text-navy transition hover:-translate-y-0.5 hover:border-gold/55 hover:bg-gold/20">
