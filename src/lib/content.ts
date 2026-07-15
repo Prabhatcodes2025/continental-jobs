@@ -45,14 +45,17 @@ export const defaultSiteContent: SiteContent = {
       subtitle: "Head office for candidates, employers and global coordination.",
       address: contactDetails.corporateOffice.address,
       phones: contactDetails.corporateOffice.phones.map((phone) => phone.display),
-      emails: [contactDetails.email]
+      whatsapp: contactDetails.corporateOffice.whatsapp.display,
+      emails: [contactDetails.corporateOffice.email],
+      website: contactDetails.corporateOffice.website
     },
     {
       title: contactDetails.operationsOffice.label,
       subtitle: "Operational support for recruitment processing and employer coordination.",
       address: contactDetails.operationsOffice.address,
       phones: contactDetails.operationsOffice.phones.map((phone) => phone.display),
-      emails: [contactDetails.email]
+      emails: [contactDetails.operationsOffice.email],
+      managerPhones: contactDetails.operationsOffice.managerPhones.map((phone) => phone.display)
     }
   ],
   indianOperations: indianOffices,
@@ -119,7 +122,7 @@ export function linesToList(value: FormDataEntryValue | null) {
 }
 
 export function phoneHref(phone: string) {
-  const digits = phone.replace(/\D/g, "");
+  const digits = phone.replace(/\D/g, "").replace(/^00/, "");
   const withCountry = digits.startsWith("91") ? digits : `91${digits}`;
   return `tel:+${withCountry}`;
 }
@@ -129,7 +132,7 @@ export function mailHref(email: string) {
 }
 
 export function whatsappHref(phone: string) {
-  const digits = phone.replace(/\D/g, "");
+  const digits = phone.replace(/\D/g, "").replace(/^00/, "");
   const withCountry = digits.startsWith("91") ? digits : `91${digits}`;
   return `https://wa.me/${withCountry}?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more.`;
 }
@@ -142,7 +145,10 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
     subtitle: String(formData.get(`office-${index}-subtitle`) || office.subtitle).trim(),
     address: String(formData.get(`office-${index}-address`) || office.address).trim(),
     phones: linesToList(formData.get(`office-${index}-phones`)).length ? linesToList(formData.get(`office-${index}-phones`)) : office.phones,
-    emails: [recruitmentEmail || defaultSiteContent.recruitmentEmail]
+    whatsapp: String(formData.get(`office-${index}-whatsapp`) || office.whatsapp || "").trim() || undefined,
+    emails: linesToList(formData.get(`office-${index}-emails`)).length ? linesToList(formData.get(`office-${index}-emails`)) : office.emails,
+    website: String(formData.get(`office-${index}-website`) || office.website || "").trim() || undefined,
+    managerPhones: linesToList(formData.get(`office-${index}-managerPhones`)).length ? linesToList(formData.get(`office-${index}-managerPhones`)) : office.managerPhones
   }));
 
   const gallery = defaultSiteContent.gallery.map((item, index) => ({

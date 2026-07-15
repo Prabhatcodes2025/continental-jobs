@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
-import { academies, contactDetails, industries, services, specializedRecruitment, whyContinental } from "@/lib/site-data";
+import { academies, contactDetails, sectorCards, services, specializedRecruitment, whyContinental } from "@/lib/site-data";
 
 export const metadata = {
   title: "Our Business and Services"
@@ -11,21 +12,21 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        title="Our BUSINESS / SERVICESA"
+        title="Our BUSINESS / SERVICES"
         text="Work abroad, study abroad, migration, skill development, worldwide staffing, global recruitment, overseas education and Human Resource Solutions."
       />
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader eyebrow="Service Portfolio" title="International recruitment services with compliance at the center." />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <article key={service.title} className="premium-card p-6" data-magnetic>
+                <article key={service.title} className="premium-card flex h-full flex-col p-6" data-magnetic>
                   <Icon className="h-8 w-8 text-gold" />
-                  <h2 className="mt-4 text-xl font-black text-slate-950">{service.title}</h2>
+                  <h2 className="mt-4 text-base font-black uppercase leading-snug tracking-[0.12em] text-royal">{service.title}</h2>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <a href={contactDetails.whatsappUrl} className="mt-5 inline-flex font-bold text-royal">Click to chat</a>
+                  <a href={contactDetails.whatsappUrl} className="mt-auto inline-flex pt-5 font-bold text-royal">Click to chat</a>
                 </article>
               );
             })}
@@ -35,8 +36,26 @@ export default function ServicesPage() {
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader eyebrow="Industries" title="Sectors we support." />
-          <div className="mt-8 grid gap-4 md:grid-cols-5">
-            {industries.map(([name]) => <div key={name} className="premium-card p-5 font-bold" data-magnetic>{name}</div>)}
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {sectorCards.map((sector) => (
+              <article key={sector.title} className="premium-card group h-full overflow-hidden" data-magnetic>
+                <div className="aspect-[16/10] overflow-hidden bg-navy">
+                  <Image
+                    src={sector.src}
+                    alt={sector.title}
+                    width={900}
+                    height={570}
+                    sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5">
+                  <h2 className="text-sm font-black uppercase leading-snug tracking-[0.12em] text-slate-950">{sector.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{sector.caption}</p>
+                </div>
+              </article>
+            ))}
           </div>
           <div className="mt-10">
             <Link href="/manpower-requirement" className="button-primary">Submit Employer Requirement</Link>

@@ -242,6 +242,10 @@ function AdminOfficeFields({ office, index }: { office: OfficeContact; index: nu
         <input name={`office-${index}-subtitle`} className="field" defaultValue={office.subtitle} aria-label={`${office.title} subtitle`} />
         <textarea name={`office-${index}-address`} className="field min-h-24" defaultValue={office.address} aria-label={`${office.title} address`} />
         <textarea name={`office-${index}-phones`} className="field min-h-24" defaultValue={office.phones.join("\n")} aria-label={`${office.title} phones`} />
+        <input name={`office-${index}-whatsapp`} className="field" defaultValue={office.whatsapp || ""} placeholder="WhatsApp number" aria-label={`${office.title} WhatsApp`} />
+        <textarea name={`office-${index}-emails`} className="field min-h-24" defaultValue={office.emails.join("\n")} aria-label={`${office.title} emails`} />
+        <input name={`office-${index}-website`} className="field" defaultValue={office.website || ""} placeholder="Website" aria-label={`${office.title} website`} />
+        <textarea name={`office-${index}-managerPhones`} className="field min-h-20" defaultValue={(office.managerPhones || []).join("\n")} placeholder="PRO / Manager numbers" aria-label={`${office.title} manager phones`} />
       </div>
     </div>
   );

@@ -15,15 +15,15 @@ type CountryGroup = {
 const eagleMarker = "/brand/continental-eagle-marker.png";
 
 const indianLocations: MapLocation[] = [
-  { name: "Cochin", x: 328, y: 604, labelX: -86, labelY: 2 },
-  { name: "Madurai", x: 390, y: 590, labelX: 18, labelY: 2 },
-  { name: "Bombay", officeLabel: "OPERATIONS OFFICE - BOMBAY", x: 256, y: 418, labelX: -136, labelY: 2 },
-  { name: "Gujarat", x: 210, y: 344, labelX: -84, labelY: -20 },
-  { name: "Jaipur", x: 305, y: 246, labelX: -78, labelY: -16 },
-  { name: "Delhi", x: 352, y: 214, labelX: 18, labelY: -10 },
-  { name: "Kolkata", x: 574, y: 374, labelX: 20, labelY: 2 },
-  { name: "Siliguri", x: 548, y: 300, labelX: 20, labelY: -14 },
-  { name: "Vizag", x: 496, y: 492, labelX: 18, labelY: 12 }
+  { name: "Cochin", x: 330, y: 604, labelX: -86, labelY: 2 },
+  { name: "Madurai", x: 390, y: 588, labelX: 18, labelY: 2 },
+  { name: "Bombay", officeLabel: "OPERATIONS OFFICE - BOMBAY", x: 258, y: 418, labelX: -164, labelY: 2 },
+  { name: "Gujarat", x: 216, y: 344, labelX: -86, labelY: -20 },
+  { name: "Jaipur", x: 304, y: 252, labelX: -78, labelY: -16 },
+  { name: "Delhi", x: 358, y: 218, labelX: 18, labelY: -10 },
+  { name: "Kolkata", x: 584, y: 374, labelX: 20, labelY: 2 },
+  { name: "Siliguri", x: 558, y: 300, labelX: 20, labelY: -14 },
+  { name: "Vizag", x: 500, y: 492, labelX: 18, labelY: 12 }
 ];
 
 const worldwideLocations: MapLocation[] = [
@@ -107,9 +107,12 @@ export function IndiaOperationsMap({ locations }: { locations: string[] }) {
           <path
             className="india-silhouette"
             filter="url(#india-map-shadow)"
-            d="M352 74 399 103 428 151 489 172 480 227 527 263 507 323 554 363 515 417 501 480 463 520 438 655 398 588 354 552 314 496 274 482 246 430 197 397 226 350 195 302 218 253 266 224 285 175 327 153Z"
+            d="M344 76 386 91 421 128 458 150 494 166 504 206 482 238 520 266 528 302 570 302 588 280 632 292 666 276 710 306 690 344 650 354 616 388 574 382 548 414 560 462 526 498 488 516 468 566 446 648 418 674 398 622 362 584 330 536 302 494 268 476 240 430 194 408 220 360 188 328 206 286 246 262 264 222 306 196 318 150Z"
           />
-          <path className="state-line" d="M288 178 348 218 423 218M229 298 312 318 394 292 482 318M258 408 346 392 426 436 506 418M314 498 394 514 448 590M348 218 338 390M424 220 398 398" />
+          <path
+            className="state-line"
+            d="M318 150 360 210 426 218 482 238M246 262 306 318 386 304 476 324 528 302M206 286 278 358 356 376 456 368 548 414M240 430 326 418 410 456 526 498M302 494 384 514 446 648M360 210 350 374M426 218 404 456M504 206 570 302 616 388M588 280 650 354M268 476 330 536M398 622 420 510"
+          />
           <text className="map-watermark" x="380" y="365">INDIA</text>
           <text className="operations-svg-title" x="380" y="56">INDIAN OPERATIONS</text>
           {approved.map((location) => (
@@ -118,7 +121,7 @@ export function IndiaOperationsMap({ locations }: { locations: string[] }) {
         </svg>
       </div>
       <ReadableLocationList
-        title="Approved Indian locations"
+        title="INDIAN OPERATIONS"
         items={approved.map((location) => location.officeLabel || location.name)}
       />
     </div>

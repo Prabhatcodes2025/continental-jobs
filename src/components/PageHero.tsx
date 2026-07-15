@@ -4,7 +4,7 @@ export function PageHero({
   title,
   text,
   official = false,
-  eyebrow = "Continental Mercantile Corporation",
+  eyebrow = null,
   size = "default"
 }: {
   title: string;

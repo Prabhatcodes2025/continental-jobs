@@ -14,7 +14,7 @@ export default async function GalleryPage() {
   return (
     <>
       <PageHero
-        title="Gallery"
+        title="GALLERY"
         text="Corporate office, operations, recruitment campaigns and brand references from Continental Mercantile Corporation."
       />
       <section className="bg-white py-16">

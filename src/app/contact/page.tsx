@@ -20,7 +20,7 @@ export default async function ContactPage() {
   return (
     <>
       <PageHero
-        title="Contact Us"
+        title="CONTACT US"
         text="Connect with Continental Mercantile Corporation through the Corporate Office, Operations Office, Regional Offices and worldwide recruitment network."
       />
 
@@ -114,7 +114,7 @@ function OfficeCard({ office }: { office: OfficeContact }) {
         <span>{office.address}</span>
       </p>
 
-      <ContactGroup icon={<Phone className="h-4 w-4" />} label="Phone">
+      <ContactGroup icon={<Phone className="h-4 w-4" />} label="PHONE">
         {office.phones.map((phone) => (
           <a key={phone} href={phoneHref(phone)} className="block font-bold text-white transition hover:text-gold">
             {phone}
@@ -123,7 +123,7 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       </ContactGroup>
 
       {office.whatsapp ? (
-        <ContactGroup icon={<MessageCircle className="h-4 w-4" />} label="WhatsApp">
+        <ContactGroup icon={<MessageCircle className="h-4 w-4" />} label="WHATSAPP">
           <a href={whatsappHref(office.whatsapp)} className="inline-flex rounded-full bg-gold px-4 py-2 text-sm font-black text-navy shadow-[0_0_28px_rgba(217,164,65,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f1c66e]">
             {office.whatsapp}
           </a>
@@ -131,7 +131,7 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       ) : null}
 
       {office.managerPhones?.length ? (
-        <ContactGroup icon={<Phone className="h-4 w-4" />} label="PRO / Manager">
+        <ContactGroup icon={<Phone className="h-4 w-4" />} label="PRO / MANAGER">
           {office.managerPhones.map((phone) => (
             <a key={phone} href={phoneHref(phone)} className="block font-bold text-white transition hover:text-gold">
               {phone}
@@ -140,7 +140,7 @@ function OfficeCard({ office }: { office: OfficeContact }) {
         </ContactGroup>
       ) : null}
 
-      <ContactGroup icon={<Mail className="h-4 w-4" />} label="Email">
+      <ContactGroup icon={<Mail className="h-4 w-4" />} label="EMAIL">
         {office.emails.map((email) => (
           <a key={email} href={mailHref(email)} className="block break-all font-bold text-white transition hover:text-gold">
             {email}
@@ -149,9 +149,11 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       </ContactGroup>
 
       {office.website ? (
-        <a href={`https://${office.website.replace(/^https?:\/\//, "")}`} className="mt-5 inline-flex text-sm font-black uppercase tracking-[0.18em] text-gold underline underline-offset-4">
-          {office.website}
-        </a>
+        <ContactGroup icon={<Globe2 className="h-4 w-4" />} label="WEBSITE">
+          <a href={`https://${office.website.replace(/^https?:\/\//, "")}`} className="block break-all font-bold text-white transition hover:text-gold">
+            {office.website}
+          </a>
+        </ContactGroup>
       ) : null}
     </div>
   );

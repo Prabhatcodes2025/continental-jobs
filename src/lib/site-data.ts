@@ -16,30 +16,40 @@ import type { LucideIcon } from "lucide-react";
 export const contactDetails = {
   email: "recruitments@continentalmanpower.com",
   corporateOffice: {
-    label: "CORPORATE OFFICE - KOCHI",
-    address: "Continental Towers, Near Ernakulam South, Kochi, Kerala - 11, India",
+    label: "CORPORATE OFFICE",
+    location: "Cochin",
+    address: "Continental Towers, Near Ernakulam South, Cochin, Kerala - 11, India",
     phones: [
-      { display: "890 70 900 50", raw: "8907090050", tel: "+918907090050" },
-      { display: "890 70 900 60", raw: "8907090060", tel: "+918907090060" }
-    ]
+      { display: "0091 890 70 900 50", raw: "8907090050", tel: "+918907090050" },
+      { display: "0091 890 70 900 60", raw: "8907090060", tel: "+918907090060" }
+    ],
+    whatsapp: { display: "890 70 9001", raw: "890709001", tel: "+91890709001" },
+    email: "recruitments@continentalmanpower.com",
+    website: "continentalmanpower.com"
   },
   operationsOffice: {
-    label: "OPERATIONS OFFICE - BOMBAY",
+    label: "OPERATIONS OFFICE",
+    location: "Bombay",
     address: "\"Devdutt\", Near Taj Hotel, Bandra(W), Mumbai-50",
     phones: [
-      { display: "890 70 900 10", raw: "8907090010", tel: "+918907090010" },
-      { display: "890 70 900 20", raw: "8907090020", tel: "+918907090020" }
+      { display: "0091 890 70 900 10", raw: "8907090010", tel: "+918907090010" },
+      { display: "0091 890 70 900 20", raw: "8907090020", tel: "+918907090020" }
+    ],
+    email: "gulfrecruitments@continentalmanpower.com",
+    managerPhones: [
+      { display: "0091 989 50 5050", raw: "989505050", tel: "+91989505050" },
+      { display: "0091 890 70 90002", raw: "8907090002", tel: "+918907090002" }
     ]
   },
   whatsappUrl:
-    "https://wa.me/918907090050?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
+    "https://wa.me/91890709001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
 };
 
 export const company = {
   name: "Continental Mercantile Corporation Pvt Ltd",
   descriptor: "Human Resource Solutions",
   shortName: "Continental Mercantile Corporation",
-  website: "www.continentalmanpower.com",
+  website: "continentalmanpower.com",
   years: "43+",
   chairman: "Sajeevan Thumpayil",
   chairmanFull: "Sajeevan Thumpayil",
@@ -70,47 +80,47 @@ export const navItems = [
 
 export const services = [
   {
-    title: "Work Abroad",
+    title: "WORK ABROAD",
     text: "Ethical overseas placement support for skilled, technical and professional talent.",
     icon: BriefcaseBusiness
   },
   {
-    title: "Human Resource Solutions Worldwide",
+    title: "HUMAN RESOURCE SOLUTIONS",
     text: "End-to-end global recruitment support for large and small workforce demands across multiple destination markets.",
     icon: UsersRound
   },
   {
-    title: "Study Abroad",
+    title: "STUDY ABROAD",
     text: "Education pathway guidance for international universities, technical studies and career mobility.",
     icon: GraduationCap
   },
   {
-    title: "Migration",
+    title: "MIGRATION",
     text: "Documentation-led guidance for compliant migration, visa and work permit processes.",
     icon: MapPinned
   },
   {
-    title: "Skill Development",
+    title: "SKILL DEVELOPMENT",
     text: "Candidate screening, trade orientation and readiness support before deployment.",
     icon: BadgeCheck
   },
   {
-    title: "Worldwide Staffing Solutions",
+    title: "WORLDWIDE STAFFING SOLUTIONS",
     text: "End-to-end human resources sourcing for employers across approved international destination markets.",
     icon: UsersRound
   },
   {
-    title: "Global Recruiters",
+    title: "GLOBAL RECRUITMENT",
     text: "Shortlisting, interview coordination, mobilization and employer reporting.",
     icon: Building2
   },
   {
-    title: "Overseas Education Consultants",
+    title: "OVERSEAS EDUCATION",
     text: "Career-focused academic options connected to long-term global opportunities.",
     icon: GraduationCap
   },
   {
-    title: "HR Solutions",
+    title: "HR SOLUTIONS",
     text: "Talent acquisition support, project staffing, compliance documentation and workforce planning.",
     icon: ShieldCheck
   }
@@ -131,6 +141,69 @@ export const industries: Array<[string, LucideIcon]> = [
   ["Ship Building and Ship Repair", Ship],
   ["MEP Projects", Wrench],
   ["Doctors / Engineers / Professionals", UsersRound]
+];
+
+export const sectorCards = [
+  {
+    title: "Healthcare",
+    src: "/sectors/healthcare.svg",
+    caption: "Doctors, nurses and paramedical staffing for international hospitals."
+  },
+  {
+    title: "Oil & Gas",
+    src: "/sectors/oil-gas.svg",
+    caption: "Project workforce for oil, gas and petrochemical environments."
+  },
+  {
+    title: "Refinery and Shutdown Maintenance",
+    src: "/sectors/refinery-shutdown.svg",
+    caption: "Shutdown, maintenance and plant support teams."
+  },
+  {
+    title: "Engineering",
+    src: "/sectors/engineering.svg",
+    caption: "Engineering and technical professionals for global projects."
+  },
+  {
+    title: "Construction",
+    src: "/sectors/construction.svg",
+    caption: "Skilled construction workforce for overseas employers."
+  },
+  {
+    title: "Infrastructure",
+    src: "/sectors/infrastructure.svg",
+    caption: "Roads, ports, cities and large infrastructure project staffing."
+  },
+  {
+    title: "MEP",
+    src: "/sectors/mep.svg",
+    caption: "Mechanical, electrical and plumbing project teams."
+  },
+  {
+    title: "Security Professionals",
+    src: "/sectors/security.svg",
+    caption: "Security guards and facility protection professionals."
+  },
+  {
+    title: "Hypermarkets / Retail",
+    src: "/sectors/retail.svg",
+    caption: "Retail, hypermarket and supermarket staffing support."
+  },
+  {
+    title: "Hotel, Catering and Housekeeping",
+    src: "/sectors/hospitality.svg",
+    caption: "Hospitality, catering, housekeeping and food service staff."
+  },
+  {
+    title: "Shipbuilding and Ship Repair",
+    src: "/sectors/shipbuilding.svg",
+    caption: "Technical workforce for shipbuilding, repair and maintenance."
+  },
+  {
+    title: "Technical and Professional Studies",
+    src: "/sectors/technical-studies.svg",
+    caption: "Training pathways for technical and professional readiness."
+  }
 ];
 
 export const whyContinental = [
