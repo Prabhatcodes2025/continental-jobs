@@ -36,7 +36,7 @@ export default async function HomePage() {
                 43+ years of global recruitment
               </p>
               <h1 className="corporate-title-caps mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-                PATHWAY TO GLOBAL CAREERS
+                GLOBAL RECRUITMENT & STAFFING SOLUTIONS WORLDWIDE
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
                 {company.shortName} connects skilled talent with trusted employers across the Gulf,
@@ -80,7 +80,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
           <SectionHeader
             eyebrow="Our Business"
-            title="Recruitment services built for serious employers and serious careers."
+            title="PATHWAY TO GLOBAL CAREERS."
             text="A complete international workforce desk covering sourcing, screening, documentation, mobilization, HR support and education pathways."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -105,7 +105,7 @@ export default async function HomePage() {
 
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader eyebrow="Featured Industries" title="Trusted across high-demand recruitment categories." align="center" />
+          <SectionHeader eyebrow="Featured Industries" title="VERTICALS OF RECRUITMENT  CONTINENTALS SPECIALITY" align="center" />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {industries.map(([name, Icon]) => (
               <div key={name} className="premium-card p-5" data-magnetic>

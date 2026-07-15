@@ -78,7 +78,7 @@ export default async function ContactPage() {
           <MotionReveal delay={0.1}>
             <div className="rounded-lg border border-gold/25 bg-navy p-8 text-white shadow-glow">
               <Sparkles className="h-9 w-9 text-gold" />
-              <h2 className="mt-5 text-3xl font-black md:text-5xl">Ready to start a recruitment conversation?</h2>
+              <h2 className="mt-5 text-3xl font-black md:text-5xl">START A CONVERSATION</h2>
               <p className="mt-5 leading-8 text-white/72">
                 Candidates can apply for overseas opportunities, and employers can submit requirements with job categories,
                 project location, salary, accommodation, visa details and deployment timelines.
@@ -87,7 +87,7 @@ export default async function ContactPage() {
                 <Link href="/apply" className="button-primary">Candidate Application</Link>
                 <Link href="/manpower-requirement" className="button-secondary">Employer Requirement</Link>
                 <a href={whatsappHref(content.offices[0]?.whatsapp || content.offices[0]?.phones[0] || "")} className="button-primary">
-                  WhatsApp CTA
+                  WhatsApp your CV
                 </a>
               </div>
             </div>
