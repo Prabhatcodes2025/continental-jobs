@@ -37,15 +37,36 @@ body {
 }
 
 .brand-word {
-  font-family: Georgia, "Times New Roman", var(--font-playfair), serif;
+  font-family: "Times New Roman", Georgia, var(--font-playfair), serif;
   font-weight: 900;
-  letter-spacing: 0.045em;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   color: #f4ca58;
   text-shadow:
-    0 1px 0 #fff2b0,
-    0 2px 0 rgba(84, 52, 12, 0.78),
-    0 5px 12px rgba(0, 0, 0, 0.32);
+    0 1px 0 rgba(255, 242, 176, 0.72),
+    0 2px 0 rgba(84, 52, 12, 0.68),
+    0 5px 12px rgba(0, 0, 0, 0.28);
+}
+
+.brand-lockup {
+  display: block;
+  max-width: min(62vw, 250px);
+}
+
+.brand-word-main {
+  font-size: clamp(1rem, 4.6vw, 1.34rem);
+}
+
+.brand-word-sub {
+  margin-top: 0.1rem;
+  overflow: visible;
+  color: #f4ca58;
+  font-family: "Times New Roman", Georgia, var(--font-playfair), serif;
+  font-size: clamp(0.56rem, 2.35vw, 0.78rem);
+  font-weight: 900;
+  letter-spacing: clamp(0.035em, 0.38vw, 0.075em);
+  text-shadow: 0 1px 0 rgba(255, 242, 176, 0.56), 0 3px 8px rgba(0, 0, 0, 0.22);
+  text-transform: uppercase;
 }
 
 ::selection {

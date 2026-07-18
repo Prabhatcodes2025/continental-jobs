@@ -2,12 +2,18 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   Building2,
+  Factory,
   GraduationCap,
+  Hammer,
+  HardHat,
   HeartPulse,
   Hotel,
   MapPinned,
+  ShoppingCart,
   ShieldCheck,
   Ship,
+  UtensilsCrossed,
+  Wind,
   UsersRound,
   Wrench
 } from "lucide-react";
@@ -110,12 +116,12 @@ export const services = [
     icon: UsersRound
   },
   {
-    title: "GLOBAL RECRUITMENT",
+    title: "GLOBAL RECRUITERS",
     text: "Shortlisting, interview coordination, mobilization and employer reporting.",
     icon: Building2
   },
   {
-    title: "OVERSEAS EDUCATION",
+    title: "OVERSEAS EDUCATION CONSULTANTS",
     text: "Career-focused academic options connected to long-term global opportunities.",
     icon: GraduationCap
   },
@@ -128,18 +134,20 @@ export const services = [
 
 export const industries: Array<[string, LucideIcon]> = [
   ["Oil & Gas", Wrench],
-  ["Refineries / Gas Plants / Petrochemicals", Wrench],
-  ["Shutdown Maintenance", Wrench],
+  ["Refineries / Gas Plants / Petrochemicals", Factory],
+  ["Shutdown Maintenance", Hammer],
   ["Power Plants", Wrench],
-  ["Storage Tanks / Roads / Ports / Cities", Building2],
+  ["Storage Tanks / Roads / Ports / Cities", HardHat],
   ["Engineering", Wrench],
   ["Large Infrastructure Projects", Building2],
   ["Healthcare Recruitment", HeartPulse],
-  ["Hotel / Catering / Housekeeping", Hotel],
-  ["Hypermarkets / Supermarkets / Retail", BriefcaseBusiness],
+  ["Hotel / Catering / Housekeeping", UtensilsCrossed],
+  ["Hypermarkets / Supermarkets / Retail", ShoppingCart],
   ["Security Guards Professionals", ShieldCheck],
   ["Ship Building and Ship Repair", Ship],
-  ["MEP Projects", Wrench],
+  ["MEP Projects", Wind],
+  ["Technical Studies", Wrench],
+  ["Professional Studies", GraduationCap],
   ["Doctors / Engineers / Professionals", UsersRound]
 ];
 

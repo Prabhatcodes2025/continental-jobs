@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
-          <h2 className="brand-word mt-3 max-w-full text-xl leading-tight sm:text-2xl md:text-3xl">CONTINENTAL MERCANTILE</h2>
+          <h2 className="brand-word mt-3 max-w-full text-xl leading-tight sm:text-2xl md:text-3xl">CONTINENTAL MERCANTILE CORPORATION</h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
             A premium international recruitment, work abroad, study abroad and Human Resource Solutions
             organization with regional Indian operations and global recruitment reach.

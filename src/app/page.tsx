@@ -13,6 +13,7 @@ import {
   contactDetails,
   industries,
   recruitmentSteps,
+  sectorCards,
   services
 } from "@/lib/site-data";
 import { readSiteContent } from "@/lib/storage";
@@ -88,11 +89,15 @@ export default async function HomePage() {
               const Icon = service.icon;
               return (
                 <MotionReveal key={service.title} delay={index * 0.03}>
-                  <article className="premium-card h-full p-6" data-magnetic>
-                    <Icon className="h-8 w-8 text-gold" />
-                    <h3 className="mt-4 text-lg font-black text-slate-950">{service.title}</h3>
+                  <article className="premium-card flex h-full flex-col border-l-4 border-l-gold p-6" data-magnetic>
+                    <div className="flex h-11 w-11 items-center justify-center rounded-md border border-gold/25 bg-gold/10 text-gold">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="corporate-title mt-4 text-[0.92rem] font-black uppercase leading-snug tracking-[0.11em] text-[#8f1f18] underline decoration-gold/55 decoration-2 underline-offset-8">
+                      {service.title}
+                    </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                    <a href={contactDetails.whatsappUrl} className="mt-5 inline-flex text-sm font-bold text-royal">
+                    <a href={contactDetails.whatsappUrl} className="mt-auto inline-flex pt-5 text-sm font-bold text-royal">
                       Chat on WhatsApp <ArrowRight className="ml-1 h-4 w-4" />
                     </a>
                   </article>
@@ -105,14 +110,34 @@ export default async function HomePage() {
 
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader eyebrow="Featured Industries" title="VERTICALS OF RECRUITMENT  CONTINENTALS SPECIALITY" align="center" />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {industries.map(([name, Icon]) => (
-              <div key={name} className="premium-card p-5" data-magnetic>
-                <Icon className="h-6 w-6 text-gold" />
-                <p className="mt-3 text-sm font-black text-slate-900">{name}</p>
-              </div>
-            ))}
+          <SectionHeader eyebrow="Featured Industries" title="CONTINENTAL SPECIALISED FIELDS OF RECRUITMENT" align="center" official />
+          <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            {industries.map(([name, Icon]) => {
+              const image = industryImageFor(name);
+              return (
+                <article key={name} className="premium-card group flex h-full min-h-[238px] flex-col overflow-hidden" data-magnetic>
+                  {image ? (
+                    <div className="aspect-[16/9] overflow-hidden bg-navy">
+                      <Image
+                        src={image}
+                        alt=""
+                        width={640}
+                        height={360}
+                        sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-md border border-gold/25 bg-gold/10 text-gold">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <p className="corporate-title mt-4 text-[0.82rem] font-black uppercase leading-snug tracking-[0.08em] text-slate-950">{name}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -138,14 +163,7 @@ export default async function HomePage() {
               official
             />
             <div className="mt-8">
-              <WorldwideOperationsMap regions={content.worldwideOperations} showCountryGrid={false} />
-            </div>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {content.worldwideOperations.map((region) => (
-                <div key={region} className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-gold/40 hover:bg-white hover:text-navy">
-                  {region}
-                </div>
-              ))}
+              <WorldwideOperationsMap regions={content.worldwideOperations} />
             </div>
           </MotionReveal>
         </div>
@@ -207,4 +225,20 @@ export default async function HomePage() {
       </section>
     </>
   );
+}
+
+function industryImageFor(name: string) {
+  const normalized = name.toLowerCase();
+  if (normalized.includes("health") || normalized.includes("doctor")) return "/sectors/healthcare.svg";
+  if (normalized.includes("refiner") || normalized.includes("petrochemical") || normalized.includes("shutdown")) return "/sectors/refinery-shutdown.svg";
+  if (normalized.includes("oil") || normalized.includes("gas") || normalized.includes("power")) return "/sectors/oil-gas.svg";
+  if (normalized.includes("infrastructure") || normalized.includes("storage") || normalized.includes("construction")) return "/sectors/infrastructure.svg";
+  if (normalized.includes("engineering") || normalized.includes("technical")) return "/sectors/engineering.svg";
+  if (normalized.includes("mep")) return "/sectors/mep.svg";
+  if (normalized.includes("security")) return "/sectors/security.svg";
+  if (normalized.includes("retail") || normalized.includes("hypermarket") || normalized.includes("supermarket")) return "/sectors/retail.svg";
+  if (normalized.includes("hotel") || normalized.includes("catering") || normalized.includes("housekeeping")) return "/sectors/hospitality.svg";
+  if (normalized.includes("ship")) return "/sectors/shipbuilding.svg";
+  if (normalized.includes("professional")) return "/sectors/technical-studies.svg";
+  return sectorCards[0]?.src;
 }
