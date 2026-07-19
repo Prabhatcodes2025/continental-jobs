@@ -68,11 +68,11 @@ export default async function HomePage() {
                   [9001, "", "ISO 9001"],
                   [24, "/7", "Recruitment Support"]
                 ].map(([value, suffix, label]) => (
-                  <div key={label} className="rounded-md border border-white/10 bg-white/10 p-4 text-center">
-                    <p className="text-3xl font-black text-gold">
+                  <div key={label} className="stat-card rounded-md border border-white/10 bg-white/10 p-4 text-center">
+                    <p className="stat-number text-3xl text-gold">
                       <AnimatedCounter value={Number(value)} suffix={String(suffix)} />
                     </p>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-wide text-white/70">{label}</p>
+                    <p className="stat-label mt-1 text-xs uppercase text-white/70">{label}</p>
                   </div>
                 ))}
               </div>
