@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { MotionReveal } from "@/components/MotionReveal";
 import { IndiaOperationsMap } from "@/components/OperationsMaps";
 import { PageHero } from "@/components/PageHero";
+import { TrustBadges } from "@/components/TrustBadges";
 import { mailHref, phoneHref, whatsappHref, type OfficeContact } from "@/lib/content";
 import { readSiteContent } from "@/lib/storage";
 
@@ -28,13 +29,16 @@ export default async function ContactPage() {
       <section className="premium-band py-16 text-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Official Contact Information</p>
+            <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">CONTACT DETAILS</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-white md:text-5xl">
               CORPORATE SUPPORT FOR CANDIDATES, EMPLOYERS AND GLOBAL PARTNERS.
             </h2>
             <p className="mt-4 text-base leading-8 text-white/72">
               Every contact point below is clickable for fast calling, email and WhatsApp communication.
             </p>
+            <div className="mt-6">
+              <TrustBadges compact />
+            </div>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {content.offices.map((office, index) => (
@@ -148,11 +152,21 @@ function OfficeCard({ office }: { office: OfficeContact }) {
 
       {office.managerPhones?.length ? (
         <ContactGroup icon={<Phone className="h-4 w-4" />} label="PRO / MANAGER">
-          {office.managerPhones.map((phone) => (
-            <a key={phone} href={phoneHref(phone)} className="block font-bold text-white transition hover:text-gold">
-              {phone}
-            </a>
-          ))}
+          {office.managerPhones.map((phone, index) => {
+            const display = isOperationsOffice ? operationsManagerDisplay(index) : phone;
+            return (
+              <div key={`${phone}-${index}`}>
+                {isOperationsOffice ? (
+                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/48">
+                    {index === 0 ? "PRO" : "MANAGER"}
+                  </span>
+                ) : null}
+                <a href={phoneHref(display)} className="block font-bold text-white transition hover:text-gold">
+                  {display}
+                </a>
+              </div>
+            );
+          })}
         </ContactGroup>
       ) : null}
 
@@ -183,6 +197,10 @@ function normalizedWhatsappNumber(phone: string) {
 function formatOperationsNumber(phone: string) {
   const digits = normalizedWhatsappNumber(phone).replace(/^91/, "");
   return `+91 ${digits.slice(0, 5)} ${digits.slice(5)}`;
+}
+
+function operationsManagerDisplay(index: number) {
+  return index === 0 ? "🇮🇳 +91 98950 50050" : "🇮🇳 +91 89070 90002";
 }
 
 function ContactGroup({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {

@@ -14,6 +14,7 @@ export default function AboutPage() {
         title={"43 YEARS OF\nGLOBAL RECRUITMENTS"}
         text="Continental Mercantile Corporation Pvt Ltd supports global employers and candidates with ethical overseas recruitment, staffing, study abroad, migration and skill development services."
         official
+        showTrustBadges
       />
       <section className="bg-white py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:px-8">

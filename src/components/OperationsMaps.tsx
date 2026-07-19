@@ -89,7 +89,15 @@ const countryGroups: CountryGroup[] = [
   }
 ];
 
-export function IndiaOperationsMap({ locations }: { locations: string[] }) {
+export function IndiaOperationsMap({
+  locations,
+  showMapTitle = true,
+  listTitle = "INDIAN OPERATIONS"
+}: {
+  locations: string[];
+  showMapTitle?: boolean;
+  listTitle?: string;
+}) {
   const approved = indianLocations.filter((location) => locations.includes(location.name));
 
   return (
@@ -114,14 +122,14 @@ export function IndiaOperationsMap({ locations }: { locations: string[] }) {
             d="M318 150 360 210 426 218 482 238M246 262 306 318 386 304 476 324 528 302M206 286 278 358 356 376 456 368 548 414M240 430 326 418 410 456 526 498M302 494 384 514 446 648M360 210 350 374M426 218 404 456M504 206 570 302 616 388M588 280 650 354M268 476 330 536M398 622 420 510"
           />
           <text className="map-watermark" x="380" y="365">INDIA</text>
-          <text className="operations-svg-title" x="380" y="56">INDIAN OPERATIONS</text>
+          {showMapTitle ? <text className="operations-svg-title" x="380" y="56">INDIAN OPERATIONS</text> : null}
           {approved.map((location) => (
             <SvgMarker key={location.name} location={location} />
           ))}
         </svg>
       </div>
       <ReadableLocationList
-        title="INDIAN OPERATIONS"
+        title={listTitle}
         items={approved.map((location) => location.officeLabel || location.name)}
       />
     </div>

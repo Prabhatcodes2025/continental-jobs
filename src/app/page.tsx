@@ -8,6 +8,7 @@ import { HeroGlobe } from "@/components/HeroGlobe";
 import { MotionReveal } from "@/components/MotionReveal";
 import { IndiaOperationsMap, WorldwideOperationsMap } from "@/components/OperationsMaps";
 import { SectionHeader } from "@/components/SectionHeader";
+import { TrustBadges } from "@/components/TrustBadges";
 import {
   company,
   contactDetails,
@@ -51,6 +52,9 @@ export default async function HomePage() {
                 <Link href="/chairman-message" className="button-secondary">
                   CONTACT CHAIRMAN OFFICE
                 </Link>
+              </div>
+              <div className="mt-6">
+                <TrustBadges />
               </div>
             </div>
           </MotionReveal>

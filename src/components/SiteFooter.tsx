@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { TrustBadges } from "@/components/TrustBadges";
 import { company, contactDetails, globalRegions, indianOffices } from "@/lib/site-data";
 
 export function SiteFooter() {
@@ -13,6 +14,9 @@ export function SiteFooter() {
             A premium international recruitment, work abroad, study abroad and Human Resource Solutions
             organization with regional Indian operations and global recruitment reach.
           </p>
+          <div className="mt-5">
+            <TrustBadges compact />
+          </div>
           <div className="mt-6 grid gap-3 text-sm text-white/75 sm:grid-cols-2">
             <a href={`tel:${contactDetails.corporateOffice.phones[0].tel}`} className="footer-pill">
               <Phone className="h-4 w-4" /> {contactDetails.corporateOffice.phones[0].display}

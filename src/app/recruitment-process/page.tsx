@@ -9,7 +9,7 @@ export default function RecruitmentProcessPage() {
   return (
     <>
       <PageHero
-        title="RECRUITMENT PROCESS"
+        title="CONTINENTAL'S RECRUITMENT PROCESS"
         text="A structured employer and candidate workflow from requirement to deployment support."
         official
       />

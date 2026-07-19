@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrustBadges } from "@/components/TrustBadges";
 
 export function PageHero({
   title,
@@ -6,7 +7,8 @@ export function PageHero({
   official = false,
   eyebrow = null,
   size = "default",
-  secondaryLabel = "SUBMIT REQUIREMENT"
+  secondaryLabel = "SUBMIT REQUIREMENT",
+  showTrustBadges = false
 }: {
   title: string;
   text: string;
@@ -14,6 +16,7 @@ export function PageHero({
   eyebrow?: string | null;
   size?: "default" | "compact";
   secondaryLabel?: string;
+  showTrustBadges?: boolean;
 }) {
   const titleLines = title.toUpperCase().split("\n");
   const titleSize = size === "compact" ? "text-3xl sm:text-4xl md:text-5xl" : "text-4xl md:text-6xl";
@@ -34,6 +37,11 @@ export function PageHero({
           <Link href="/apply" className="button-primary">APPLY FOR A JOB</Link>
           <Link href="/manpower-requirement" className="button-secondary">{secondaryLabel}</Link>
         </div>
+        {showTrustBadges ? (
+          <div className="mt-6">
+            <TrustBadges compact />
+          </div>
+        ) : null}
       </div>
     </section>
   );

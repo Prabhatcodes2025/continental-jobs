@@ -43,8 +43,8 @@ export const contactDetails = {
     ],
     email: "gulfrecruitments@continentalmanpower.com",
     managerPhones: [
-      { display: "0091 989 50 5050", raw: "989505050", tel: "+91989505050" },
-      { display: "0091 890 70 90002", raw: "8907090002", tel: "+918907090002" }
+      { display: "+91 98950 50050", raw: "9895050050", tel: "+919895050050" },
+      { display: "+91 89070 90002", raw: "8907090002", tel: "+918907090002" }
     ]
   },
   whatsappUrl:
