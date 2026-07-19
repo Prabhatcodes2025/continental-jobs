@@ -201,7 +201,7 @@ function CountryFlagGrid() {
             {group.items.map((item) => (
               <div key={item.name} className="country-flag-card" tabIndex={0}>
                 <span className="country-flag" aria-hidden="true">{item.flag}</span>
-                <span>
+                <span className="min-w-0">
                   <span className="country-name">{item.name}</span>
                   {item.note ? <span className="country-note">{item.note}</span> : null}
                 </span>

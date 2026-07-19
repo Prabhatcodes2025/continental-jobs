@@ -269,12 +269,17 @@ body {
 .country-flag-grid {
   display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr));
+  width: 100%;
+  min-width: 0;
   padding: clamp(1rem, 2vw, 1.5rem);
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   background: #ffffff;
+  overflow: hidden;
 }
 
 .country-group {
+  min-width: 0;
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 8px;
   background: #f8fafc;
@@ -288,17 +293,21 @@ body {
   font-weight: 950;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .country-group-list {
   display: grid;
   gap: 0.55rem;
+  min-width: 0;
 }
 
 .country-flag-card {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  width: 100%;
+  min-width: 0;
   min-height: 44px;
   border-radius: 8px;
   background: #ffffff;
@@ -306,6 +315,8 @@ body {
   color: #102033;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
   transition: transform 180ms ease, box-shadow 180ms ease;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .country-flag-card:hover {
@@ -314,6 +325,7 @@ body {
 }
 
 .country-flag {
+  flex: 0 0 auto;
   font-size: 1.35rem;
   line-height: 1;
 }
@@ -322,6 +334,9 @@ body {
   display: block;
   font-size: 0.86rem;
   font-weight: 850;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .country-note {
@@ -330,6 +345,8 @@ body {
   color: #64748b;
   font-size: 0.72rem;
   font-weight: 700;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .operations-readable-list {
@@ -377,17 +394,7 @@ body {
   }
 }
 
-@media (min-width: 640px) {
-  .country-flag-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (min-width: 1024px) {
-  .country-flag-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
   .operations-readable-list ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
