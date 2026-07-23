@@ -532,6 +532,16 @@ body {
   }
 }
 
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.055);
+  }
+}
+
 @media (min-width: 1024px) {
   .operations-readable-list ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));

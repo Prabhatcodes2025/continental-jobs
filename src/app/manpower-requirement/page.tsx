@@ -1,8 +1,9 @@
 import { ConsentText } from "@/components/ConsentText";
 import { FormSubmitButton } from "@/components/FormSubmitButton";
-import { PageHero } from "@/components/PageHero";
 import { SectionHeader } from "@/components/SectionHeader";
-import { BriefcaseBusiness, CalendarClock, ClipboardList, FileText, Globe2, GraduationCap, ListChecks, MapPinned, Scale, WalletCards } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Award, BadgeCheck, BriefcaseBusiness, CalendarClock, ClipboardList, FileText, Globe2, GraduationCap, ListChecks, MapPinned, Scale, WalletCards } from "lucide-react";
 
 export const metadata = {
   title: "Employer Requirement"
@@ -64,13 +65,57 @@ const employerInfoCards = [
 export default function ManpowerRequirementPage({ searchParams }: { searchParams: { submitted?: string; error?: string } }) {
   return (
     <>
-      <PageHero
-        title="EMPLOYER / CLIENT REQUIREMENT"
-        text="Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline."
-        official
-        eyebrow={null}
-        size="compact"
-      />
+      <section className="relative isolate overflow-hidden bg-navy text-white">
+        <div className="absolute inset-0">
+          <Image
+            src="/brand/corporate-office-kochi.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="scale-[1.02] object-contain object-center opacity-95 motion-safe:animate-[hero-kenburns_18s_ease-in-out_infinite_alternate]"
+            priority
+          />
+          <div className="absolute inset-0 bg-navy/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/78 to-navy/35" />
+        </div>
+        <div className="relative mx-auto grid min-h-[520px] max-w-7xl items-center gap-8 px-4 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <div className="max-w-3xl">
+            <p className="inline-flex rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-gold">
+              Employer Requirement Desk
+            </p>
+            <h1 className="corporate-title-caps mt-6 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+              EMPLOYER / CLIENT REQUIREMENT
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/78">
+              Submit demand details, job categories, project location, salary, facilities, visa details and mobilization timeline.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="#client-manpower-order-form" className="button-primary max-w-full whitespace-normal text-center leading-snug">
+                CLIENTS MANPOWER ORDER SUBMIT
+              </Link>
+            </div>
+          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
+        </div>
+      </section>
+
+      <CorporateInfoStrip />
+
+      <section className="bg-white py-14">
+        <div className="mx-auto max-w-5xl px-4 text-center lg:px-8">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-gold">Employer Desk</p>
+          <h2 className="corporate-title-caps mt-3 text-3xl font-black text-slate-950 sm:text-4xl md:text-5xl">
+            CLIENTS MANPOWER ORDER
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
+            Employers can submit overseas manpower requirements with project details, job categories, salary terms, facilities, visa information and mobilization timelines.
+          </p>
+          <Link href="#client-manpower-order-form" className="button-primary mt-7 max-w-full whitespace-normal text-center leading-snug">
+            CLIENTS MANPOWER ORDER SUBMIT
+          </Link>
+        </div>
+      </section>
+
       <section className="bg-slate-50 py-14">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <SectionHeader
@@ -95,7 +140,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
         </div>
       </section>
       <section className="bg-white py-16">
-        <form action="/api/requirements" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl gap-6 px-4 lg:px-8">
+        <form id="client-manpower-order-form" action="/api/requirements" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl scroll-mt-28 gap-6 px-4 lg:px-8">
           {searchParams.submitted ? (
             <div className="rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
               Thank you. Your requirement has been received and is ready for employer coordination.
@@ -136,6 +181,63 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
         </form>
       </section>
     </>
+  );
+}
+
+function CorporateInfoStrip() {
+  const services = ["WORK ABROAD", "STUDY ABROAD", "MIGRATION", "SKILL DEVELOPMENT"];
+  const countries = ["INDIA", "AUSTRALIA", "EUROPE", "SINGAPORE", "SAUDI ARABIA", "KUWAIT", "BAHRAIN", "DUBAI", "PHILIPPINES", "NEPAL"];
+
+  return (
+    <section className="bg-[#1497be] text-white">
+      <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr_1fr] lg:items-center">
+          <div className="flex items-center gap-4">
+            <div className="relative h-16 w-16 shrink-0 rounded-full bg-white p-2 shadow-xl">
+              <Image src="/brand/continental-logo.png" alt="Continental eagle logo" fill sizes="64px" className="object-contain p-2" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-serif text-2xl font-black uppercase leading-none tracking-[0.05em] text-white sm:text-3xl">CONTINENTAL</p>
+              <p className="mt-1 font-serif text-sm font-black uppercase tracking-[0.12em] text-white/90 sm:text-base">MERCANTILE CORPORATION</p>
+            </div>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-2">
+            {services.map((item) => (
+              <span key={item} className="rounded-md border border-white/25 bg-white/12 px-4 py-3 text-center text-xs font-black uppercase tracking-[0.12em] shadow-sm backdrop-blur">
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <span className="inline-flex min-h-14 items-center gap-3 rounded-full border border-white/25 bg-navy/35 px-4 py-2 shadow-lg backdrop-blur">
+              <BadgeCheck className="h-5 w-5 text-gold" />
+              <span className="grid leading-tight">
+                <strong className="font-serif text-sm uppercase tracking-[0.08em]">ISO 9001</strong>
+                <small className="text-[11px] font-bold uppercase tracking-[0.08em] text-white/75">Certified</small>
+              </span>
+            </span>
+            <span className="inline-flex min-h-14 items-center gap-3 rounded-full border border-white/25 bg-navy/35 px-4 py-2 shadow-lg backdrop-blur">
+              <Award className="h-5 w-5 text-gold" />
+              <span className="grid leading-tight">
+                <strong className="font-serif text-sm uppercase tracking-[0.08em]">43+ Years</strong>
+                <small className="text-[11px] font-bold uppercase tracking-[0.08em] text-white/75">Recruitment</small>
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-7 flex flex-wrap justify-center gap-x-3 gap-y-2 border-t border-white/25 pt-5 text-center text-xs font-black uppercase tracking-[0.08em] text-white/92 sm:text-sm">
+          {countries.map((country, index) => (
+            <span key={country} className="inline-flex items-center gap-3">
+              {country}
+              {index < countries.length - 1 ? <span className="text-white/45" aria-hidden="true">•</span> : null}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
