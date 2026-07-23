@@ -1,11 +1,11 @@
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual } from "crypto";
-import { requiredEnv } from "@/lib/env";
+import { getAdminSessionSecret } from "@/lib/env";
 
 const cookieName = "continental_admin_session";
 
 function secret() {
-  return requiredEnv("ADMIN_SESSION_SECRET");
+  return getAdminSessionSecret();
 }
 
 function sign(value: string) {
@@ -14,7 +14,7 @@ function sign(value: string) {
 
 export function createSessionValue(email: string) {
   const payload = Buffer.from(
-    JSON.stringify({ email, exp: Date.now() + 1000 * 60 * 60 * 8 })
+    JSON.stringify({ email, exp: Date.now() + 1000 * 60 * 60 * 8, provider: "continental-admin" })
   ).toString("base64url");
   return `${payload}.${sign(payload)}`;
 }
@@ -24,6 +24,7 @@ export function verifySession(value?: string) {
   const [payload, signature] = value.split(".");
   if (!payload || !signature) return false;
   const expected = sign(payload);
+  if (Buffer.byteLength(signature) !== Buffer.byteLength(expected)) return false;
   const valid = timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
   if (!valid) return false;
 

@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { ImagePlus, LockKeyhole, MapPinned, Settings, UsersRound } from "lucide-react";
+import { Activity, Database, FileText, ImagePlus, LockKeyhole, MapPinned, Settings, ShieldCheck, UsersRound } from "lucide-react";
 import type { ReactNode } from "react";
 import { isAdminAuthenticated } from "@/lib/auth";
 import { activityCategories, contentFromFormData, defaultSiteContent, type OfficeContact, type SiteContent } from "@/lib/content";
+import { getRuntimeMode, validateServerEnvironment } from "@/lib/env";
 import { readRecords, readSiteContent, saveGalleryImages, writeSiteContent } from "@/lib/storage";
+import { readAdminDashboardCounts, readRecentSubmissions } from "@/lib/supabase/queries/admin";
 
 export const metadata = {
   title: "Admin Dashboard"
@@ -66,11 +68,15 @@ export default async function AdminPage({
     );
   }
 
-  const [applications, requirements, siteContent] = await Promise.all([
+  const [applications, requirements, siteContent, supabaseCounts, recentSubmissions] = await Promise.all([
     readRecords("applications"),
     readRecords("requirements"),
-    readSiteContent()
+    readSiteContent(),
+    readAdminDashboardCounts(),
+    readRecentSubmissions()
   ]);
+  const envWarnings = validateServerEnvironment();
+  const runtimeMode = getRuntimeMode();
 
   return (
     <section className="bg-slate-50 py-16">
@@ -79,7 +85,9 @@ export default async function AdminPage({
           <div>
             <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Admin</p>
             <h1 className="mt-3 text-4xl font-black text-slate-950">Continental Dashboard</h1>
-            <p className="mt-3 text-slate-600">Local development dashboard. Connect PostgreSQL/Prisma and CRM webhooks for production.</p>
+            <p className="mt-3 text-slate-600">
+              Supabase-ready admin dashboard with safe {runtimeMode === "demo" ? "demo fallback" : "Supabase"} data mode.
+            </p>
           </div>
           <form action={async () => {
             "use server";
@@ -89,11 +97,27 @@ export default async function AdminPage({
           </form>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          <Metric icon={<UsersRound className="h-7 w-7" />} label="Candidate Applications" value={applications.length} />
-          <Metric icon={<UsersRound className="h-7 w-7" />} label="Employer Requirements" value={requirements.length} />
-          <Metric icon={<Settings className="h-7 w-7" />} label="Recruitment Email" value={siteContent.recruitmentEmail} />
+        {envWarnings.length ? (
+          <div className="mt-8 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-900">
+            <p className="font-black uppercase tracking-[0.14em]">Backend status</p>
+            <ul className="mt-2 list-inside list-disc">
+              {envWarnings.map((warning) => <li key={warning}>{warning}</li>)}
+            </ul>
+          </div>
+        ) : null}
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <Metric icon={<UsersRound className="h-7 w-7" />} label="New Candidate Applications" value={supabaseCounts.candidateApplications || applications.length} />
+          <Metric icon={<ShieldCheck className="h-7 w-7" />} label="Applications Under Review" value={supabaseCounts.applicationsUnderReview} />
+          <Metric icon={<UsersRound className="h-7 w-7" />} label="Shortlisted Candidates" value={supabaseCounts.shortlistedCandidates} />
+          <Metric icon={<FileText className="h-7 w-7" />} label="New Employer Orders" value={supabaseCounts.newEmployerOrders || requirements.length} />
+          <Metric icon={<Activity className="h-7 w-7" />} label="Active Employer Requirements" value={supabaseCounts.activeEmployerRequirements} />
+          <Metric icon={<ImagePlus className="h-7 w-7" />} label="Total Gallery Items" value={supabaseCounts.galleryItems || siteContent.gallery.length} />
+          <Metric icon={<Settings className="h-7 w-7" />} label="Active Services" value={supabaseCounts.activeServices || "6"} />
+          <Metric icon={<Database className="h-7 w-7" />} label="Recent Activity" value={supabaseCounts.recentActivity} />
         </div>
+
+        <AdminModules recentSubmissions={recentSubmissions} />
 
         {searchParams.updated ? (
           <div className="mt-8 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm font-bold text-emerald-800">
@@ -129,6 +153,59 @@ function Metric({ icon, label, value }: { icon: ReactNode; label: string; value:
       <div className="text-gold">{icon}</div>
       <p className="mt-4 text-3xl font-black text-slate-950">{value}</p>
       <p className="mt-1 text-sm font-bold text-slate-600">{label}</p>
+    </div>
+  );
+}
+
+function AdminModules({
+  recentSubmissions
+}: {
+  recentSubmissions: { candidates: Array<Record<string, unknown>>; employers: Array<Record<string, unknown>> };
+}) {
+  const modules = [
+    "Candidate management: search, filters, status update, assignment, notes, secure document access and exports.",
+    "Employer manpower orders: project details, worker categories, follow-ups, ownership, documents and bulk actions.",
+    "Content management: homepage, about, services, operations, process, gallery, contact, footer and trust metrics.",
+    "Contact settings: one editable source for header, footer, forms, floating buttons, schema and contact page.",
+    "Gallery management: upload, replace, alt text, category, preview, reorder, enable/disable and delete.",
+    "Webhook logs and audit logs: CRM/WhatsApp delivery attempts and admin action history."
+  ];
+
+  return (
+    <div className="mt-10 grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-gold">Admin Modules</p>
+        <div className="mt-5 grid gap-3">
+          {modules.map((module) => (
+            <div key={module} className="rounded-md border border-slate-200 bg-slate-50 p-4 text-sm font-semibold leading-6 text-slate-700">
+              {module}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-gold">Recent Submissions</p>
+        <div className="mt-5 grid gap-4">
+          <RecentMiniTable title="Candidates" rows={recentSubmissions.candidates} emptyText="No Supabase candidate rows yet. Local demo records appear in the table below." />
+          <RecentMiniTable title="Employer Orders" rows={recentSubmissions.employers} emptyText="No Supabase employer rows yet. Local demo records appear in the table below." />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RecentMiniTable({ title, rows, emptyText }: { title: string; rows: Array<Record<string, unknown>>; emptyText: string }) {
+  return (
+    <div className="rounded-md border border-slate-200">
+      <h3 className="border-b border-slate-200 px-4 py-3 text-sm font-black text-slate-950">{title}</h3>
+      <div className="grid gap-2 p-4">
+        {rows.length ? rows.map((row) => (
+          <div key={String(row.id)} className="rounded bg-slate-50 p-3 text-xs font-semibold leading-5 text-slate-600">
+            <p className="font-black text-slate-900">{String(row.full_name || row.company_name || row.application_number || row.order_number || "Submission")}</p>
+            <p>{String(row.email || "-")} · {String(row.status || "new")}</p>
+          </div>
+        )) : <p className="text-sm leading-6 text-slate-500">{emptyText}</p>}
+      </div>
     </div>
   );
 }

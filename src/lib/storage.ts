@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { defaultSiteContent, type GalleryEntry, type OfficeContact, type SiteContent } from "@/lib/content";
 import { optionalEnv } from "@/lib/env";
+import { logWebhookAttempt } from "@/lib/supabase/mutations/submissions";
 
 type SubmissionRecord<T> = T & {
   id: string;
@@ -244,11 +245,12 @@ export function formDataToObject(formData: FormData) {
 export async function sendWebhook(kind: string, payload: unknown) {
   const url = optionalEnv("CRM_WEBHOOK_URL");
   if (!url) {
+    await logWebhookAttempt({ webhook_type: kind, payload, status: "disabled" });
     return "disabled";
   }
 
   try {
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -258,8 +260,10 @@ export async function sendWebhook(kind: string, payload: unknown) {
         sentAt: new Date().toISOString()
       })
     });
+    await logWebhookAttempt({ webhook_type: kind, payload, response: { status: response.status }, status: response.ok ? "sent" : "failed" });
     return "sent";
   } catch {
+    await logWebhookAttempt({ webhook_type: kind, payload, status: "failed" });
     return "failed";
   }
 }
@@ -267,17 +271,20 @@ export async function sendWebhook(kind: string, payload: unknown) {
 export async function sendWhatsAppWebhook(kind: string, payload: unknown) {
   const url = optionalEnv("WHATSAPP_API_WEBHOOK_URL");
   if (!url) {
+    await logWebhookAttempt({ webhook_type: kind, payload, status: "disabled" });
     return "disabled";
   }
 
   try {
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ kind, payload, consentBased: true, sentAt: new Date().toISOString() })
     });
+    await logWebhookAttempt({ webhook_type: kind, payload, response: { status: response.status }, status: response.ok ? "sent" : "failed" });
     return "sent";
   } catch {
+    await logWebhookAttempt({ webhook_type: kind, payload, status: "failed" });
     return "failed";
   }
 }
