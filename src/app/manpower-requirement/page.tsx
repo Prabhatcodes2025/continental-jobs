@@ -132,7 +132,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
           <ConsentText type="employer" />
           <Check name="whatsappConsent" label="I consent to receive requirement coordination messages through WhatsApp." />
           <Check name="termsAgreement" label="I agree to the Terms of Use and confirm the submitted requirement is lawful and accurate." />
-          <FormSubmitButton>Submit Requirement</FormSubmitButton>
+          <FormSubmitButton>CLIENTS MANPOWER ORDER SUBMIT</FormSubmitButton>
         </form>
       </section>
     </>

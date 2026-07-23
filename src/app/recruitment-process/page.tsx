@@ -1,51 +1,66 @@
+import { MotionReveal } from "@/components/MotionReveal";
 import { PageHero } from "@/components/PageHero";
-import { employerStartInfo, recruitmentSteps } from "@/lib/site-data";
+import { recruitmentProcessStages } from "@/lib/site-data";
 
 export const metadata = {
   title: "Recruitment Process"
 };
 
+const phaseIntro: Record<string, string> = {
+  "PHASE 1 - REQUIREMENT & AGREEMENT": "Requirement order, employment terms, fees, agreements and interview authority documents.",
+  "PHASE 2 - PLANNING & SOURCING": "Recruitment method planning, interview itinerary, CV search, advertising and candidate screening.",
+  "PHASE 3 - INTERVIEW & SELECTION": "Interview preparation, client or authorised interviews, trade testing, contracts and medical checks.",
+  "PHASE 4 - VISA & MOBILISATION": "Visa files, insurance, immigration, ticketing, billing, orientation and departure support.",
+  "PHASE 5 - POST-DEPLOYMENT SUPPORT": "Follow-up and welfare monitoring after workers are mobilized to the project."
+};
+
 export default function RecruitmentProcessPage() {
+  const phases = Array.from(new Set(recruitmentProcessStages.map((stage) => stage.phase)));
+
   return (
     <>
       <PageHero
         title="CONTINENTAL'S RECRUITMENT PROCESS"
-        text="A structured employer and candidate workflow from requirement to deployment support."
+        text="A structured employer and candidate workflow from manpower requirement order to worker welfare follow-up."
         official
       />
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-5xl px-4 lg:px-8">
-          <div className="space-y-5">
-            {recruitmentSteps.map((step, index) => (
-              <div key={step} className="grid gap-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[80px_1fr]">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-navy text-xl font-black text-gold">{index + 1}</span>
-                <div>
-                  <h2 className="text-xl font-black text-slate-950">{step}</h2>
-                  <p className="mt-2 leading-7 text-slate-600">
-                    Each stage includes verification, clear communication and documented consent so the process remains transparent for candidates and employers.
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Before Interviews</p>
-              <h2 className="mt-3 text-3xl font-black text-slate-950 md:text-5xl">Employer information required to begin.</h2>
-              <p className="mt-5 leading-8 text-slate-600">
-                Complete inputs help Continental finalize recruitment procedures, source sufficient CVs,
-                prepare interviews and mobilize selected workers without avoidable delays.
-              </p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {employerStartInfo.map((item) => (
-                <div key={item} className="premium-card p-4 text-sm font-bold leading-6 text-slate-700">{item}</div>
-              ))}
-            </div>
+          <div className="space-y-14">
+            {phases.map((phase) => {
+              const steps = recruitmentProcessStages
+                .filter((stage) => stage.phase === phase)
+                .sort((a, b) => a.order - b.order);
+
+              return (
+                <section key={phase} className="process-phase">
+                  <MotionReveal>
+                    <div className="max-w-3xl">
+                      <p className="text-sm font-black uppercase tracking-[0.24em] text-gold">{phase}</p>
+                      <p className="mt-3 text-base leading-7 text-slate-600">{phaseIntro[phase]}</p>
+                    </div>
+                  </MotionReveal>
+                  <div className="process-timeline mt-8">
+                    {steps.map((stage, index) => {
+                      const Icon = stage.icon;
+                      return (
+                        <MotionReveal key={stage.step} delay={index * 0.02}>
+                          <article className="process-step-card">
+                            <div className="process-step-marker">{stage.step}</div>
+                            <div className="process-step-content">
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gold/25 bg-gold/10 text-gold">
+                                <Icon className="h-5 w-5" aria-hidden="true" />
+                              </div>
+                              <h2>{stage.title}</h2>
+                            </div>
+                          </article>
+                        </MotionReveal>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </section>

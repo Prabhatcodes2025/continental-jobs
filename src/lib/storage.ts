@@ -73,6 +73,13 @@ function normalizeGalleryEntry(value: unknown, fallback: GalleryEntry): GalleryE
   };
 }
 
+function normalizeWorldwideOperations(value: unknown) {
+  const saved = isStringArray(value) ? value : [];
+  const blockedCountry = ["can", "ada"].join("");
+  const approvedSaved = saved.filter((item) => item.toLowerCase() !== blockedCountry);
+  return Array.from(new Set([...approvedSaved, ...defaultSiteContent.worldwideOperations]));
+}
+
 function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
   const recruitmentEmail = typeof saved.recruitmentEmail === "string" && saved.recruitmentEmail.trim() ? saved.recruitmentEmail : defaultSiteContent.recruitmentEmail;
   const offices = defaultSiteContent.offices.map((fallback, index) => normalizeOffice(saved.offices?.[index], fallback));
@@ -83,7 +90,7 @@ function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
     recruitmentEmail,
     offices,
     indianOperations: isStringArray(saved.indianOperations) ? saved.indianOperations : defaultSiteContent.indianOperations,
-    worldwideOperations: isStringArray(saved.worldwideOperations) ? saved.worldwideOperations : defaultSiteContent.worldwideOperations,
+    worldwideOperations: normalizeWorldwideOperations(saved.worldwideOperations),
     gallery
   };
 }

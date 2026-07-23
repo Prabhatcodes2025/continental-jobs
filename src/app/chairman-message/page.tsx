@@ -34,9 +34,11 @@ export default function ChairmanMessagePage() {
               overseas partners.
             </p>
             <p className="font-bold text-slate-950">
-              {company.chairmanFull}
+              <span className="corporate-title-caps text-lg">{company.chairmanFull}</span>
               <br />
-              Chairman & Managing Director
+              <span className="text-xs font-black uppercase tracking-[0.18em] text-gold sm:text-sm">
+                FOUNDER, CHAIRMAN & MANAGING DIRECTOR
+              </span>
             </p>
           </article>
         </div>

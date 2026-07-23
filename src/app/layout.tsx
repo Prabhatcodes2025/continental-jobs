@@ -51,9 +51,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "United Kingdom",
       "Malta",
       "Spain",
+      "Croatia",
       "Nepal",
       "Bangladesh",
       "Sri Lanka",
+      "Kenya",
+      "Ghana",
+      "Uganda",
+      "Nigeria",
       "Africa"
     ]
   };

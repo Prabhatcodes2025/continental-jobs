@@ -40,9 +40,14 @@ const worldwideLocations: MapLocation[] = [
   { name: "London / UK", x: 456, y: 132, labelX: -102, labelY: -16 },
   { name: "Malta", x: 492, y: 188, labelX: -58, labelY: 22 },
   { name: "Spain", x: 450, y: 188, labelX: -58, labelY: -18 },
+  { name: "Croatia", x: 498, y: 160, labelX: 18, labelY: -14 },
   { name: "Nepal", x: 675, y: 246, labelX: 18, labelY: -18 },
   { name: "Bangladesh", x: 700, y: 276, labelX: 18, labelY: -2 },
   { name: "Sri Lanka", x: 670, y: 326, labelX: 18, labelY: 20 },
+  { name: "Kenya", x: 540, y: 350, labelX: 18, labelY: 12 },
+  { name: "Ghana", x: 468, y: 320, labelX: -86, labelY: 18 },
+  { name: "Uganda", x: 528, y: 330, labelX: 18, labelY: -12 },
+  { name: "Nigeria", x: 476, y: 306, labelX: -94, labelY: -8 },
   { name: "Africa", x: 486, y: 326, labelX: -120, labelY: 22 }
 ];
 
@@ -86,6 +91,58 @@ const countryGroups: CountryGroup[] = [
   {
     title: "Africa",
     items: [{ name: "Africa", flag: "🌍", note: "Regional presence" }]
+  }
+];
+
+void countryGroups;
+
+const approvedCountryGroups: CountryGroup[] = [
+  {
+    title: "Middle East",
+    items: [
+      { name: "Bahrain", flag: "🇧🇭" },
+      { name: "Dubai / UAE", flag: "🇦🇪" },
+      { name: "Kuwait", flag: "🇰🇼" },
+      { name: "Oman", flag: "🇴🇲" },
+      { name: "Saudi Arabia", flag: "🇸🇦" },
+      { name: "Qatar", flag: "🇶🇦" }
+    ]
+  },
+  {
+    title: "Asia",
+    items: [
+      { name: "India", flag: "🇮🇳" },
+      { name: "Nepal", flag: "🇳🇵" },
+      { name: "Bangladesh", flag: "🇧🇩" },
+      { name: "Sri Lanka", flag: "🇱🇰" }
+    ]
+  },
+  {
+    title: "Far East",
+    items: [
+      { name: "Singapore", flag: "🇸🇬" },
+      { name: "Philippines", flag: "🇵🇭" },
+      { name: "Malaysia", flag: "🇲🇾" }
+    ]
+  },
+  {
+    title: "Europe / UK",
+    items: [
+      { name: "London / UK", flag: "🇬🇧" },
+      { name: "Malta", flag: "🇲🇹" },
+      { name: "Spain", flag: "🇪🇸" },
+      { name: "Croatia", flag: "🇭🇷" }
+    ]
+  },
+  {
+    title: "Africa",
+    items: [
+      { name: "Kenya", flag: "🇰🇪" },
+      { name: "Ghana", flag: "🇬🇭" },
+      { name: "Uganda", flag: "🇺🇬" },
+      { name: "Nigeria", flag: "🇳🇬" },
+      { name: "Africa", flag: "🌍", note: "Regional presence" }
+    ]
   }
 ];
 
@@ -194,7 +251,7 @@ function SvgMarker({ location }: { location: MapLocation }) {
 function CountryFlagGrid() {
   return (
     <div className="country-flag-grid" aria-label="Approved worldwide operations country list">
-      {countryGroups.map((group) => (
+      {approvedCountryGroups.map((group) => (
         <section key={group.title} className="country-group">
           <h3>{group.title}</h3>
           <div className="country-group-list">

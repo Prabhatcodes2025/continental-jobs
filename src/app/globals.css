@@ -187,6 +187,112 @@ body {
   @apply rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/35 hover:shadow-xl;
 }
 
+.process-phase {
+  min-width: 0;
+}
+
+.process-timeline {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1.35rem;
+  top: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(217, 164, 65, 0.85), rgba(7, 17, 31, 0.16));
+}
+
+.process-step-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.85rem minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.process-step-marker {
+  z-index: 1;
+  display: inline-flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(217, 164, 65, 0.5);
+  border-radius: 999px;
+  background: #07111f;
+  color: #d9a441;
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 14px 30px rgba(7, 17, 31, 0.18);
+}
+
+.process-step-content {
+  min-width: 0;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.06);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.process-step-card:hover .process-step-content {
+  transform: translateY(-2px);
+  border-color: rgba(217, 164, 65, 0.35);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.11);
+}
+
+.process-step-content h2 {
+  margin-top: 0.8rem;
+  color: #0f172a;
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 750;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  .process-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .process-step-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding-right: 2.5rem;
+  }
+
+  .process-step-card:nth-child(even) {
+    padding-left: 2.5rem;
+    padding-right: 0;
+  }
+
+  .process-step-marker {
+    position: absolute;
+    right: -1.38rem;
+    top: 1rem;
+  }
+
+  .process-step-card:nth-child(even) .process-step-marker {
+    left: -1.38rem;
+    right: auto;
+  }
+}
+
 .operations-map-shell {
   width: 100%;
   max-width: 100%;

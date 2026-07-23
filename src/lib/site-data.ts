@@ -2,18 +2,32 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   Building2,
+  CalendarDays,
+  ClipboardList,
   Factory,
+  FileCheck2,
+  FileSignature,
+  FileText,
+  Filter,
   GraduationCap,
   Hammer,
   HardHat,
   HeartPulse,
+  Handshake,
   Hotel,
+  Megaphone,
   MapPinned,
+  Plane,
+  ReceiptText,
+  Search,
   ShoppingCart,
   ShieldCheck,
   Ship,
+  Stethoscope,
   UtensilsCrossed,
+  Video,
   Wind,
+  Workflow,
   UsersRound,
   Wrench
 } from "lucide-react";
@@ -111,24 +125,9 @@ export const services = [
     icon: BadgeCheck
   },
   {
-    title: "WORLDWIDE STAFFING SOLUTIONS",
-    text: "End-to-end human resources sourcing for employers across approved international destination markets.",
-    icon: UsersRound
-  },
-  {
-    title: "GLOBAL RECRUITERS",
+    title: "GLOBAL RECRUITMENT",
     text: "Shortlisting, interview coordination, mobilization and employer reporting.",
     icon: Building2
-  },
-  {
-    title: "OVERSEAS EDUCATION CONSULTANTS",
-    text: "Career-focused academic options connected to long-term global opportunities.",
-    icon: GraduationCap
-  },
-  {
-    title: "HR SOLUTIONS",
-    text: "Talent acquisition support, project staffing, compliance documentation and workforce planning.",
-    icon: ShieldCheck
   }
 ];
 
@@ -322,9 +321,14 @@ export const globalRegions = [
   "London / UK",
   "Malta",
   "Spain",
+  "Croatia",
   "Nepal",
   "Bangladesh",
   "Sri Lanka",
+  "Kenya",
+  "Ghana",
+  "Uganda",
+  "Nigeria",
   "Africa"
 ];
 
@@ -335,6 +339,40 @@ export const recruitmentSteps = [
   "Interview coordination and final selection",
   "Offer, documentation, medical and visa processing",
   "Pre-departure briefing, mobilization and post-deployment support"
+];
+
+export const recruitmentProcessStages: Array<{
+  step: number;
+  phase: string;
+  title: string;
+  icon: LucideIcon;
+  order: number;
+}> = [
+  { step: 1, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Receipt of Manpower Requirement Order", icon: ClipboardList, order: 1 },
+  { step: 2, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Verification of Salary & Other Employment Terms Offered to the Workers", icon: FileCheck2, order: 2 },
+  { step: 3, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Verification & Finalisation of Recruitment Fees & Terms", icon: Handshake, order: 3 },
+  { step: 4, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Finalisation & Signing of the Recruitment Process Agreement", icon: FileSignature, order: 4 },
+  { step: 5, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Create Emigrate Documents by the Client", icon: FileText, order: 5 },
+  { step: 6, phase: "PHASE 1 - REQUIREMENT & AGREEMENT", title: "Receipt of Power of Attorney & Demand Letter etc. Documents Required for Conducting Interview", icon: BadgeCheck, order: 6 },
+  { step: 7, phase: "PHASE 2 - PLANNING & SOURCING", title: "Finalisation of Recruitment Procedures & Methods", icon: Workflow, order: 7 },
+  { step: 8, phase: "PHASE 2 - PLANNING & SOURCING", title: "Finalisation of the Itinerary of Interview", icon: CalendarDays, order: 8 },
+  { step: 9, phase: "PHASE 2 - PLANNING & SOURCING", title: "Search in the Data Bank Availability of Sufficient CVs", icon: Search, order: 9 },
+  { step: 10, phase: "PHASE 2 - PLANNING & SOURCING", title: "If not found sufficient candidates in the data bank/job portals, advertise through newspapers, digital media and headhunt until sufficient CVs are procured", icon: Megaphone, order: 10 },
+  { step: 11, phase: "PHASE 2 - PLANNING & SOURCING", title: "Screening of Candidates and Lining up of Sufficient Candidates as per the Client's Specification", icon: Filter, order: 11 },
+  { step: 12, phase: "PHASE 3 - INTERVIEW & SELECTION", title: "Prepare for Final Interview", icon: UsersRound, order: 12 },
+  { step: 13, phase: "PHASE 3 - INTERVIEW & SELECTION", title: "Client Conducts Interview or Authorises Continental to Conduct Table/Skype Interview", icon: Video, order: 13 },
+  { step: 14, phase: "PHASE 3 - INTERVIEW & SELECTION", title: "If Required Conducts Practical Trade Testing", icon: Wrench, order: 14 },
+  { step: 15, phase: "PHASE 3 - INTERVIEW & SELECTION", title: "Signs Employment Contract", icon: FileSignature, order: 15 },
+  { step: 16, phase: "PHASE 3 - INTERVIEW & SELECTION", title: "Candidate Undergoes Medical Examination", icon: Stethoscope, order: 16 },
+  { step: 17, phase: "PHASE 4 - VISA & MOBILISATION", title: "Prepares All Documents Required for Visa Processing", icon: FileText, order: 17 },
+  { step: 18, phase: "PHASE 4 - VISA & MOBILISATION", title: "Receive Visas & Completion of Visa Formalities", icon: BadgeCheck, order: 18 },
+  { step: 19, phase: "PHASE 4 - VISA & MOBILISATION", title: "Completing Insurance Formalities", icon: ShieldCheck, order: 19 },
+  { step: 20, phase: "PHASE 4 - VISA & MOBILISATION", title: "Completing Immigration Formalities", icon: MapPinned, order: 20 },
+  { step: 21, phase: "PHASE 4 - VISA & MOBILISATION", title: "Completing Air Ticketing & Reservation", icon: Plane, order: 21 },
+  { step: 22, phase: "PHASE 4 - VISA & MOBILISATION", title: "Forwarding Bills to the Client for Necessary Fees", icon: ReceiptText, order: 22 },
+  { step: 23, phase: "PHASE 4 - VISA & MOBILISATION", title: "Pre-Departure Assistance & Orientation to the Workers", icon: GraduationCap, order: 23 },
+  { step: 24, phase: "PHASE 4 - VISA & MOBILISATION", title: "Departure of Contract Workers to the Projects", icon: Plane, order: 24 },
+  { step: 25, phase: "PHASE 5 - POST-DEPLOYMENT SUPPORT", title: "Follow-up and Monitoring the Status & Welfare of Workers Mobilized", icon: HeartPulse, order: 25 }
 ];
 
 export const requiredDocuments = [
