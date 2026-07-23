@@ -257,7 +257,7 @@ function CountryFlagGrid() {
           <div className="country-group-list">
             {group.items.map((item) => (
               <div key={item.name} className="country-flag-card" tabIndex={0}>
-                <span className="country-flag" aria-hidden="true">{item.flag}</span>
+                <CountryFlagIcon name={item.name} />
                 <span className="min-w-0">
                   <span className="country-name">{item.name}</span>
                   {item.note ? <span className="country-note">{item.note}</span> : null}
@@ -269,6 +269,34 @@ function CountryFlagGrid() {
       ))}
     </div>
   );
+}
+
+function CountryFlagIcon({ name }: { name: string }) {
+  const codeByName: Record<string, string> = {
+    Africa: "africa",
+    Bahrain: "bh",
+    Bangladesh: "bd",
+    "Dubai / UAE": "ae",
+    Ghana: "gh",
+    India: "in",
+    Kenya: "ke",
+    Kuwait: "kw",
+    "London / UK": "gb",
+    Malaysia: "my",
+    Malta: "mt",
+    Nepal: "np",
+    Nigeria: "ng",
+    Oman: "om",
+    Philippines: "ph",
+    Qatar: "qa",
+    "Saudi Arabia": "sa",
+    Singapore: "sg",
+    Spain: "es",
+    "Sri Lanka": "lk",
+    Uganda: "ug"
+  };
+
+  return <span className={`country-flag country-flag-${codeByName[name] || "generic"}`} aria-hidden="true" />;
 }
 
 function ReadableLocationList({ title, items }: { title: string; items: string[] }) {

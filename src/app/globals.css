@@ -464,8 +464,53 @@ body {
 
 .country-flag {
   flex: 0 0 auto;
-  font-size: 1.35rem;
+  position: relative;
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.08rem;
+  overflow: hidden;
+  border-radius: 0.18rem;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #eef2f7;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1);
   line-height: 1;
+}
+
+.country-flag::before,
+.country-flag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.country-flag-bh { background: linear-gradient(90deg, #fff 0 31%, #ce1126 31%); }
+.country-flag-ae { background: linear-gradient(90deg, #ce1126 0 25%, transparent 25%), linear-gradient(#009739 0 33%, #fff 33% 66%, #000 66%); }
+.country-flag-kw { background: linear-gradient(90deg, #111 0 26%, transparent 26%), linear-gradient(#007a3d 0 33%, #fff 33% 66%, #ce1126 66%); }
+.country-flag-om { background: linear-gradient(90deg, #db161b 0 25%, transparent 25%), linear-gradient(#fff 0 33%, #db161b 33% 66%, #00843d 66%); }
+.country-flag-sa { background: #006c35; }
+.country-flag-sa::after { inset: 47% 18% 40%; background: #fff; }
+.country-flag-qa { background: linear-gradient(90deg, #fff 0 28%, #8a1538 28%); }
+.country-flag-in { background: linear-gradient(#ff9933 0 33%, #fff 33% 66%, #138808 66%); }
+.country-flag-in::after { inset: 39% 40%; border: 1px solid #1a4b9b; border-radius: 999px; }
+.country-flag-np { background: linear-gradient(135deg, #dc143c 0 56%, transparent 56%), linear-gradient(45deg, #dc143c 0 53%, transparent 53%); border-color: #003893; }
+.country-flag-bd { background: #006a4e; }
+.country-flag-bd::after { inset: 24% 32% 24% 38%; border-radius: 999px; background: #f42a41; }
+.country-flag-lk { background: linear-gradient(90deg, #00534e 0 15%, #ff9e1b 15% 30%, #8d153a 30%); }
+.country-flag-sg { background: linear-gradient(#ef3340 0 50%, #fff 50%); }
+.country-flag-ph { background: linear-gradient(90deg, #fff 0 30%, transparent 30%), linear-gradient(#0038a8 0 50%, #ce1126 50%); }
+.country-flag-my { background: repeating-linear-gradient(#cc0001 0 12.5%, #fff 12.5% 25%); }
+.country-flag-my::after { inset: 0 55% 50% 0; background: #010066; }
+.country-flag-gb { background: linear-gradient(90deg, transparent 0 43%, #fff 43% 57%, transparent 57%), linear-gradient(transparent 0 36%, #fff 36% 64%, transparent 64%), #012169; }
+.country-flag-gb::after { inset: 0 46% 0 46%; background: #c8102e; box-shadow: 0.42rem 0 0 #c8102e, -0.42rem 0 0 #c8102e; transform: rotate(90deg); }
+.country-flag-mt { background: linear-gradient(90deg, #fff 0 50%, #cf142b 50%); }
+.country-flag-es { background: linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75%); }
+.country-flag-ke { background: linear-gradient(#000 0 30%, #fff 30% 36%, #bb0000 36% 64%, #fff 64% 70%, #006600 70%); }
+.country-flag-gh { background: linear-gradient(#ce1126 0 33%, #fcd116 33% 66%, #006b3f 66%); }
+.country-flag-ug { background: repeating-linear-gradient(#000 0 16.66%, #fcdc04 16.66% 33.33%, #d90000 33.33% 50%); }
+.country-flag-ng { background: linear-gradient(90deg, #008751 0 33%, #fff 33% 66%, #008751 66%); }
+.country-flag-africa {
+  border-radius: 999px;
+  background: radial-gradient(circle at 62% 35%, #8ad66d 0 17%, transparent 18%), radial-gradient(circle at 38% 60%, #16a34a 0 20%, transparent 21%), #38bdf8;
 }
 
 .country-name {
