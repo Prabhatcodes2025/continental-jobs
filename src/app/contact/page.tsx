@@ -67,22 +67,29 @@ export default async function ContactPage() {
               items={content.worldwideOperations}
             />
           </MotionReveal>
-          <MotionReveal delay={0.14}>
-            <div className="lg:col-span-2">
-              <WorldwideOperationsMap regions={content.worldwideOperations} />
-            </div>
-          </MotionReveal>
         </div>
       </section>
 
       <section className="bg-slate-50 py-16">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="contact-map-grid grid items-stretch gap-6 md:grid-cols-2">
+            <MotionReveal>
+              <ContactMapCard title="INDIAN OPERATIONS">
+                <IndiaOperationsMap locations={content.indianOperations} showMapTitle={false} showList={false} />
+              </ContactMapCard>
+            </MotionReveal>
+            <MotionReveal delay={0.1}>
+              <ContactMapCard title="WORLDWIDE PRESENCE">
+                <WorldwideOperationsMap regions={content.worldwideOperations} showMapTitle={false} />
+              </ContactMapCard>
+            </MotionReveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <MotionReveal>
-            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
-              <IndiaOperationsMap locations={content.indianOperations} showList={false} />
-            </div>
-          </MotionReveal>
-          <MotionReveal delay={0.1}>
             <div className="rounded-lg border border-gold/25 bg-navy p-8 text-white shadow-glow">
               <Sparkles className="h-9 w-9 text-gold" />
               <h2 className="mt-5 text-3xl font-black md:text-5xl">START A CONVERSATION</h2>
@@ -120,6 +127,15 @@ export default async function ContactPage() {
         </div>
       </section>
     </>
+  );
+}
+
+function ContactMapCard({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="contact-map-card h-full min-w-0 rounded-lg border border-slate-200 bg-white p-4 shadow-xl md:p-5">
+      <h2 className="corporate-title-caps text-center text-xl font-black text-navy md:text-2xl">{title}</h2>
+      <div className="contact-map-body mt-4 min-w-0">{children}</div>
+    </div>
   );
 }
 

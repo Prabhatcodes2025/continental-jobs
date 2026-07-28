@@ -541,6 +541,65 @@ body {
   overflow-wrap: anywhere;
 }
 
+.contact-map-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.contact-map-grid > * {
+  min-width: 0;
+  height: 100%;
+}
+
+.contact-map-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.contact-map-body {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.contact-map-body .operations-map-shell {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: none;
+}
+
+.contact-map-body .operations-map-scroll {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  overflow-x: hidden;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.contact-map-body .operations-svg {
+  max-height: 430px;
+}
+
+.contact-map-body .country-flag-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
+  gap: 0.7rem;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.contact-map-body .country-group {
+  padding: 0.7rem;
+}
+
+.contact-map-body .country-flag-card {
+  padding: 0.5rem 0.55rem;
+}
+
 .operations-readable-list {
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   background: #ffffff;
@@ -599,6 +658,10 @@ body {
 @media (min-width: 1024px) {
   .operations-readable-list ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact-map-card {
+    min-height: 640px;
   }
 }
 

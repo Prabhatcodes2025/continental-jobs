@@ -197,7 +197,15 @@ export function IndiaOperationsMap({
   );
 }
 
-export function WorldwideOperationsMap({ regions, showCountryGrid = true }: { regions: string[]; showCountryGrid?: boolean }) {
+export function WorldwideOperationsMap({
+  regions,
+  showCountryGrid = true,
+  showMapTitle = true
+}: {
+  regions: string[];
+  showCountryGrid?: boolean;
+  showMapTitle?: boolean;
+}) {
   const approved = worldwideLocations.filter((location) => regions.includes(location.name));
 
   return (
@@ -223,7 +231,7 @@ export function WorldwideOperationsMap({ regions, showCountryGrid = true }: { re
             <path d="M795 414 877 432 923 489 833 500Z" />
           </g>
           <text className="map-watermark" x="500" y="292">GLOBAL REACH</text>
-          <text className="operations-svg-title" x="500" y="56">WORLDWIDE OPERATIONS</text>
+          {showMapTitle ? <text className="operations-svg-title" x="500" y="56">WORLDWIDE OPERATIONS</text> : null}
           {approved.map((location) => (
             <SvgMarker key={location.name} location={location} />
           ))}
