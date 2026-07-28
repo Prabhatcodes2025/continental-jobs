@@ -14,7 +14,9 @@ export async function SiteFooter() {
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
           <h2 className="mt-3 max-w-full leading-tight">
             <span className="brand-word block text-3xl sm:text-4xl md:text-5xl">CONTINENTAL</span>
-            <span className="brand-word block text-sm sm:text-base md:text-lg">MERCANTILE</span>
+            <span className="brand-word footer-brand-sub block max-w-full whitespace-nowrap">
+              MERCANTILE CORPORATION
+            </span>
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
             A premium international recruitment, work abroad, study abroad and Human Resource Solutions

@@ -48,6 +48,13 @@ body {
     0 5px 12px rgba(0, 0, 0, 0.28);
 }
 
+.footer-brand-sub {
+  font-size: clamp(0.72rem, 3.6vw, 1.125rem);
+  letter-spacing: clamp(0.012em, 0.25vw, 0.035em);
+  line-height: 1.25;
+  overflow-wrap: normal;
+}
+
 .brand-lockup {
   display: block;
   max-width: min(62vw, 250px);
