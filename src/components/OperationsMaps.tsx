@@ -149,10 +149,12 @@ const approvedCountryGroups: CountryGroup[] = [
 export function IndiaOperationsMap({
   locations,
   showMapTitle = true,
+  showList = true,
   listTitle = "INDIAN OPERATIONS"
 }: {
   locations: string[];
   showMapTitle?: boolean;
+  showList?: boolean;
   listTitle?: string;
 }) {
   const approved = indianLocations.filter((location) => locations.includes(location.name));
@@ -185,10 +187,12 @@ export function IndiaOperationsMap({
           ))}
         </svg>
       </div>
-      <ReadableLocationList
-        title={listTitle}
-        items={approved.map((location) => location.officeLabel || location.name)}
-      />
+      {showList ? (
+        <ReadableLocationList
+          title={listTitle}
+          items={approved.map((location) => location.officeLabel || location.name)}
+        />
+      ) : null}
     </div>
   );
 }

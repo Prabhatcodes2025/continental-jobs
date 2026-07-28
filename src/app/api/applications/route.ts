@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, errors: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
-    const uploads = await saveUploads(formData, ["resume", "passportCopy", "photo"]);
+    const uploads = await saveUploads(formData, ["resume", "photo"]);
     const now = new Date().toISOString();
     const applicationNumber = createSubmissionNumber("CAN");
     const meta = {
@@ -36,11 +36,11 @@ export async function POST(request: NextRequest) {
       passport_status: parsed.data.passportStatus,
       preferred_country: parsed.data.preferredCountry,
       job_category: parsed.data.jobCategory,
-      experience_years: parsed.data.experience,
+      indian_experience_years: parsed.data.indianExperience,
+      overseas_experience_years: parsed.data.overseasExperience,
       message: parsed.data.message,
       resume_path: uploads[0] || null,
-      passport_path: uploads[1] || null,
-      photo_path: uploads[2] || null,
+      photo_path: uploads[1] || null,
       source_page: parsed.data.sourcePage,
       status: "new",
       consent_privacy: true,
@@ -72,7 +72,9 @@ export async function POST(request: NextRequest) {
                 Email: parsed.data.email,
                 Phone: parsed.data.mobile,
                 Country: parsed.data.preferredCountry,
-                Category: parsed.data.jobCategory
+                Category: parsed.data.jobCategory,
+                "Indian Experience": `${parsed.data.indianExperience} years`,
+                "Overseas Experience": `${parsed.data.overseasExperience} years`
               }
             })
           })
@@ -87,7 +89,9 @@ export async function POST(request: NextRequest) {
             "Application Number": applicationNumber,
             Name: parsed.data.fullName,
             "Preferred Country": parsed.data.preferredCountry,
-            "Job Category": parsed.data.jobCategory
+            "Job Category": parsed.data.jobCategory,
+            "Indian Experience": `${parsed.data.indianExperience} years`,
+            "Overseas Experience": `${parsed.data.overseasExperience} years`
           }
         })
       })

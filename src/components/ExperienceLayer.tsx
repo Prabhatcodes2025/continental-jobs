@@ -395,7 +395,8 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                 <ModalField name="passportStatus" label="Passport Status" required />
                 <ModalField name="preferredCountry" label="Preferred Country" required />
                 <ModalField name="jobCategory" label="Job Category" required />
-                <ModalField name="experience" label="Experience" required />
+                <ModalField name="indianExperience" label="Indian Experience (Years)" type="number" min="0" step="1" required />
+                <ModalField name="overseasExperience" label="Overseas Experience (Years)" type="number" min="0" step="1" required />
                 <ModalFile name="resume" label="Upload Resume" />
                 <ModalFile name="photo" label="Upload Photo" />
                 <label className="grid gap-2 md:col-span-2">
@@ -446,11 +447,11 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-function ModalField({ name, label, type = "text", required = false }: { name: string; label: string; type?: string; required?: boolean }) {
+function ModalField({ name, label, type = "text", required = false, min, step }: { name: string; label: string; type?: string; required?: boolean; min?: string; step?: string }) {
   return (
     <label className="grid gap-2">
       <span className="label">{label}</span>
-      <input className="field" name={name} type={type} required={required} />
+      <input className="field" name={name} type={type} min={min} step={step} required={required} />
     </label>
   );
 }

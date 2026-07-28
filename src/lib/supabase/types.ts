@@ -49,11 +49,11 @@ export type CandidateApplicationInsert = {
   passport_status?: string | null;
   preferred_country?: string | null;
   job_category?: string | null;
-  experience_years?: string | null;
+  indian_experience_years?: number | null;
+  overseas_experience_years?: number | null;
   qualification?: string | null;
   message?: string | null;
   resume_path?: string | null;
-  passport_path?: string | null;
   photo_path?: string | null;
   source_page: string;
   status?: RecordStatus;

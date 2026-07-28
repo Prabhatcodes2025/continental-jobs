@@ -84,6 +84,12 @@ function normalizeWorldwideOperations(value: unknown) {
 function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
   const recruitmentEmail = typeof saved.recruitmentEmail === "string" && saved.recruitmentEmail.trim() ? saved.recruitmentEmail : defaultSiteContent.recruitmentEmail;
   const offices = defaultSiteContent.offices.map((fallback, index) => normalizeOffice(saved.offices?.[index], fallback));
+  if (offices[1]?.managerPhones?.length && !offices[0]?.managerPhones?.length) {
+    offices[0].managerPhones = offices[1].managerPhones;
+  }
+  if (offices[1]) {
+    offices[1].managerPhones = [];
+  }
   const savedGallery = Array.isArray(saved.gallery) ? saved.gallery : [];
   const gallery = defaultSiteContent.gallery.map((fallback, index) => normalizeGalleryEntry(savedGallery[index], fallback));
 
@@ -92,7 +98,8 @@ function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
     offices,
     indianOperations: isStringArray(saved.indianOperations) ? saved.indianOperations : defaultSiteContent.indianOperations,
     worldwideOperations: normalizeWorldwideOperations(saved.worldwideOperations),
-    gallery
+    gallery,
+    socialLinks: { ...defaultSiteContent.socialLinks, ...(saved.socialLinks || {}) }
   };
 }
 

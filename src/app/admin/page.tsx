@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { isAdminAuthenticated } from "@/lib/auth";
 import { activityCategories, contentFromFormData, defaultSiteContent, type OfficeContact, type SiteContent } from "@/lib/content";
 import { getRuntimeMode, validateServerEnvironment } from "@/lib/env";
+import { socialLinks } from "@/lib/site-data";
 import { readRecords, readSiteContent, saveGalleryImages, writeSiteContent } from "@/lib/storage";
 import { readAdminDashboardCounts, readRecentSubmissions } from "@/lib/supabase/queries/admin";
 
@@ -231,6 +232,19 @@ function ContentEditor({ content }: { content: SiteContent }) {
         </label>
       </div>
 
+      <div className="border-b border-slate-200 p-6">
+        <h3 className="text-xl font-black text-slate-950">Social Media Links</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-600">Leave a URL empty to hide that icon publicly.</p>
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          {socialLinks.map((item) => (
+            <label key={item.key} className="grid gap-2">
+              <span className="text-sm font-black uppercase tracking-[0.16em] text-gold">{item.label}</span>
+              <input name={`${item.key}_url`} type="url" className="field" defaultValue={content.socialLinks[item.key] || ""} placeholder="https://" />
+            </label>
+          ))}
+        </div>
+      </div>
+
       <div className="grid gap-6 p-6 lg:grid-cols-2">
         {offices.map((office, index) => (
           <AdminOfficeFields key={office.title} office={office} index={index} />
@@ -341,6 +355,8 @@ function DashboardTable({ title, records }: { title: string; records: unknown[] 
               <th className="p-4">Name / Company</th>
               <th className="p-4">Email</th>
               <th className="p-4">Phone</th>
+              <th className="p-4">Indian Exp.</th>
+              <th className="p-4">Overseas Exp.</th>
               <th className="p-4">Source</th>
               <th className="p-4">Consent Time</th>
               <th className="p-4">Uploads</th>
@@ -348,7 +364,7 @@ function DashboardTable({ title, records }: { title: string; records: unknown[] 
           </thead>
           <tbody>
             {records.length === 0 ? (
-              <tr><td className="p-5 text-slate-500" colSpan={6}>No submissions yet.</td></tr>
+              <tr><td className="p-5 text-slate-500" colSpan={8}>No submissions yet.</td></tr>
             ) : records.map((record, index) => {
               const row = record as Record<string, unknown>;
               return (
@@ -356,6 +372,8 @@ function DashboardTable({ title, records }: { title: string; records: unknown[] 
                   <td className="p-4 font-bold text-slate-900">{String(row.fullName || row.companyName || "-")}</td>
                   <td className="p-4 text-slate-600">{String(row.email || "-")}</td>
                   <td className="p-4 text-slate-600">{String(row.mobile || row.phone || "-")}</td>
+                  <td className="p-4 text-slate-600">{String(row.indianExperience ?? "-")}</td>
+                  <td className="p-4 text-slate-600">{String(row.overseasExperience ?? "-")}</td>
                   <td className="p-4 text-slate-600">{String(row.sourcePage || "-")}</td>
                   <td className="p-4 text-slate-600">{String(row.consentTimestamp || "-")}</td>
                   <td className="p-4 text-slate-600">{Array.isArray(row.uploads) ? row.uploads.length : 0}</td>

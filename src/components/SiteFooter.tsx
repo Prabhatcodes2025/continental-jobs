@@ -1,15 +1,21 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { SocialLinks } from "@/components/SocialLinks";
 import { TrustBadges } from "@/components/TrustBadges";
 import { company, contactDetails, globalRegions, indianOffices } from "@/lib/site-data";
+import { readSiteContent } from "@/lib/storage";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const content = await readSiteContent();
   return (
     <footer className="premium-band text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
-          <h2 className="brand-word mt-3 max-w-full text-xl leading-tight sm:text-2xl md:text-3xl">CONTINENTAL MERCANTILE CORPORATION</h2>
+          <h2 className="mt-3 max-w-full leading-tight">
+            <span className="brand-word block text-3xl sm:text-4xl md:text-5xl">CONTINENTAL</span>
+            <span className="brand-word block text-sm sm:text-base md:text-lg">MERCANTILE</span>
+          </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
             A premium international recruitment, work abroad, study abroad and Human Resource Solutions
             organization with regional Indian operations and global recruitment reach.
@@ -31,6 +37,14 @@ export function SiteFooter() {
               <MapPin className="h-4 w-4" /> Corporate Office
             </span>
           </div>
+          <SocialLinks
+            links={Object.entries(content.socialLinks).map(([key, url]) => ({
+              key,
+              url,
+              label: key === "twitter" ? "Twitter / X" : key.charAt(0).toUpperCase() + key.slice(1)
+            }))}
+            className="mt-5"
+          />
         </div>
         <div>
           <h3 className="font-bold uppercase tracking-[0.12em] text-gold">INDIAN OPERATIONS</h3>

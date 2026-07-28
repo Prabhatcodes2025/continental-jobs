@@ -45,7 +45,11 @@ export const contactDetails = {
     ],
     whatsapp: { display: "8907090001", raw: "8907090001", tel: "+918907090001" },
     email: "recruitments@continentalmanpower.com",
-    website: "continentalmanpower.com"
+    website: "continentalmanpower.com",
+    managerPhones: [
+      { display: "+91 98950 50050", raw: "9895050050", tel: "+919895050050", label: "PRO" },
+      { display: "+91 89070 90002", raw: "8907090002", tel: "+918907090002", label: "MANAGER" }
+    ]
   },
   operationsOffice: {
     label: "OPERATIONS OFFICE",
@@ -55,15 +59,19 @@ export const contactDetails = {
       { display: "0091 890 70 900 10", raw: "8907090010", tel: "+918907090010" },
       { display: "0091 890 70 900 20", raw: "8907090020", tel: "+918907090020" }
     ],
-    email: "gulfrecruitments@continentalmanpower.com",
-    managerPhones: [
-      { display: "+91 98950 50050", raw: "9895050050", tel: "+919895050050" },
-      { display: "+91 89070 90002", raw: "8907090002", tel: "+918907090002" }
-    ]
+    email: "gulfrecruitments@continentalmanpower.com"
   },
   whatsappUrl:
     "https://wa.me/918907090001?text=Hello%20Continental%20Mercantile%20Corporation%2C%20I%20would%20like%20to%20know%20more."
 };
+
+export const socialLinks = [
+  { key: "facebook", label: "Facebook", url: "" },
+  { key: "instagram", label: "Instagram", url: "" },
+  { key: "youtube", label: "YouTube", url: "" },
+  { key: "linkedin", label: "LinkedIn", url: "" },
+  { key: "twitter", label: "Twitter / X", url: "" }
+] as const;
 
 export const company = {
   name: "Continental Mercantile Corporation Pvt Ltd",

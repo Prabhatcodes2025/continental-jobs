@@ -1,4 +1,4 @@
-import { contactDetails, galleryItems, globalRegions, indianOffices } from "@/lib/site-data";
+import { contactDetails, galleryItems, globalRegions, indianOffices, socialLinks } from "@/lib/site-data";
 
 export type OfficeContact = {
   title: string;
@@ -24,6 +24,7 @@ export type SiteContent = {
   indianOperations: string[];
   worldwideOperations: string[];
   gallery: GalleryEntry[];
+  socialLinks: Record<string, string>;
 };
 
 export const activityCategories = [
@@ -47,7 +48,8 @@ export const defaultSiteContent: SiteContent = {
       phones: contactDetails.corporateOffice.phones.map((phone) => phone.display),
       whatsapp: contactDetails.corporateOffice.whatsapp.display,
       emails: [contactDetails.corporateOffice.email],
-      website: contactDetails.corporateOffice.website
+      website: contactDetails.corporateOffice.website,
+      managerPhones: contactDetails.corporateOffice.managerPhones.map((phone) => phone.display)
     },
     {
       title: contactDetails.operationsOffice.label,
@@ -55,7 +57,7 @@ export const defaultSiteContent: SiteContent = {
       address: contactDetails.operationsOffice.address,
       phones: contactDetails.operationsOffice.phones.map((phone) => phone.display),
       emails: [contactDetails.operationsOffice.email],
-      managerPhones: contactDetails.operationsOffice.managerPhones.map((phone) => phone.display)
+      managerPhones: []
     }
   ],
   indianOperations: indianOffices,
@@ -110,7 +112,8 @@ export const defaultSiteContent: SiteContent = {
       src: "/gallery/spain-work-permit.png",
       activity: "Ship Building"
     }
-  ]
+  ],
+  socialLinks: Object.fromEntries(socialLinks.map((item) => [item.key, item.url]))
 };
 
 export function linesToList(value: FormDataEntryValue | null) {
@@ -150,6 +153,12 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
     website: String(formData.get(`office-${index}-website`) || office.website || "").trim() || undefined,
     managerPhones: linesToList(formData.get(`office-${index}-managerPhones`)).length ? linesToList(formData.get(`office-${index}-managerPhones`)) : office.managerPhones
   }));
+  if (offices[1]?.managerPhones?.length && !offices[0]?.managerPhones?.length) {
+    offices[0].managerPhones = offices[1].managerPhones;
+  }
+  if (offices[1]) {
+    offices[1].managerPhones = [];
+  }
 
   const gallery = defaultSiteContent.gallery.map((item, index) => ({
     title: String(formData.get(`gallery-${index}-title`) || item.title).trim(),
@@ -163,6 +172,7 @@ export function contentFromFormData(formData: FormData, imagePaths: string[] = [
     offices,
     indianOperations: linesToList(formData.get("indianOperations")).length ? linesToList(formData.get("indianOperations")) : defaultSiteContent.indianOperations,
     worldwideOperations: linesToList(formData.get("worldwideOperations")).length ? linesToList(formData.get("worldwideOperations")) : defaultSiteContent.worldwideOperations,
-    gallery
+    gallery,
+    socialLinks: Object.fromEntries(socialLinks.map((item) => [item.key, String(formData.get(`${item.key}_url`) || "").trim()]))
   };
 }

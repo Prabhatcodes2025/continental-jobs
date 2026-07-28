@@ -50,7 +50,7 @@ export default async function HomePage() {
                   SUBMIT REQUIREMENT
                 </Link>
                 <Link href="/chairman-message" className="button-secondary">
-                  CONTACT CHAIRMAN OFFICE
+                  CHAIRMAN&apos;S MESSAGE
                 </Link>
               </div>
               <div className="mt-6">

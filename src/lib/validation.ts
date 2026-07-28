@@ -2,6 +2,11 @@ import { z } from "zod";
 
 const phone = z.string().min(7).max(25);
 const email = z.string().email();
+const experienceYears = z.coerce
+  .number({ invalid_type_error: "Enter years of experience." })
+  .min(0, "Experience cannot be negative.")
+  .max(80, "Experience value is too high.")
+  .int("Use whole years only.");
 const consent = z.literal("on", {
   errorMap: () => ({ message: "Consent is required before submission." })
 });
@@ -14,7 +19,8 @@ export const candidateSchema = z.object({
   passportStatus: z.string().min(2).max(80),
   preferredCountry: z.string().min(2).max(100),
   jobCategory: z.string().min(2).max(120),
-  experience: z.string().min(1).max(80),
+  indianExperience: experienceYears,
+  overseasExperience: experienceYears,
   message: z.string().max(1500).optional().default(""),
   whatsappConsent: consent,
   privacyAgreement: consent,

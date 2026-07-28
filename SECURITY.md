@@ -30,7 +30,6 @@ Private bucket:
 
 - `candidate-documents`
 - resumes
-- passports
 - photos
 - employer documents
 
@@ -45,7 +44,6 @@ Public bucket:
 Validation:
 
 - Resume: PDF/DOC/DOCX, max 5 MB.
-- Passport: PDF/JPG/PNG, max 5 MB.
 - Photo: JPG/PNG/WebP, max 3 MB.
 - Employer document: PDF/DOC/DOCX, max 10 MB.
 - Gallery: JPG/PNG/WebP, max 8 MB.

@@ -21,7 +21,7 @@ const employerInfoCards = [
     icon: BriefcaseBusiness
   },
   {
-    title: "Worker Source",
+    title: "SOURCING COUNTRY",
     text: "Countries from where workers are required.",
     icon: Globe2
   },
@@ -159,7 +159,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
             <Field name="designation" label="Designation" required />
             <Field name="email" label="Email" type="email" required />
             <Field name="phone" label="Phone / WhatsApp" required />
-            <Field name="country" label="Country" required />
+            <Field name="country" label="SOURCING COUNTRY" required />
             <Field name="projectLocation" label="Project Location" required />
             <Field name="categories" label="Required Job Categories" required />
             <Field name="workers" label="Number of Workers" required />
@@ -197,8 +197,8 @@ function CorporateInfoStrip() {
               <Image src="/brand/continental-logo.png" alt="Continental eagle logo" fill sizes="64px" className="object-contain p-2" />
             </div>
             <div className="min-w-0">
-              <p className="font-serif text-2xl font-black uppercase leading-none tracking-[0.05em] text-white sm:text-3xl">CONTINENTAL</p>
-              <p className="mt-1 font-serif text-sm font-black uppercase tracking-[0.12em] text-white/90 sm:text-base">MERCANTILE CORPORATION</p>
+              <p className="font-serif text-3xl font-black uppercase leading-none tracking-[0.05em] text-white sm:text-4xl">CONTINENTAL</p>
+              <p className="mt-1 whitespace-nowrap font-serif text-sm font-black uppercase tracking-[0.1em] text-white/90 sm:text-base">MERCANTILE CORPORATION</p>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ function CorporateInfoStrip() {
               <Award className="h-5 w-5 text-gold" />
               <span className="grid leading-tight">
                 <strong className="font-serif text-sm uppercase tracking-[0.08em]">43+ Years</strong>
-                <small className="text-[11px] font-bold uppercase tracking-[0.08em] text-white/75">Recruitment</small>
+                <small className="text-[11px] font-bold uppercase tracking-[0.08em] text-white/75">Experience</small>
               </span>
             </span>
           </div>

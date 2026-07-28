@@ -54,7 +54,7 @@ Supabase schema supports:
 - Status updates.
 - Assignment.
 - Internal notes.
-- Secure resume/passport/photo paths.
+- Secure resume/photo paths.
 - WhatsApp/email/phone actions.
 - Bulk/archive/export workflows.
 

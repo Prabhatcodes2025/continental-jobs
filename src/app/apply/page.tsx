@@ -32,9 +32,9 @@ export default function ApplyPage({ searchParams }: { searchParams: { submitted?
             <Field name="passportStatus" label="Passport Status" required />
             <Field name="preferredCountry" label="Preferred Country" required />
             <Field name="jobCategory" label="Job Category" required />
-            <Field name="experience" label="Experience" required />
+            <Field name="indianExperience" label="Indian Experience (Years)" type="number" min="0" step="1" required />
+            <Field name="overseasExperience" label="Overseas Experience (Years)" type="number" min="0" step="1" required />
             <FileField name="resume" label="Upload Resume" />
-            <FileField name="passportCopy" label="Upload Passport Copy" />
             <FileField name="photo" label="Upload Photo" />
           </div>
           <label className="grid gap-2">
@@ -51,11 +51,11 @@ export default function ApplyPage({ searchParams }: { searchParams: { submitted?
   );
 }
 
-function Field({ name, label, type = "text", required = false }: { name: string; label: string; type?: string; required?: boolean }) {
+function Field({ name, label, type = "text", required = false, min, step }: { name: string; label: string; type?: string; required?: boolean; min?: string; step?: string }) {
   return (
     <label className="grid gap-2">
       <span className="label">{label}</span>
-      <input className="field" name={name} type={type} required={required} />
+      <input className="field" name={name} type={type} min={min} step={step} required={required} />
     </label>
   );
 }

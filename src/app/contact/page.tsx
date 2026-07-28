@@ -3,8 +3,9 @@ import Link from "next/link";
 import { Building2, Globe2, Mail, MapPin, MessageCircle, Phone, Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 import { MotionReveal } from "@/components/MotionReveal";
-import { IndiaOperationsMap } from "@/components/OperationsMaps";
+import { IndiaOperationsMap, WorldwideOperationsMap } from "@/components/OperationsMaps";
 import { PageHero } from "@/components/PageHero";
+import { SocialLinks } from "@/components/SocialLinks";
 import { TrustBadges } from "@/components/TrustBadges";
 import { mailHref, phoneHref, whatsappHref, type OfficeContact } from "@/lib/content";
 import { readSiteContent } from "@/lib/storage";
@@ -66,6 +67,11 @@ export default async function ContactPage() {
               items={content.worldwideOperations}
             />
           </MotionReveal>
+          <MotionReveal delay={0.14}>
+            <div className="lg:col-span-2">
+              <WorldwideOperationsMap regions={content.worldwideOperations} />
+            </div>
+          </MotionReveal>
         </div>
       </section>
 
@@ -73,7 +79,7 @@ export default async function ContactPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <MotionReveal>
             <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
-              <IndiaOperationsMap locations={content.indianOperations} />
+              <IndiaOperationsMap locations={content.indianOperations} showList={false} />
             </div>
           </MotionReveal>
           <MotionReveal delay={0.1}>
@@ -101,6 +107,14 @@ export default async function ContactPage() {
                   EMPLOYER MANPOWER ORDER
                 </Link>
               </div>
+              <SocialLinks
+                links={Object.entries(content.socialLinks).map(([key, url]) => ({
+                  key,
+                  url,
+                  label: key === "twitter" ? "Twitter / X" : key.charAt(0).toUpperCase() + key.slice(1)
+                }))}
+                className="mt-6"
+              />
             </div>
           </MotionReveal>
         </div>
@@ -153,14 +167,12 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       {office.managerPhones?.length ? (
         <ContactGroup icon={<Phone className="h-4 w-4" />} label="PRO / MANAGER">
           {office.managerPhones.map((phone, index) => {
-            const display = isOperationsOffice ? operationsManagerDisplay(index) : phone;
+            const display = phone;
             return (
               <div key={`${phone}-${index}`}>
-                {isOperationsOffice ? (
-                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/48">
-                    {index === 0 ? "PRO" : "MANAGER"}
-                  </span>
-                ) : null}
+                <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/48">
+                  {index === 0 ? "PRO" : "MANAGER"}
+                </span>
                 <a href={phoneHref(display)} className="block font-bold text-white transition hover:text-gold">
                   {display}
                 </a>

@@ -41,11 +41,12 @@ create table public.candidate_applications (
   passport_status text,
   preferred_country text,
   job_category text,
-  experience_years text,
+  experience_years text, -- deprecated legacy field kept for manual review/migration safety
+  indian_experience_years numeric check (indian_experience_years is null or indian_experience_years >= 0),
+  overseas_experience_years numeric check (overseas_experience_years is null or overseas_experience_years >= 0),
   qualification text,
   message text,
   resume_path text,
-  passport_path text,
   photo_path text,
   source_page text not null default '/apply',
   status public.candidate_status not null default 'new',
@@ -106,14 +107,14 @@ create table public.contact_settings (
   corporate_phones text[] not null default '{}',
   corporate_whatsapp text,
   corporate_email text,
+  corporate_pro_number text,
+  corporate_manager_number text,
   operations_label text not null,
   operations_description text,
   operations_address text,
   operations_phones text[] not null default '{}',
   operations_whatsapp text,
   operations_email text,
-  operations_pro_number text,
-  operations_manager_number text,
   recruitment_email text,
   website text,
   header_call_number text,
@@ -355,16 +356,18 @@ create policy "content admins manage public media" on storage.objects for all us
 
 insert into public.contact_settings (
   corporate_label, corporate_description, corporate_address, corporate_phones, corporate_whatsapp, corporate_email,
+  corporate_pro_number, corporate_manager_number,
   operations_label, operations_description, operations_address, operations_phones, operations_whatsapp, operations_email,
-  operations_pro_number, operations_manager_number, recruitment_email, website, header_call_number, floating_whatsapp_number, whatsapp_message
+  recruitment_email, website, header_call_number, floating_whatsapp_number, whatsapp_message
 ) values (
   'CORPORATE OFFICE', 'Corporate office for international client dealings and control of Indian operations.',
   'Continental Towers, Near Ernakulam South, Cochin, Kerala - 11, India',
   array['0091 890 70 900 50','0091 890 70 900 60'], '8907090001', 'recruitments@continentalmanpower.com',
+  '+91 98950 50050', '+91 89070 90002',
   'OPERATIONS OFFICE', 'Operational support for client handling and all visa-processing activities.',
   '"Devdutt", Near Taj Hotel, Bandra(W), Mumbai-50',
   array['0091 890 70 900 10','0091 890 70 900 20'], '8907090020', 'gulfrecruitments@continentalmanpower.com',
-  '+91 98950 50050', '+91 89070 90002', 'recruitments@continentalmanpower.com', 'continentalmanpower.com',
+  'recruitments@continentalmanpower.com', 'continentalmanpower.com',
   '+918907090050', '+918907090001', 'Hello Continental Mercantile Corporation, I would like to know more.'
 );
 
@@ -407,5 +410,6 @@ on conflict (country_name) do update set active = excluded.active, display_order
 
 insert into public.site_settings (key, value) values
 ('brand', '{"companyName":"CONTINENTAL MERCANTILE CORPORATION","years":"43+","iso":"ISO 9001 Certified","website":"continentalmanpower.com"}'::jsonb),
-('footer', '{"globalReachExcludes":[],"companyName":"CONTINENTAL MERCANTILE CORPORATION"}'::jsonb)
+('footer', '{"globalReachExcludes":[],"companyName":"CONTINENTAL MERCANTILE CORPORATION"}'::jsonb),
+('social_links', '{"facebook_url":"","instagram_url":"","youtube_url":"","linkedin_url":"","twitter_url":""}'::jsonb)
 on conflict (key) do update set value = excluded.value;
