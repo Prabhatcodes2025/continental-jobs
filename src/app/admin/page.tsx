@@ -234,12 +234,14 @@ function ContentEditor({ content }: { content: SiteContent }) {
 
       <div className="border-b border-slate-200 p-6">
         <h3 className="text-xl font-black text-slate-950">Social Media Links</h3>
-        <p className="mt-2 text-sm leading-6 text-slate-600">Leave a URL empty to hide that icon publicly.</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          Add official social URLs here. Blank fields use safe placeholder links so public icons remain visible.
+        </p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {socialLinks.map((item) => (
             <label key={item.key} className="grid gap-2">
               <span className="text-sm font-black uppercase tracking-[0.16em] text-gold">{item.label}</span>
-              <input name={`${item.key}_url`} type="url" className="field" defaultValue={content.socialLinks[item.key] || ""} placeholder="https://" />
+              <input name={`${item.key}_url`} type="url" className="field" defaultValue={content.socialLinks[item.key] || item.url} placeholder={item.url} />
             </label>
           ))}
         </div>

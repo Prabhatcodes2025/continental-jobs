@@ -39,13 +39,14 @@ export async function SiteFooter() {
               <MapPin className="h-4 w-4" /> Corporate Office
             </span>
           </div>
+          <p className="mt-6 text-xs font-black uppercase tracking-[0.22em] text-gold">FOLLOW US</p>
           <SocialLinks
             links={Object.entries(content.socialLinks).map(([key, url]) => ({
               key,
               url,
               label: key === "twitter" ? "Twitter / X" : key.charAt(0).toUpperCase() + key.slice(1)
             }))}
-            className="mt-5"
+            className="mt-3 justify-center md:justify-start"
           />
         </div>
         <div>

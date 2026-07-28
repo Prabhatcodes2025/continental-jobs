@@ -6,6 +6,14 @@ type SocialLink = {
   url?: string;
 };
 
+const fallbackLinks: SocialLink[] = [
+  { key: "facebook", label: "Facebook", url: "https://facebook.com/" },
+  { key: "instagram", label: "Instagram", url: "https://instagram.com/" },
+  { key: "youtube", label: "YouTube", url: "https://youtube.com/" },
+  { key: "linkedin", label: "LinkedIn", url: "https://linkedin.com/" },
+  { key: "twitter", label: "Twitter / X", url: "https://x.com/" }
+];
+
 const icons: Record<string, ReactNode> = {
   facebook: (
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.2V6.6c0-.8.5-1 1-1h1.7V2.8A22 22 0 0 0 14.2 2c-2.5 0-4.1 1.5-4.1 4.2v2H7.4v3.2h2.7V22h3.4V11.4h2.8l.4-3.2H14Z" /></svg>
@@ -25,8 +33,15 @@ const icons: Record<string, ReactNode> = {
 };
 
 export function SocialLinks({ links, className = "" }: { links: SocialLink[]; className?: string }) {
-  const activeLinks = links.filter((link) => link.url?.trim());
-  if (!activeLinks.length) return null;
+  const linksByKey = new Map(links.map((link) => [link.key, link]));
+  const activeLinks = fallbackLinks.map((fallback) => {
+    const link = linksByKey.get(fallback.key);
+    return {
+      ...fallback,
+      label: link?.label || fallback.label,
+      url: link?.url?.trim() || fallback.url
+    };
+  });
 
   return (
     <div className={`flex flex-wrap gap-2 ${className}`} aria-label="Social media links">
@@ -37,7 +52,7 @@ export function SocialLinks({ links, className = "" }: { links: SocialLink[]; cl
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:-translate-y-0.5 hover:border-gold/60 hover:text-gold"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:-translate-y-0.5 hover:border-gold/60 hover:bg-navy hover:text-gold"
         >
           <span className="social-icon h-4 w-4 fill-current">{icons[link.key]}</span>
         </a>

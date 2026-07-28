@@ -81,6 +81,17 @@ function normalizeWorldwideOperations(value: unknown) {
   return Array.from(new Set([...approvedSaved, ...defaultSiteContent.worldwideOperations]));
 }
 
+function normalizeSocialLinks(value: unknown): SiteContent["socialLinks"] {
+  const saved = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+
+  return Object.fromEntries(
+    Object.entries(defaultSiteContent.socialLinks).map(([key, fallback]) => {
+      const savedUrl = typeof saved[key] === "string" ? saved[key].trim() : "";
+      return [key, savedUrl || fallback];
+    })
+  );
+}
+
 function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
   const recruitmentEmail = typeof saved.recruitmentEmail === "string" && saved.recruitmentEmail.trim() ? saved.recruitmentEmail : defaultSiteContent.recruitmentEmail;
   const offices = defaultSiteContent.offices.map((fallback, index) => normalizeOffice(saved.offices?.[index], fallback));
@@ -99,7 +110,7 @@ function normalizeSiteContent(saved: Partial<SiteContent>): SiteContent {
     indianOperations: isStringArray(saved.indianOperations) ? saved.indianOperations : defaultSiteContent.indianOperations,
     worldwideOperations: normalizeWorldwideOperations(saved.worldwideOperations),
     gallery,
-    socialLinks: { ...defaultSiteContent.socialLinks, ...(saved.socialLinks || {}) }
+    socialLinks: normalizeSocialLinks(saved.socialLinks)
   };
 }
 

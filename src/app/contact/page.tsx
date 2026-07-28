@@ -114,13 +114,14 @@ export default async function ContactPage() {
                   EMPLOYER MANPOWER ORDER
                 </Link>
               </div>
+              <p className="mt-7 text-xs font-black uppercase tracking-[0.22em] text-gold">FOLLOW US</p>
               <SocialLinks
                 links={Object.entries(content.socialLinks).map(([key, url]) => ({
                   key,
                   url,
                   label: key === "twitter" ? "Twitter / X" : key.charAt(0).toUpperCase() + key.slice(1)
                 }))}
-                className="mt-6"
+                className="mt-3 justify-center md:justify-start"
               />
             </div>
           </MotionReveal>

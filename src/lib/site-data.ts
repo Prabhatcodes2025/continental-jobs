@@ -66,11 +66,11 @@ export const contactDetails = {
 };
 
 export const socialLinks = [
-  { key: "facebook", label: "Facebook", url: "" },
-  { key: "instagram", label: "Instagram", url: "" },
-  { key: "youtube", label: "YouTube", url: "" },
-  { key: "linkedin", label: "LinkedIn", url: "" },
-  { key: "twitter", label: "Twitter / X", url: "" }
+  { key: "facebook", label: "Facebook", url: "https://facebook.com/" },
+  { key: "instagram", label: "Instagram", url: "https://instagram.com/" },
+  { key: "youtube", label: "YouTube", url: "https://youtube.com/" },
+  { key: "linkedin", label: "LinkedIn", url: "https://linkedin.com/" },
+  { key: "twitter", label: "Twitter / X", url: "https://x.com/" }
 ] as const;
 
 export const company = {
