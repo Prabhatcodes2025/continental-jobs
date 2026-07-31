@@ -97,11 +97,26 @@ body {
 }
 
 .footer-brand-lockup {
-  --brand-lockup-width: clamp(13.6rem, 42vw, 18.15rem);
-  --brand-main-size: clamp(1.4rem, 4.42vw, 1.95rem);
-  --brand-sub-size: clamp(0.9rem, 2.68vw, 1.26rem);
-  --brand-sub-offset: 0.14rem;
-  --brand-sub-tracking: 0;
+  --brand-lockup-width: auto;
+  --brand-main-size: clamp(1.75rem, 5.2vw, 2.45rem);
+  --brand-sub-size: clamp(1rem, 3vw, 1.42rem);
+  --brand-sub-offset: 0.12rem;
+  --brand-sub-tracking: 0.035em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+  text-align: left;
+}
+
+.footer-brand-lockup .brand-letter-line {
+  display: block;
+  width: auto;
+  text-align: left;
+}
+
+.footer-brand-lockup .brand-letter-space {
+  flex: initial;
 }
 
 ::selection {
