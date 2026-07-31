@@ -48,35 +48,60 @@ body {
     0 5px 12px rgba(0, 0, 0, 0.28);
 }
 
-.footer-brand-sub {
-  display: block;
-  width: 100%;
-  font-size: clamp(0.82rem, 3.9vw, 1.5rem);
-  letter-spacing: clamp(0.018em, 0.42vw, 0.075em);
-  line-height: 1.12;
-  overflow-wrap: normal;
-  text-align: center;
-}
-
 .brand-lockup {
-  display: block;
-  max-width: min(62vw, 250px);
+  display: inline-grid;
+  width: var(--brand-lockup-width, max-content);
+  max-width: min(100%, 76vw);
+  justify-items: stretch;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .brand-word-main {
-  font-size: clamp(1rem, 4.6vw, 1.34rem);
+  width: 100%;
+  font-size: var(--brand-main-size, clamp(1rem, 4.6vw, 1.34rem));
+  line-height: 0.95;
 }
 
 .brand-word-sub {
-  margin-top: 0.1rem;
+  margin-top: var(--brand-sub-offset, 0.1rem);
+  width: 100%;
   overflow: visible;
   color: #f4ca58;
   font-family: "Times New Roman", Georgia, var(--font-playfair), serif;
-  font-size: clamp(0.56rem, 2.35vw, 0.78rem);
+  font-size: var(--brand-sub-size, clamp(0.62rem, 2.55vw, 0.84rem));
   font-weight: 900;
-  letter-spacing: clamp(0.035em, 0.38vw, 0.075em);
+  letter-spacing: var(--brand-sub-tracking, clamp(0.025em, 0.28vw, 0.055em));
+  line-height: 1.05;
   text-shadow: 0 1px 0 rgba(255, 242, 176, 0.56), 0 3px 8px rgba(0, 0, 0, 0.22);
   text-transform: uppercase;
+}
+
+.brand-letter-line {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.brand-letter-space {
+  flex: 0.42 0 auto;
+}
+
+.header-brand-lockup {
+  --brand-lockup-width: clamp(9.7rem, 18vw, 12.1rem);
+  --brand-main-size: clamp(1rem, 1.9vw, 1.3rem);
+  --brand-sub-size: clamp(0.64rem, 1.15vw, 0.84rem);
+  --brand-sub-tracking: 0;
+}
+
+.footer-brand-lockup {
+  --brand-lockup-width: clamp(18rem, 58vw, 31rem);
+  --brand-main-size: clamp(2.45rem, 7.6vw, 4.9rem);
+  --brand-sub-size: clamp(1.28rem, 4.05vw, 2.45rem);
+  --brand-sub-offset: 0.18rem;
+  --brand-sub-tracking: 0;
 }
 
 ::selection {
@@ -587,7 +612,8 @@ body {
   display: flex;
   min-width: 0;
   flex: 1 1 auto;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   overflow-x: hidden;
   padding: clamp(0.5rem, 1.5vw, 1rem);
 }

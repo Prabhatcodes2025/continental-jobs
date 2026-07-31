@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, PhoneCall, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ApplyTrigger } from "@/components/ApplyTrigger";
+import { BrandLockup } from "@/components/BrandLockup";
 import { contactDetails, navItems } from "@/lib/site-data";
 
 export function SiteHeader() {
@@ -54,14 +55,7 @@ export function SiteHeader() {
             className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-gold/50 sm:h-12 sm:w-12"
             priority
           />
-          <span className="brand-lockup min-w-0 whitespace-nowrap">
-            <span className="brand-word brand-word-main block leading-none">
-              CONTINENTAL
-            </span>
-            <span className="brand-word-sub block leading-tight">
-              MERCANTILE CORPORATION
-            </span>
-          </span>
+          <BrandLockup variant="header" />
         </Link>
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 text-[11px] font-semibold text-white/80 xl:flex 2xl:text-[13px]">

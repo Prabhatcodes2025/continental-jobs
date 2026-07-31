@@ -20,7 +20,12 @@ export default async function IndianOperationsPage() {
       />
       <section className="bg-white py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1.25fr_0.75fr] lg:px-8">
-          <IndiaOperationsMap locations={content.indianOperations} showMapTitle={false} listTitle="INDIAN OPERATIONS" />
+          <IndiaOperationsMap
+            locations={content.indianOperations}
+            showMapTitle={false}
+            listTitle="INDIAN OPERATIONS"
+            highlightOfficeLocations
+          />
           <div className="self-center">
             <h2 className="corporate-title text-3xl font-black text-slate-950">Regional access for national recruitment.</h2>
             <p className="mt-4 leading-8 text-slate-600">

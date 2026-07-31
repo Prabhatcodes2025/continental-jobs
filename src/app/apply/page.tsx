@@ -9,7 +9,12 @@ export const metadata = {
 export default function ApplyPage({ searchParams }: { searchParams: { submitted?: string; error?: string } }) {
   return (
     <>
-      <PageHero title="APPLY FOR A JOB" text="Submit your candidate profile for overseas job opportunities, work abroad support and recruitment screening." official />
+      <PageHero
+        title="APPLY FOR A JOB"
+        text="Submit your candidate profile for overseas job opportunities, work abroad support and recruitment screening."
+        secondaryLabel="SUBMIT MANPOWER ORDER"
+        official
+      />
       <section className="bg-white py-16">
         <form action="/api/applications" method="post" encType="multipart/form-data" className="mx-auto grid max-w-5xl gap-6 px-4 lg:px-8">
           {searchParams.submitted ? (

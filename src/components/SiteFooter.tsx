@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { BrandLockup } from "@/components/BrandLockup";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TrustBadges } from "@/components/TrustBadges";
 import { company, contactDetails, globalRegions, indianOffices } from "@/lib/site-data";
@@ -12,11 +13,8 @@ export async function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
-          <h2 className="mt-3 inline-grid max-w-full justify-items-center leading-tight">
-            <span className="brand-word block text-3xl sm:text-4xl md:text-5xl">CONTINENTAL</span>
-            <span className="brand-word footer-brand-sub block max-w-full whitespace-nowrap">
-              MERCANTILE CORPORATION
-            </span>
+          <h2 className="mt-3 leading-tight">
+            <BrandLockup variant="footer" />
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
             A premium international recruitment, work abroad, study abroad and Human Resource Solutions
