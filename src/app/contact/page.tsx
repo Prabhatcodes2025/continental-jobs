@@ -44,7 +44,7 @@ export default async function ContactPage() {
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {content.offices.map((office, index) => (
               <MotionReveal key={office.title} delay={index * 0.08}>
-                <OfficeCard office={office} />
+                <OfficeCard office={office} corporateOffice={content.offices[0]} />
               </MotionReveal>
             ))}
           </div>
@@ -140,8 +140,9 @@ function ContactMapCard({ title, children }: { title: string; children: ReactNod
   );
 }
 
-function OfficeCard({ office }: { office: OfficeContact }) {
+function OfficeCard({ office, corporateOffice }: { office: OfficeContact; corporateOffice: OfficeContact }) {
   const isOperationsOffice = office.title.toLowerCase().includes("operations");
+  const isCorporateOffice = office.title.toLowerCase().includes("corporate");
   const phones = isOperationsOffice ? office.phones.slice(0, 1) : office.phones;
   const whatsapp = office.whatsapp || (isOperationsOffice ? office.phones[1] : undefined);
   const whatsappUrl = whatsapp
@@ -149,6 +150,8 @@ function OfficeCard({ office }: { office: OfficeContact }) {
       ? `https://wa.me/${normalizedWhatsappNumber(whatsapp)}`
       : whatsappHref(whatsapp)
     : "";
+  const displayedEmails = isCorporateOffice ? [] : office.emails;
+  const displayedWebsite = isOperationsOffice ? office.website || corporateOffice.website : undefined;
 
   return (
     <div className="group relative h-full overflow-hidden rounded-lg border border-white/12 bg-white/[0.07] p-6 shadow-glow backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/45">
@@ -199,18 +202,20 @@ function OfficeCard({ office }: { office: OfficeContact }) {
         </ContactGroup>
       ) : null}
 
-      <ContactGroup icon={<Mail className="h-4 w-4" />} label="EMAIL">
-        {office.emails.map((email) => (
-          <a key={email} href={mailHref(email)} className="block break-all font-bold text-white transition hover:text-gold">
-            {email}
-          </a>
-        ))}
-      </ContactGroup>
+      {displayedEmails.length ? (
+        <ContactGroup icon={<Mail className="h-4 w-4" />} label="EMAIL">
+          {displayedEmails.map((email) => (
+            <a key={email} href={mailHref(email)} className="block break-all font-bold text-white transition hover:text-gold">
+              {email}
+            </a>
+          ))}
+        </ContactGroup>
+      ) : null}
 
-      {office.website ? (
+      {displayedWebsite ? (
         <ContactGroup icon={<Globe2 className="h-4 w-4" />} label="WEBSITE">
-          <a href={`https://${office.website.replace(/^https?:\/\//, "")}`} className="block break-all font-bold text-white transition hover:text-gold">
-            {office.website}
+          <a href={`https://${displayedWebsite.replace(/^https?:\/\//, "")}`} className="block break-all font-bold text-white transition hover:text-gold">
+            {displayedWebsite}
           </a>
         </ContactGroup>
       ) : null}

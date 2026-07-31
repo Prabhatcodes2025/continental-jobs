@@ -49,10 +49,13 @@ body {
 }
 
 .footer-brand-sub {
-  font-size: clamp(0.72rem, 3.6vw, 1.125rem);
-  letter-spacing: clamp(0.012em, 0.25vw, 0.035em);
-  line-height: 1.25;
+  display: block;
+  width: 100%;
+  font-size: clamp(0.82rem, 3.9vw, 1.5rem);
+  letter-spacing: clamp(0.018em, 0.42vw, 0.075em);
+  line-height: 1.12;
   overflow-wrap: normal;
+  text-align: center;
 }
 
 .brand-lockup {
@@ -637,6 +640,27 @@ body {
   color: #102033;
   font-size: 0.9rem;
   font-weight: 850;
+}
+
+.operations-readable-list li.operations-office-highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(217, 164, 65, 0.48);
+  background: linear-gradient(135deg, rgba(217, 164, 65, 0.18), rgba(255, 255, 255, 0.94));
+  color: #082f4d;
+  font-weight: 700;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.operations-readable-list li.operations-office-highlight::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #d4af37;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
 }
 
 @keyframes marker-pulse {

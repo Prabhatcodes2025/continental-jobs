@@ -83,11 +83,16 @@ export default async function HomePage() {
 
       <section className="bg-white py-18">
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-          <SectionHeader
-            eyebrow="Our Business"
-            title="PATHWAY TO GLOBAL CAREERS."
-            text="A complete international workforce desk covering sourcing, screening, documentation, mobilization, HR support and education pathways."
-          />
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-black uppercase tracking-[0.28em] text-gold">Our Business</p>
+            <h2 className="corporate-title-caps mt-3 text-3xl font-black leading-tight text-slate-950 md:text-5xl">
+              <span className="block">PATHWAY TO</span>
+              <span className="block">GLOBAL CAREERS</span>
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              A complete international workforce desk covering sourcing, screening, documentation, mobilization, HR support and education pathways.
+            </p>
+          </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => {
               const Icon = service.icon;
@@ -156,7 +161,7 @@ export default async function HomePage() {
               official
             />
             <div className="mt-8">
-              <IndiaOperationsMap locations={content.indianOperations} />
+              <IndiaOperationsMap locations={content.indianOperations} highlightOfficeLocations />
             </div>
           </MotionReveal>
           <MotionReveal delay={0.1}>

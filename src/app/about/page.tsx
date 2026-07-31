@@ -21,7 +21,7 @@ export default function AboutPage() {
           <div>
             <SectionHeader
               eyebrow="About Continental"
-              title="Built in India, connected to the world."
+              title="Built in, connected to the world."
               text={`${company.shortName} operates from ${company.office}, with regional offices and sourcing networks across India. The company focuses on compliant international recruitment, talent acquisition and documentation-led deployment.`}
             />
             <div className="mt-8 grid gap-4 sm:grid-cols-3">

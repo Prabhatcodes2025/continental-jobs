@@ -19,9 +19,9 @@ export default async function IndianOperationsPage() {
         official
       />
       <section className="bg-white py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:px-8">
-          <IndiaOperationsMap locations={content.indianOperations} showMapTitle={false} listTitle="APPROVED LOCATIONS" />
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1.25fr_0.75fr] lg:px-8">
+          <IndiaOperationsMap locations={content.indianOperations} showMapTitle={false} listTitle="INDIAN OPERATIONS" />
+          <div className="self-center">
             <h2 className="corporate-title text-3xl font-black text-slate-950">Regional access for national recruitment.</h2>
             <p className="mt-4 leading-8 text-slate-600">
               The Indian operations network supports candidate sourcing, interviews, documentation, medical
@@ -34,11 +34,6 @@ export default async function IndianOperationsPage() {
                 Jaipur, Delhi, Kolkata, Siliguri and Vizag, supporting interviews, sourcing and
                 worker mobilization from multiple recruitment corridors.
               </p>
-            </div>
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              {content.indianOperations.map((office) => (
-                <div key={office} className="premium-card p-4 font-bold">{office === "Bombay" ? "OPERATIONS OFFICE - BOMBAY" : office}</div>
-              ))}
             </div>
           </div>
         </div>

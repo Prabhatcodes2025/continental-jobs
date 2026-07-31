@@ -91,7 +91,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="#client-manpower-order-form" className="button-primary max-w-full whitespace-normal text-center leading-snug">
-                CLIENTS MANPOWER ORDER SUBMIT
+                SUBMIT MANPOWER ORDER
               </Link>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
             Employers can submit overseas manpower requirements with project details, job categories, salary terms, facilities, visa information and mobilization timelines.
           </p>
           <Link href="#client-manpower-order-form" className="button-primary mt-7 max-w-full whitespace-normal text-center leading-snug">
-            CLIENTS MANPOWER ORDER SUBMIT
+            SUBMIT MANPOWER ORDER
           </Link>
         </div>
       </section>
@@ -177,7 +177,7 @@ export default function ManpowerRequirementPage({ searchParams }: { searchParams
           <ConsentText type="employer" />
           <Check name="whatsappConsent" label="I consent to receive requirement coordination messages through WhatsApp." />
           <Check name="termsAgreement" label="I agree to the Terms of Use and confirm the submitted requirement is lawful and accurate." />
-          <FormSubmitButton>CLIENTS MANPOWER ORDER SUBMIT</FormSubmitButton>
+          <FormSubmitButton>SUBMIT MANPOWER ORDER</FormSubmitButton>
         </form>
       </section>
     </>

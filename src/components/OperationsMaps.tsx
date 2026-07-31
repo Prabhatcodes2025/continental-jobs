@@ -150,12 +150,14 @@ export function IndiaOperationsMap({
   locations,
   showMapTitle = true,
   showList = true,
-  listTitle = "INDIAN OPERATIONS"
+  listTitle = "INDIAN OPERATIONS",
+  highlightOfficeLocations = false
 }: {
   locations: string[];
   showMapTitle?: boolean;
   showList?: boolean;
   listTitle?: string;
+  highlightOfficeLocations?: boolean;
 }) {
   const approved = indianLocations.filter((location) => locations.includes(location.name));
 
@@ -191,6 +193,7 @@ export function IndiaOperationsMap({
         <ReadableLocationList
           title={listTitle}
           items={approved.map((location) => location.officeLabel || location.name)}
+          highlightOfficeLocations={highlightOfficeLocations}
         />
       ) : null}
     </div>
@@ -311,14 +314,30 @@ function CountryFlagIcon({ name }: { name: string }) {
   return <span className={`country-flag country-flag-${codeByName[name] || "generic"}`} aria-hidden="true" />;
 }
 
-function ReadableLocationList({ title, items }: { title: string; items: string[] }) {
+function ReadableLocationList({
+  title,
+  items,
+  highlightOfficeLocations = false
+}: {
+  title: string;
+  items: string[];
+  highlightOfficeLocations?: boolean;
+}) {
   return (
     <div className="operations-readable-list">
       <h3>{title}</h3>
       <ul>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+        {items.map((item) => {
+          const isHighlightedOffice =
+            highlightOfficeLocations &&
+            (item === "COCHIN - CORPORATE OFFICE" || item === "OPERATIONS OFFICE - BOMBAY");
+
+          return (
+            <li key={item} className={isHighlightedOffice ? "operations-office-highlight" : undefined}>
+              {item}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

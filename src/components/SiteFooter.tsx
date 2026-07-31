@@ -12,7 +12,7 @@ export async function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-gold">{company.descriptor}</p>
-          <h2 className="mt-3 max-w-full leading-tight">
+          <h2 className="mt-3 inline-grid max-w-full justify-items-center leading-tight">
             <span className="brand-word block text-3xl sm:text-4xl md:text-5xl">CONTINENTAL</span>
             <span className="brand-word footer-brand-sub block max-w-full whitespace-nowrap">
               MERCANTILE CORPORATION
